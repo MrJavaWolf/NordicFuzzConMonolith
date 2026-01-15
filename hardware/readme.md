@@ -5,10 +5,12 @@
 
 ## LED Matrix - P3 Indoor 64*64 pixels LED Display Module
 
+See the panel [here](panel.webp) and [here](wiring.jpg). The technical specifications for the panels is [here](Muen-P3 indoor 192x192mm LED module spec-20241217.pdf)
 Brought from [here](https://www.aliexpress.com/item/1005004049950554.html?spm=a2g0o.order_list.order_list_main.29.88bf1802Ay4k2V)
 
 ## Colorlight 5A-75B Receiver
 
+The technical specifications for the receiver is [here](Colorlight 5A-75B Receiver.avif)
 Brought from [here](https://www.aliexpress.com/item/1005007011320683.html?spm=a2g0o.order_list.order_list_main.17.88bf1802Ay4k2V#nav-specification).
 
 The 5A-75B Colorlight Receiver card v 8.2 came with version 11 PWM which did not work with the panels at all. The panels had odd flickering.
