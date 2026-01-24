@@ -62,7 +62,7 @@ class ScreenCapture:
         
         # Convert BRGA to RGB
         img_np = np.array(img, dtype=np.uint8)
-        rgb = np.ascontiguousarray(np.flip(img_np[:, :, [2, 1, 0]], 2))
+        rgb = np.ascontiguousarray(np.flip(img_np[:, :, [2, 0, 1]], 2))
         return rgb
 
     
