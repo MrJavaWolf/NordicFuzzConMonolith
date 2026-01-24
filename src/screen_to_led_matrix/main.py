@@ -5,7 +5,7 @@ import time
 SINGLE_PANEL_WIDTH = 64
 SINGLE_PANEL_HEIGHT = 64
 NUMBER_OF_HORIZONTAL_PANELS = 12
-NUMBER_OF_VERTICAL_PANELS = 12
+NUMBER_OF_VERTICAL_PANELS = 8
 PIXEL_WIDTH = SINGLE_PANEL_WIDTH * NUMBER_OF_HORIZONTAL_PANELS
 PIXEL_HEIGHT = SINGLE_PANEL_HEIGHT * NUMBER_OF_VERTICAL_PANELS
 CAPTURE_REGION = {
@@ -26,13 +26,14 @@ def main():
             while True: 
                 frame = screen_capture.capture()
                 artnet.send(frame)
+
                 # FPS calculation
                 frame_count += 1
-                if frame_count % 60 == 0:
-                    now = time.perf_counter()
-                    fps = 60 / (now - prev_time)
+                now = time.perf_counter()
+                if now - prev_time > 1:
                     prev_time = now
-                    print(f"FPS: {fps:.1f}")
+                    print(f"FPS: {frame_count:.1f}")
+                    frame_count = 0
 
 
 

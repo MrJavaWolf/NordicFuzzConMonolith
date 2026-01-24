@@ -49,7 +49,7 @@ class ScreenCapture:
         Capture the current screen region.
 
         Returns:
-            A NumPy array with shape (H, W, 4) in BGRA format.
+            A NumPy array with shape (H, W, 3) in RGB format.
 
         Raises:
             RuntimeError:
@@ -59,11 +59,12 @@ class ScreenCapture:
             raise RuntimeError("ScreenCapturer must be used within a 'with' block")
 
         img = self.sct.grab(self.capture_region)
+        
+        # Convert BRGA to RGB
+        img_np = np.array(img, dtype=np.uint8)
+        rgb = np.ascontiguousarray(np.flip(img_np[:, :, :3], 2))
+        return rgb
 
-        # BGRA → NumPy array
-        frame = np.asarray(img, dtype=np.uint8)
-
-        return frame
     
     def set_capture_region(self, capture_region: Dict[str, int]) -> None:
         """Hot-swap the capture region."""
@@ -85,14 +86,8 @@ def main():
             # Capture screen
             img = screen_capture.capture()
 
-            # Drop alpha channel (BGRA → BGR)
-            frame = img[:, :, :3]
-
-            # ---- Optional processing here ----
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-            # Display (comment out if benchmarking raw capture speed)
-            cv2.imshow("Screen", frame)
+            # Display captured screen 
+            cv2.imshow("Screen", img)
 
             # ESC or Window close (X) exit 
             if cv2.waitKey(1) & 0xFF == 27 or \
@@ -101,11 +96,11 @@ def main():
 
             # FPS calculation
             frame_count += 1
-            if frame_count % 60 == 0:
-                now = time.perf_counter()
-                fps = 60 / (now - prev_time)
+            now = time.perf_counter()
+            if now - prev_time > 1:
                 prev_time = now
-                print(f"FPS: {fps:.1f}")
+                print(f"FPS: {frame_count:.1f}")
+                frame_count = 0
 
         cv2.destroyAllWindows()
 
