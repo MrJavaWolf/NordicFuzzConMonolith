@@ -15,7 +15,7 @@ CAPTURE_REGION = {
     "height": PIXEL_HEIGHT
 }
 ARTNET_IP = "127.0.0.1"
-ARTNET_START_UNIVERSE = 0
+ARTNET_START_UNIVERSE = 1
 
 # Set your target FPS here (-1 for uncapped)
 TARGET_FPS = 60

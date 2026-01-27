@@ -18,7 +18,7 @@ class ArtNetSender:
     DMX_CHANNELS_PER_UNIVERSE: int = 512
     PACKET_HEADER_SIZE = 18
 
-    def __init__(self, target_ip: str, start_universe: int = 0) -> None:
+    def __init__(self, target_ip: str, start_universe: int = 1) -> None:
         """
         Initialize the Art-Net sender.
 
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     frame[..., 2] = (x + y) % 256 # Blue
 
     # Send via Art-Net
-    with ArtNetSender("127.0.0.1", start_universe=0) as sender:
+    with ArtNetSender("127.0.0.1", start_universe=1) as sender:
         sender.send(frame)
 
         print(f"Sent dummy frame via Art-Net")
