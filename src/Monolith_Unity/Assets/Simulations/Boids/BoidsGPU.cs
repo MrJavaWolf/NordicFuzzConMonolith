@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BoidsGPU : MonoBehaviour
+public class BoidsGPU : MonoBehaviour, ISimulation
 {
     public ComputeShader boidsCompute;
     public RawImage rawImage;
@@ -42,6 +42,14 @@ public class BoidsGPU : MonoBehaviour
     int fadeKernel;
     int drawTrailKernel;
 
+
+    // ---- State implementation ----
+    [Header("Transition")]
+    public float transitionDuration = 1.0f;
+    public SimulationState SimulationState { get; private set; } = SimulationState.Stopped;
+    float stateChangeTime;
+    float stateAlpha;
+
     struct Boid
     {
         public Vector2 position;
@@ -81,7 +89,7 @@ public class BoidsGPU : MonoBehaviour
         renderTexture.Create();
 
         rawImage.texture = renderTexture;
-        rawImage.color = Color.white; // transparency comes from texture alpha
+        rawImage.color = Color.white;
 
         foreach (int k in new[] { updateKernel, drawTrailKernel })
             boidsCompute.SetBuffer(k, "boids", boidBuffer);
@@ -92,6 +100,11 @@ public class BoidsGPU : MonoBehaviour
 
     void Update()
     {
+        UpdateStateAlpha();
+
+        if (SimulationState == SimulationState.Stopped)
+            return;
+
         boidsCompute.SetInt("boidCount", boidCount);
         boidsCompute.SetFloat("deltaTime", Time.deltaTime);
         boidsCompute.SetVector("resolution", new Vector2(width, height));
@@ -124,4 +137,77 @@ public class BoidsGPU : MonoBehaviour
         boidBuffer?.Release();
         paletteBuffer?.Release();
     }
+
+
+
+    public void StartSimulation()
+    {
+        if (SimulationState == SimulationState.Running ||
+            SimulationState == SimulationState.Starting)
+        {
+            return;
+        }
+
+        SimulationState = SimulationState.Starting;
+        stateChangeTime = Time.time;
+    }
+
+    public void StopSimulation()
+    {
+        if (SimulationState == SimulationState.Stopped ||
+            SimulationState == SimulationState.Stopping)
+        {
+            return;
+        }
+
+        SimulationState = SimulationState.Stopping;
+        stateChangeTime = Time.time;
+    }
+
+
+    void UpdateStateAlpha()
+    {
+        float t = Mathf.Clamp01((Time.time - stateChangeTime) / transitionDuration);
+
+        switch (SimulationState)
+        {
+            case SimulationState.Starting:
+                stateAlpha = t;
+                if (t >= 1)
+                {
+                    Debug.Log($"Simulation {nameof(BoidsGPU)} is now running");
+                    SimulationState = SimulationState.Running;
+                }
+                break;
+            case SimulationState.Running:
+                stateAlpha = 1f;
+                break;
+            case SimulationState.Stopping:
+                stateAlpha = 1f - t;
+                if (t >= 1)
+                {
+                    SimulationState = SimulationState.Stopped;
+                    Debug.Log($"Simulation {nameof(BoidsGPU)} now stopped");
+                    stateAlpha = 0;
+                }
+                break;
+            case SimulationState.Stopped:
+                stateAlpha = 0f;
+                break;
+        }
+
+        if (stateAlpha <= 0f)
+        {
+            rawImage.color = transparent;
+        }
+        else if (stateAlpha >= 1f)
+        {
+            rawImage.color = Color.white;
+        }
+        else
+        {
+            rawImage.color = new Color(1, 1, 1, stateAlpha);
+        }
+    }
+    Color transparent = new(1, 1, 1, 0);
 }

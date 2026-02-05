@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class FluidGPU : MonoBehaviour
+public class FluidGPU : MonoBehaviour, ISimulation
 {
     public ComputeShader fluidCompute;
     public RawImage rawImage;
@@ -28,6 +27,14 @@ public class FluidGPU : MonoBehaviour
     public float sourceRadius = 0.04f;
 
 
+    // ---- State implementation ----
+    [Header("Transition")]
+    public float transitionDuration = 1.0f;
+    public SimulationState SimulationState { get; private set; } = SimulationState.Stopped;
+    float stateChangeTime;
+    float stateAlpha;
+
+
     RenderTexture color, colorPrev;
     RenderTexture velocity, velocityPrev;
     RenderTexture pressure, pressurePrev;
@@ -48,6 +55,7 @@ public class FluidGPU : MonoBehaviour
         rawImage.texture = color;
     }
 
+
     RenderTexture CreateRT(RenderTextureFormat renderTextureFormat)
     {
         RenderTexture rt = new(size, size, 0, renderTextureFormat)
@@ -61,6 +69,12 @@ public class FluidGPU : MonoBehaviour
 
     void Update()
     {
+
+        UpdateStateAlpha();
+
+        if (SimulationState == SimulationState.Stopped)
+            return;
+
         if (enableSource)
         {
             Inject(
@@ -190,4 +204,77 @@ public class FluidGPU : MonoBehaviour
         Vector2 force = delta * forceStrength * Time.deltaTime;
         Inject(uv, force, paintColor, radius);
     }
+
+
+    public void StartSimulation()
+    {
+        if (SimulationState == SimulationState.Running ||
+            SimulationState == SimulationState.Starting)
+        {
+            return;
+        }
+
+        SimulationState = SimulationState.Starting;
+        stateChangeTime = Time.time;
+    }
+
+    public void StopSimulation()
+    {
+        if (SimulationState == SimulationState.Stopped ||
+            SimulationState == SimulationState.Stopping)
+        {
+            return;
+        }
+
+        SimulationState = SimulationState.Stopping;
+        stateChangeTime = Time.time;
+    }
+
+
+    void UpdateStateAlpha()
+    {
+        float t = Mathf.Clamp01((Time.time - stateChangeTime) / transitionDuration);
+        switch (SimulationState)
+        {
+            case SimulationState.Starting:
+                stateAlpha = t;
+                if (t >= 1)
+                {
+                    Debug.Log($"Simulation {nameof(FluidGPU)} is now running");
+                    SimulationState = SimulationState.Running;
+                }
+                break;
+            case SimulationState.Running:
+                stateAlpha = 1f;
+                break;
+            case SimulationState.Stopping:
+                stateAlpha = 1f - t;
+                if (t >= 1)
+                {
+                    SimulationState = SimulationState.Stopped;
+                    Debug.Log($"Simulation {nameof(FluidGPU)} now stopped");
+                    stateAlpha = 0;
+                }
+                break;
+            case SimulationState.Stopped:
+                stateAlpha = 0f;
+                break;
+        }
+
+        if (stateAlpha <= 0f)
+        {
+            rawImage.color = transparent;
+        }
+        else if (stateAlpha >= 1f)
+        {
+            rawImage.color = Color.white;
+        }
+        else
+        {
+            rawImage.color = new Color(1, 1, 1, stateAlpha);
+        }
+    }
+    Color transparent = new(1, 1, 1, 0);
+
+
 }

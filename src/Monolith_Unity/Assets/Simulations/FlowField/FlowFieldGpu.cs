@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FlowFieldGpu : MonoBehaviour
+public class FlowFieldGpu : MonoBehaviour, ISimulation
 {
     public ComputeShader shader;
     public RawImage rawImage;
@@ -39,6 +39,14 @@ public class FlowFieldGpu : MonoBehaviour
     ComputeBuffer paletteBuffer;
     bool swap;
 
+
+    // ---- State implementation ----
+    [Header("Transition")]
+    public float transitionDuration = 1.0f;
+    public SimulationState SimulationState { get; private set; } = SimulationState.Stopped;
+    float stateChangeTime;
+    float stateAlpha;
+
     struct Particle
     {
         public Vector2 pos;
@@ -72,6 +80,12 @@ public class FlowFieldGpu : MonoBehaviour
 
     void Update()
     {
+
+        UpdateStateAlpha();
+
+        if (SimulationState == SimulationState.Stopped)
+            return;
+
         // Set parameters
         shader.SetVector("resolution", new Vector2(width, height));
         shader.SetFloat("time", Time.time * changeSpeed);
@@ -116,4 +130,76 @@ public class FlowFieldGpu : MonoBehaviour
         particleB.Release();
         paletteBuffer.Release();
     }
+
+
+    public void StartSimulation()
+    {
+        if (SimulationState == SimulationState.Running ||
+            SimulationState == SimulationState.Starting)
+        {
+            return;
+        }
+
+        SimulationState = SimulationState.Starting;
+        stateChangeTime = Time.time;
+    }
+
+    public void StopSimulation()
+    {
+        if (SimulationState == SimulationState.Stopped ||
+            SimulationState == SimulationState.Stopping)
+        {
+            return;
+        }
+
+        SimulationState = SimulationState.Stopping;
+        stateChangeTime = Time.time;
+    }
+
+
+    void UpdateStateAlpha()
+    {
+        float t = Mathf.Clamp01((Time.time - stateChangeTime) / transitionDuration);
+
+        switch (SimulationState)
+        {
+            case SimulationState.Starting:
+                stateAlpha = t;
+                if (t >= 1)
+                {
+                    Debug.Log($"Simulation {nameof(FlowFieldGpu)} is now running");
+                    SimulationState = SimulationState.Running;
+                }
+                break;
+            case SimulationState.Running:
+                stateAlpha = 1f;
+                break;
+            case SimulationState.Stopping:
+                stateAlpha = 1f - t;
+                if (t >= 1)
+                {
+                    SimulationState = SimulationState.Stopped;
+                    Debug.Log($"Simulation {nameof(FlowFieldGpu)} now stopped");
+                    stateAlpha = 0;
+                }
+                break;
+            case SimulationState.Stopped:
+                stateAlpha = 0f;
+                break;
+        }
+
+        if (stateAlpha <= 0f)
+        {
+            rawImage.color = transparent;
+        }
+        else if (stateAlpha >= 1f)
+        {
+            rawImage.color = Color.white;
+        }
+        else
+        {
+            rawImage.color = new Color(1, 1, 1, stateAlpha);
+        }
+    }
+    Color transparent = new(1, 1, 1, 0);
 }

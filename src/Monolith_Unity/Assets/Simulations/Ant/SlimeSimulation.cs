@@ -3,12 +3,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class SlimeSimulation : MonoBehaviour
+public class SlimeSimulation : MonoBehaviour, ISimulation
 {
     public ComputeShader agentCS;
     public ComputeShader diffuseCS;
+    public ComputeShader rendererCS;
 
-    public Material displayMaterial;
+    public RawImage rawImage;
     public int width = 192;
     public int height = 512;
     public int numAgents = 7500;
@@ -23,6 +24,8 @@ public class SlimeSimulation : MonoBehaviour
     public float maxValue = 50f;
 
     RenderTexture trailA, trailB;
+    RenderTexture renderTexture;
+
     ComputeBuffer agentBuffer;
 
     public UnityEngine.Color[] paletteNeonSlime =
@@ -81,6 +84,13 @@ public class SlimeSimulation : MonoBehaviour
         new(1f, 0f, 0f)
     };
 
+    // ---- State implementation ----
+    [Header("Transition")]
+    public float transitionDuration = 1.0f;
+    public SimulationState SimulationState { get; private set; } = SimulationState.Stopped;
+    float stateChangeTime;
+    float stateAlpha;
+
     struct Agent
     {
         public Vector2 position;
@@ -104,9 +114,18 @@ public class SlimeSimulation : MonoBehaviour
         }
 
         agentBuffer.SetData(agents);
-        displayMaterial.SetTexture("_Trail", trailA);
-        
+
         SetPalette(paletteNeonSlime);
+
+
+        renderTexture = new RenderTexture(width, height, 0, RenderTextureFormat.ARGBFloat)
+        {
+            enableRandomWrite = true
+        };
+        renderTexture.Create();
+
+        rawImage.texture = renderTexture;
+        rawImage.color = UnityEngine.Color.white;
     }
 
     RenderTexture CreateRT()
@@ -122,6 +141,12 @@ public class SlimeSimulation : MonoBehaviour
     void Update()
     {
 
+        UpdateStateAlpha();
+
+        if (SimulationState == SimulationState.Stopped)
+            return;
+
+
         var kb = Keyboard.current;
         if (kb != null)
         {
@@ -134,10 +159,10 @@ public class SlimeSimulation : MonoBehaviour
         }
 
 
-        int kernel = agentCS.FindKernel("CSMain");
+        int antSimulationStep = agentCS.FindKernel("CSMain");
 
-        agentCS.SetBuffer(kernel, "agents", agentBuffer);
-        agentCS.SetTexture(kernel, "trail", trailA);
+        agentCS.SetBuffer(antSimulationStep, "agents", agentBuffer);
+        agentCS.SetTexture(antSimulationStep, "trail", trailA);
 
         agentCS.SetFloat("moveSpeed", moveSpeed);
         agentCS.SetFloat("turnAngle", turnAngle);
@@ -147,26 +172,37 @@ public class SlimeSimulation : MonoBehaviour
         agentCS.SetInt("width", width);
         agentCS.SetInt("height", height);
         agentCS.SetInt("numAgents", numAgents);
-        agentCS.Dispatch(kernel, Mathf.CeilToInt(numAgents / 256f), 1, 1);
+        agentCS.Dispatch(antSimulationStep, Mathf.CeilToInt(numAgents / 256f), 1, 1);
 
-        int d = diffuseCS.FindKernel("CSMain");
-        diffuseCS.SetTexture(d, "trail", trailA);
-        diffuseCS.SetTexture(d, "trailOut", trailB);
+        int diffuseStep = diffuseCS.FindKernel("CSMain");
+        diffuseCS.SetTexture(diffuseStep, "trail", trailA);
+        diffuseCS.SetTexture(diffuseStep, "trailOut", trailB);
         diffuseCS.SetFloat("diffuseFactor", diffuseFactor);
         diffuseCS.SetFloat("evapRate", evapRate);
         diffuseCS.SetInt("width", width);
         diffuseCS.SetInt("height", height);
-        diffuseCS.Dispatch(d, width / 8, height / 8, 1);
+        diffuseCS.Dispatch(diffuseStep, width / 8, height / 8, 1);
 
-        displayMaterial.SetFloat("_MaxValue", maxValue);
+
+        int rendererKernel = rendererCS.FindKernel("CSMain");
+        rendererCS.SetTexture(rendererKernel, "_Trail", trailA);
+        rendererCS.SetTexture(rendererKernel, "Result", renderTexture);
+        rendererCS.SetFloat("_MaxValue", maxValue);
+
+        rendererCS.Dispatch(rendererKernel,
+            Mathf.CeilToInt(width / 8.0f),
+            Mathf.CeilToInt(height / 8.0f), 1);
+
+
         // swap
         (trailA, trailB) = (trailB, trailA);
     }
 
     void SetPalette(UnityEngine.Color[] palette)
     {
+        int rendererKernel = rendererCS.FindKernel("CSMain");
         Texture2D paletteTex = CreatePaletteTexture(palette);
-        displayMaterial.SetTexture("_Palette", paletteTex);
+        rendererCS.SetTexture(rendererKernel, "_Palette", paletteTex);
     }
 
     Texture2D CreatePaletteTexture(UnityEngine.Color[] colors)
@@ -191,4 +227,76 @@ public class SlimeSimulation : MonoBehaviour
     {
         agentBuffer.Release();
     }
+
+
+    public void StartSimulation()
+    {
+        if (SimulationState == SimulationState.Running ||
+            SimulationState == SimulationState.Starting)
+        {
+            return;
+        }
+
+        SimulationState = SimulationState.Starting;
+        stateChangeTime = Time.time;
+    }
+
+    public void StopSimulation()
+    {
+        if (SimulationState == SimulationState.Stopped ||
+            SimulationState == SimulationState.Stopping)
+        {
+            return;
+        }
+
+        SimulationState = SimulationState.Stopping;
+        stateChangeTime = Time.time;
+    }
+
+
+    void UpdateStateAlpha()
+    {
+        float t = Mathf.Clamp01((Time.time - stateChangeTime) / transitionDuration);
+
+        switch (SimulationState)
+        {
+            case SimulationState.Starting:
+                stateAlpha = t;
+                if (t >= 1)
+                {
+                    Debug.Log($"Simulation {nameof(SlimeSimulation)} is now running");
+                    SimulationState = SimulationState.Running;
+                }
+                break;
+            case SimulationState.Running:
+                stateAlpha = 1f;
+                break;
+            case SimulationState.Stopping:
+                stateAlpha = 1f - t;
+                if (t >= 1)
+                {
+                    SimulationState = SimulationState.Stopped;
+                    Debug.Log($"Simulation {nameof(SlimeSimulation)} now stopped");
+                    stateAlpha = 0;
+                }
+                break;
+            case SimulationState.Stopped:
+                stateAlpha = 0f;
+                break;
+        }
+
+        if (stateAlpha <= 0f)
+        {
+            rawImage.color = transparent;
+        }
+        else if (stateAlpha >= 1f)
+        {
+            rawImage.color = UnityEngine.Color.white;
+        }
+        else
+        {
+            rawImage.color = new UnityEngine.Color(1, 1, 1, stateAlpha);
+        }
+    }
+    UnityEngine.Color transparent = new(1, 1, 1, 0);
 }
