@@ -151,11 +151,11 @@ public class SlimeSimulation : MonoBehaviour, ISimulation
         if (kb != null)
         {
 
-            if (kb.digit1Key.wasPressedThisFrame) SetPalette(paletteNeonSlime);
-            if (kb.digit2Key.wasPressedThisFrame) SetPalette(palettePlasma);
-            if (kb.digit3Key.wasPressedThisFrame) SetPalette(paletteBioluminescent);
-            if (kb.digit4Key.wasPressedThisFrame) SetPalette(paletteToxic);
-            if (kb.digit5Key.wasPressedThisFrame) SetPalette(paletteHeat);
+            if (kb.qKey.wasPressedThisFrame) SetPalette(paletteNeonSlime);
+            if (kb.wKey.wasPressedThisFrame) SetPalette(palettePlasma);
+            if (kb.eKey.wasPressedThisFrame) SetPalette(paletteBioluminescent);
+            if (kb.rKey.wasPressedThisFrame) SetPalette(paletteToxic);
+            if (kb.tKey.wasPressedThisFrame) SetPalette(paletteHeat);
         }
 
 

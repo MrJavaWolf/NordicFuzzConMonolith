@@ -7,8 +7,8 @@ cbuffer Params
 {
     float diffuseFactor;
     float evapRate;
-    int width;
-    int height;
+    uint width;
+    uint height;
 };
 
 [numthreads(8, 8, 1)]
