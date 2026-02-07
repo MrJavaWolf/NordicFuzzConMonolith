@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Logging;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Text.Json;

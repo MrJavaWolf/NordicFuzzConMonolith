@@ -6,7 +6,7 @@
 [Oo]bj/
 
 # Logs
-Logs/
+[Ll]ogs/
 
 # Generated files
 project.lock.json
