@@ -1,0 +1,2174 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "NordicFuzzCon Portal API",
+    "version": "v1"
+  },
+  "paths": {
+    "/CharityDonations/GetCharityDonations": {
+      "get": {
+        "tags": [
+          "CharityDonations"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedCharityDonations"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedCharityDonations"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedCharityDonations"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/JoinStew/ValidateStewMail": {
+      "post": {
+        "tags": [
+          "JoinStew"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateStewMail"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateStewMail"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateStewMail"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Links/GetMobileAppLinks": {
+      "get": {
+        "tags": [
+          "Links"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedMobileAppLinks"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedMobileAppLinks"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedMobileAppLinks"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Links/GetSocialMediaLinks": {
+      "get": {
+        "tags": [
+          "Links"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedSocialMediaLinks"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedSocialMediaLinks"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedSocialMediaLinks"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Links/GetPointsOfInterest": {
+      "get": {
+        "tags": [
+          "Links"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedPointsOfInterestLinks"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedPointsOfInterestLinks"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedPointsOfInterestLinks"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Printing/UpdatePrintQueueItem": {
+      "get": {
+        "tags": [
+          "Printing"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrintQueueItemUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrintQueueItemUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrintQueueItemUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Registration/GetRegistrationAvailabilityList": {
+      "get": {
+        "tags": [
+          "Registration"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedAvailabilityPageList"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedAvailabilityPageList"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedAvailabilityPageList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Statistics/GetStatistics": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedWebsiteBookingStatistics"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedWebsiteBookingStatistics"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedWebsiteBookingStatistics"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Statistics/GetAttendeeList": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "parameters": [
+          {
+            "name": "list",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedWebsiteAttendeeList"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedWebsiteAttendeeList"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedWebsiteAttendeeList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Statistics/GetFursuitList": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedWebsiteFursuitList"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedWebsiteFursuitList"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedWebsiteFursuitList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Stew/GetList": {
+      "get": {
+        "tags": [
+          "Stew"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedStewList"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedStewList"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedStewList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Stew/GetJobAdverts": {
+      "get": {
+        "tags": [
+          "Stew"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CachedJobAdvertisement"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CachedJobAdvertisement"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CachedJobAdvertisement"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Stew/IsStew": {
+      "post": {
+        "tags": [
+          "Stew"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IsStewObject"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IsStewObject"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IsStewObject"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TelegramRegBot/GetSettings": {
+      "get": {
+        "tags": [
+          "TelegramRegBot"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TelegramBotSettings"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TelegramBotSettings"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TelegramBotSettings"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TelegramRegBot/GetBooking": {
+      "get": {
+        "tags": [
+          "TelegramRegBot"
+        ],
+        "parameters": [
+          {
+            "name": "TelegramAccountId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedTelegramRegistration"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedTelegramRegistration"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedTelegramRegistration"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/UserRegistrationExists": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/GetUserRegistrationProfile": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MobileUserProfile"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MobileUserProfile"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MobileUserProfile"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/SubmitUserFeedback": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmittedFeedbackItem"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmittedFeedbackItem"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmittedFeedbackItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/GetMySubmittedFeedback": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSubmittedFeedback"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSubmittedFeedback"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSubmittedFeedback"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/GetFortuneTellerData": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "Token",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FortuneTellerUser"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FortuneTellerUser"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FortuneTellerUser"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AttendeeData": {
+        "type": "object",
+        "properties": {
+          "NickName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ThumbnailUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "ImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "ImageSize": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "CountryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "CountryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "SpeciesCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "Species": {
+            "type": "string",
+            "nullable": true
+          },
+          "SpeciesCategoryIcon": {
+            "type": "string",
+            "nullable": true
+          },
+          "SponsorType": {
+            "type": "string",
+            "nullable": true
+          },
+          "StewType": {
+            "type": "string",
+            "nullable": true
+          },
+          "Fursuits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FursuitData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BookingData": {
+        "required": [
+          "NickName"
+        ],
+        "type": "object",
+        "properties": {
+          "NickName": {
+            "type": "string",
+            "nullable": true
+          },
+          "BadgeNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "SpeciesName": {
+            "type": "string",
+            "nullable": true
+          },
+          "AdminNoteToUser": {
+            "type": "string",
+            "nullable": true
+          },
+          "AmountDue": {
+            "type": "number",
+            "format": "double"
+          },
+          "WantsToBringAnAnimalToTheConvention": {
+            "type": "boolean"
+          },
+          "IsBookingApproved": {
+            "type": "boolean"
+          },
+          "IsConBadgeAwaitingApproval": {
+            "type": "boolean"
+          },
+          "IsConBadgeApproved": {
+            "type": "boolean"
+          },
+          "NumberOfFursuitBadges": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "NumberOfLargeFursuitBadges": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "MaxNumberOfFursuitBadges": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "MaxNumberOfLargeFursuitBadges": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "HasFilledOutInterests": {
+            "type": "boolean"
+          },
+          "IsSponsor": {
+            "type": "boolean"
+          },
+          "SponsorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "SponsorIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "MaxSponsorLevelReached": {
+            "type": "boolean"
+          },
+          "HasAccommodation": {
+            "type": "boolean"
+          },
+          "AccommodationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "BookingProducts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedAvailabilityPageList": {
+        "type": "object",
+        "properties": {
+          "List": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductGroup"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedCharityDonations": {
+        "type": "object",
+        "properties": {
+          "Currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "TotalAmount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "BiggestDonations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CachedCharityDonationsData"
+            },
+            "nullable": true
+          },
+          "LatestDonations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CachedCharityDonationsData"
+            },
+            "nullable": true
+          },
+          "ActivePoll": {
+            "$ref": "#/components/schemas/CachedCharityDonationsPollData"
+          },
+          "PreviousPolls": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CachedCharityDonationsPollData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedCharityDonationsData": {
+        "type": "object",
+        "properties": {
+          "FurryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Amount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Provider": {
+            "type": "string",
+            "nullable": true
+          },
+          "DonatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedCharityDonationsPollData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsActive": {
+            "type": "boolean"
+          },
+          "Amount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "LastUpdatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CachedCharityDonationsPollOptionData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedCharityDonationsPollOptionData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Amount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "LastUpdatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "PaymentUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "WinnerImageUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedJobAdvertisement": {
+        "type": "object",
+        "properties": {
+          "Department": {
+            "$ref": "#/components/schemas/CachedJobAdvertisementData"
+          },
+          "Title": {
+            "type": "string",
+            "nullable": true
+          },
+          "Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "NumberOfPositions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ContactName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ContactEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "ContactTelegram": {
+            "type": "string",
+            "nullable": true
+          },
+          "JoinUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedJobAdvertisementData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsShowTeam": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedMobileAppLinkData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Category": {
+            "type": "string",
+            "nullable": true
+          },
+          "Group": {
+            "type": "string",
+            "nullable": true
+          },
+          "Link": {
+            "type": "string",
+            "nullable": true
+          },
+          "Position": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Type": {
+            "type": "string",
+            "nullable": true
+          },
+          "OnlyVisibleToStew": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedMobileAppLinks": {
+        "type": "object",
+        "properties": {
+          "Links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CachedMobileAppLinkData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedPointsOfInterestLinks": {
+        "type": "object",
+        "properties": {
+          "Links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PointsOfInterestLinkData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedSocialMediaLinks": {
+        "type": "object",
+        "properties": {
+          "Links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SocialMediaLinkData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedStewList": {
+        "type": "object",
+        "properties": {
+          "List": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DepartmentData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedTelegramRegistration": {
+        "type": "object",
+        "properties": {
+          "Booking": {
+            "$ref": "#/components/schemas/BookingData"
+          },
+          "PreFill": {
+            "$ref": "#/components/schemas/PreFillData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedWebsiteAttendeeCountryData": {
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedWebsiteAttendeeFilterData": {
+        "type": "object",
+        "properties": {
+          "Countries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CachedWebsiteAttendeeCountryData"
+            },
+            "nullable": true
+          },
+          "SpeciesCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpeciesCategoryData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedWebsiteAttendeeList": {
+        "type": "object",
+        "properties": {
+          "GeneratedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Filters": {
+            "$ref": "#/components/schemas/CachedWebsiteAttendeeFilterData"
+          },
+          "AttendeeList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttendeeData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedWebsiteBookingStatistics": {
+        "type": "object",
+        "properties": {
+          "GeneratedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "TotalAttendees": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TotalRegisteredFursuits": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FirstTimers": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Species": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpeciesData"
+            },
+            "nullable": true
+          },
+          "SpeciesCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpeciesCategoriesData"
+            },
+            "nullable": true
+          },
+          "Countries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CachedWebsiteBookingStatisticsCountryData"
+            },
+            "nullable": true
+          },
+          "Genders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GenderData"
+            },
+            "nullable": true
+          },
+          "Sponsors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SponsorData"
+            },
+            "nullable": true
+          },
+          "FursuitsCount": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedWebsiteBookingStatisticsCountryData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Code": {
+            "type": "string",
+            "nullable": true
+          },
+          "Count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Percent": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedWebsiteFursuitCountryData": {
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedWebsiteFursuitFilterData": {
+        "type": "object",
+        "properties": {
+          "Countries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CachedWebsiteFursuitCountryData"
+            },
+            "nullable": true
+          },
+          "GroupKeys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GroupKeyData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CachedWebsiteFursuitList": {
+        "type": "object",
+        "properties": {
+          "GeneratedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "FursuitList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Fursuit"
+            },
+            "nullable": true
+          },
+          "Filters": {
+            "$ref": "#/components/schemas/CachedWebsiteFursuitFilterData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DepartmentData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "List": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StewData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EventProductData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "QrCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FeedbackData": {
+        "type": "object",
+        "properties": {
+          "Category": {
+            "type": "string",
+            "nullable": true
+          },
+          "Feedback": {
+            "type": "string",
+            "nullable": true
+          },
+          "EventName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Rating": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FortuneTellerUser": {
+        "type": "object",
+        "properties": {
+          "Species": {
+            "type": "string",
+            "nullable": true
+          },
+          "Country": {
+            "type": "string",
+            "nullable": true
+          },
+          "SponsorLevel": {
+            "type": "string",
+            "nullable": true
+          },
+          "UserAnswerList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptionData"
+            },
+            "nullable": true
+          },
+          "ProfileUpdatesList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateData"
+            },
+            "nullable": true
+          },
+          "ProfileCreated": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Fursuit": {
+        "type": "object",
+        "properties": {
+          "NickName": {
+            "type": "string",
+            "nullable": true
+          },
+          "GroupKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "Species": {
+            "type": "string",
+            "nullable": true
+          },
+          "ThumbnailUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "ImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "ImageSize": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "WornBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "CountryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "CountryName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FursuitData": {
+        "type": "object",
+        "properties": {
+          "NickName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ThumbnailUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "ImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "ImageSize": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GenderData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Percent": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GroupKeyData": {
+        "type": "object",
+        "properties": {
+          "Key": {
+            "type": "string",
+            "nullable": true
+          },
+          "Icon": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IsStewObject": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string",
+            "nullable": true
+          },
+          "Type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MobileUserProfile": {
+        "required": [
+          "Country",
+          "Nickname"
+        ],
+        "type": "object",
+        "properties": {
+          "BadgeNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Nickname": {
+            "type": "string",
+            "nullable": true
+          },
+          "Country": {
+            "type": "string",
+            "nullable": true
+          },
+          "Species": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsSponsor": {
+            "type": "boolean"
+          },
+          "SponsorLevel": {
+            "type": "string",
+            "nullable": true
+          },
+          "ConBadgeImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "FursuitBadgeImageUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "EventProducts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventProductData"
+            },
+            "nullable": true
+          },
+          "StewData": {
+            "$ref": "#/components/schemas/MobileUserProfileStewData"
+          },
+          "IsCheckedIn": {
+            "type": "boolean"
+          },
+          "QrCheckInCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "AmountDue": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MobileUserProfileStewData": {
+        "type": "object",
+        "properties": {
+          "DepartmentNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "HighestStewRank": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OfferData": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string",
+            "nullable": true
+          },
+          "Type": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "HasQrCode": {
+            "type": "boolean"
+          },
+          "QrCodeUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptionData": {
+        "type": "object",
+        "properties": {
+          "Data": {
+            "type": "string",
+            "nullable": true
+          },
+          "UserAnswers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PointsOfInterestLinkData": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Address": {
+            "type": "string",
+            "nullable": true
+          },
+          "Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "TypeOfLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "SubTypeOfLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "DiscountInformation": {
+            "type": "string",
+            "nullable": true
+          },
+          "Offers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OfferData"
+            },
+            "nullable": true
+          },
+          "WebsiteUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "ImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "PhotoUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "Longitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "Latitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PreFillData": {
+        "type": "object",
+        "properties": {
+          "NickName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PrintQueueItemUpdate": {
+        "type": "object",
+        "properties": {
+          "PrintQueueId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Status": {
+            "type": "string",
+            "nullable": true
+          },
+          "Message": {
+            "type": "string",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {}
+      },
+      "Product": {
+        "required": [
+          "Name"
+        ],
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "CountAvailable": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "CanBeOnWaitingList": {
+            "type": "boolean"
+          },
+          "Icon": {
+            "type": "string",
+            "nullable": true
+          },
+          "UnitCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "WaitingListCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "FullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "Quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "CanBeQrCode": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductGroup": {
+        "required": [
+          "Name"
+        ],
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsAccommodation": {
+            "type": "boolean"
+          },
+          "List": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SocialMediaLinkData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Link": {
+            "type": "string",
+            "nullable": true
+          },
+          "Position": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Category": {
+            "type": "string",
+            "nullable": true
+          },
+          "Group": {
+            "type": "string",
+            "nullable": true
+          },
+          "Type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SpeciesCategoriesData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Percent": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SpeciesCategoryData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Icon": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SpeciesData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Percent": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SponsorData": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Percent": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StewData": {
+        "type": "object",
+        "properties": {
+          "NickName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubmittedFeedbackItem": {
+        "type": "object",
+        "properties": {
+          "FeedbackText": {
+            "type": "string",
+            "nullable": true
+          },
+          "Category": {
+            "type": "string",
+            "nullable": true
+          },
+          "EventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "Rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "IsAnonymous": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TelegramBotSettings": {
+        "type": "object",
+        "properties": {
+          "IsRoomSharingEnabled": {
+            "type": "boolean"
+          },
+          "IsRegistrationEnabled": {
+            "type": "boolean"
+          },
+          "IsImageUploadEnabled": {
+            "type": "boolean"
+          },
+          "IsSponsorUpgradeEnabled": {
+            "type": "boolean"
+          },
+          "IsAttendeeStatisticsEnabled": {
+            "type": "boolean"
+          },
+          "IsPrefillStatus": {
+            "type": "boolean"
+          },
+          "FirstDay": {
+            "type": "string",
+            "format": "date"
+          },
+          "PublicRegistrationStartDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "EndDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "ConventionYear": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsTheConOver": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateData": {
+        "type": "object",
+        "properties": {
+          "ProfileUpdatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "UpdatedPersonalData": {
+            "type": "boolean"
+          },
+          "UpdatedFunFactsData": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserSubmittedFeedback": {
+        "type": "object",
+        "properties": {
+          "List": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeedbackData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidateStewMail": {
+        "type": "object",
+        "properties": {
+          "Email": {
+            "type": "string",
+            "nullable": true
+          },
+          "Code": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "NFC endpoints for various needs",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [
+        "Bearer"
+      ]
+    }
+  ]
+}

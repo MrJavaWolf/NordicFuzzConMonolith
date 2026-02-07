@@ -1,0 +1,21 @@
+{
+  "runtime": "Net80",
+  "documentGenerator": {
+    "fromDocument": {
+      "url": "portal.swagger.json",
+      "output": null
+    }
+  },
+  "codeGenerators": {
+    "openApiToCSharpClient": {
+      "namespace": "NFC.Portal.Api",
+      "generateClientClasses": false,
+      "generateDtoTypes": true,
+      "GenerateOptionalPropertiesAsNullable": true,
+      "GenerateNullableReferenceTypes": false,
+      "requiredPropertiesMustBeDefined": false,
+      "generateDataAnnotations": false,
+      "output": "PortalApiDto.cs"
+    }
+  }
+}

@@ -16,4 +16,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NFC.Donation.Api\NFC.Api.csproj" />
+  </ItemGroup>
+
 </Project>

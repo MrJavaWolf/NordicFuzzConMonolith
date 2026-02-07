@@ -1,0 +1,22 @@
+{
+  "runtime": "Net80",
+  "documentGenerator": {
+    "fromDocument": {
+      "url": "donation.swagger.json",
+      "output": null
+    }
+  },
+  "codeGenerators": {
+    "openApiToCSharpClient": {
+      "namespace": "NFC.Donation.Api",
+      "generateClientClasses": false,
+      "generateDtoTypes": true,
+      "output": "DonationApiDto.cs",
+      "requiredPropertiesMustBeDefined": false,
+      "nullableReferenceTypes": true,
+      "generateOptionalPropertiesAsNullable": true,
+      "generateDataAnnotations": false
+    }
+  }
+}
+

@@ -1,14 +1,14 @@
+using Microsoft.Extensions.Logging;
 using RestSharp;
 using RestSharp.Authenticators;
-using System.Net;
-using System.Net.Security;
-using System.Net.Sockets;
-using System.Security.Authentication;
 using System.Text.Json;
 
 namespace Monolith.DonationPolling.PollDonations;
 
-public class DonationPlatformClientFactory(IConfiguration configuration)
+public class DonationPlatformClientFactory(
+    IConfiguration configuration,
+    IHttpClientFactory httpClientFactory,
+    ILogger<DonationPlatformClientFactory> logger)
 {
     private AuthResponse? TokenData { get; set; }
 
@@ -19,63 +19,28 @@ public class DonationPlatformClientFactory(IConfiguration configuration)
 
     public async Task<RestClient> GetClientAsync(CancellationToken cancellationToken)
     {
-        var baseUrl = configuration.GetRequiredValue<string>("DonationPlatform:Auth:BaseUrl");
-        if (string.IsNullOrEmpty(baseUrl))
-            throw new ArgumentNullException(nameof(baseUrl));
-
         var token = await GetTokenAsync(cancellationToken);
         if (string.IsNullOrEmpty(token))
             throw new Exception("Could not get token");
 
 
-        // Create a handler that forces IPv4
-        var handler = new SocketsHttpHandler
+        var options = new RestClientOptions()
         {
-            ConnectCallback = async (context, token) =>
-            {
-                var addresses = await Dns.GetHostAddressesAsync(context.DnsEndPoint.Host);
-                // Filter only IPv4 addresses
-                var ipv4 = Array.Find(addresses, a => a.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
-                if (ipv4 == null)
-                    throw new Exception("No IPv4 address found for host");
-
-                var endpoint = new IPEndPoint(ipv4, context.DnsEndPoint.Port);
-                var socket = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                await socket.ConnectAsync(endpoint, token);
-                return new NetworkStream(socket, ownsSocket: true);
-            }
+            Authenticator = new JwtAuthenticator(token),
         };
-        handler.SslOptions = new SslClientAuthenticationOptions
-        {
-            EnabledSslProtocols = SslProtocols.Tls12,
-            ApplicationProtocols = new List<SslApplicationProtocol>
-            {
-                SslApplicationProtocol.Http11
-            }
-        };
-
-
-        // Pass it to RestSharp
-        var options = new RestClientOptions(baseUrl)
-        {
-            Authenticator = new JwtAuthenticator("Bearer " + token),
-            ConfigureMessageHandler = _ => handler
-        };
-
-        // Create HttpClient with the handler
-        var httpClient = new HttpClient(handler);
-
+        var httpClient = httpClientFactory.CreateClient();
         var client = new RestClient(httpClient, options);
-
-        var request = new RestRequest("endpoint", Method.Get);
-        var response = await client.ExecuteAsync(request);
-        Console.WriteLine(response.Content);
-
         return new RestClient(options);
     }
 
     private async Task<string?> GetTokenAsync(CancellationToken cancellationToken)
     {
+
+        string? tokenFromConfig = configuration.GetValue<string>("DonationPlatform:Auth:BearerToken");
+        if (!string.IsNullOrWhiteSpace(tokenFromConfig))
+        {
+            return tokenFromConfig;
+        }
 
         //return read_jwt;
         if (Expires != null && DateTime.UtcNow < Expires.Value && !string.IsNullOrEmpty(TokenData?.access_token))
@@ -120,6 +85,7 @@ public class DonationPlatformClientFactory(IConfiguration configuration)
 
     private async Task<AuthResponse?> GenerateToken(CancellationToken cancellationToken)
     {
+        logger.LogInformation("Gets a new JWT token");
         var hrSettings = new AuthData
         {
             Authority = configuration.GetRequiredValue<string>("DonationPlatform:Auth:Authority"),
@@ -137,7 +103,9 @@ public class DonationPlatformClientFactory(IConfiguration configuration)
         if (string.IsNullOrEmpty(hrSettings.ClientSecret))
             throw new ArgumentNullException(nameof(AuthData.ClientSecret));
 
-        var client = new RestClient(new Uri(hrSettings.Authority));
+        var httpClient = httpClientFactory.CreateClient();
+        var options = new RestClientOptions(hrSettings.Authority);
+        var client = new RestClient(httpClient, options);
         var req = new RestRequest("/oauth/token");
 
         var reqData = new AuthRequest
@@ -153,10 +121,14 @@ public class DonationPlatformClientFactory(IConfiguration configuration)
         if (!res.IsSuccessful)
         {
             // Log error especially when the client secret has changed
+            logger.LogError($"Failed to get a JWT token: ({res.StatusCode}) '{res.Content}'");
             return null;
         }
         if (string.IsNullOrEmpty(res.Content))
+        {
+            logger.LogError($"Failed to get a JWT token: ({res.StatusCode}) Empty content: '{res.Content}' ");
             return null;
+        }
 
         var data = JsonSerializer.Deserialize<AuthResponse>(res.Content);
         return data;

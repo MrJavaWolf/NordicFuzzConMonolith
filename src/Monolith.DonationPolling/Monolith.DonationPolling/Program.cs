@@ -2,9 +2,17 @@ using Monolith.DonationPolling.PollDonations;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false)
+    .AddJsonFile("appsettings.Development.json", optional: true)
+    .AddJsonFile("secrets.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddHttpLogging();
+builder.Services.AddHttpClient();
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<DonationPlatformClientFactory>();
 builder.Services.AddTransient<PollDonationService>();
