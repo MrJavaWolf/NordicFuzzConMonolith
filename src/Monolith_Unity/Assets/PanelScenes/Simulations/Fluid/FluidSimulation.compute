@@ -1,0 +1,200 @@
+#include "UnityCG.cginc"
+
+#pragma kernel AdvectColor
+#pragma kernel AdvectVelocity
+#pragma kernel Diffuse
+#pragma kernel Jacobi
+#pragma kernel SubtractGradient
+#pragma kernel Decay
+#pragma kernel Inject
+
+
+RWTexture2D<float4> Color;
+RWTexture2D<float4> ColorPrev;
+
+RWTexture2D<float2> Velocity;
+RWTexture2D<float2> VelocityPrev;
+
+RWTexture2D<float> Pressure;
+RWTexture2D<float> PressurePrev;
+
+float dt;
+float diff;
+float colorDecay;
+float velocityDecay;
+uint size;
+
+float2 injectPos;
+float2 injectForce;
+float4 injectColor;
+float injectRadius;
+
+int WrapX(int x)
+{
+    return (x + size) % size;
+}
+
+int ClampY(int y)
+{
+    return clamp(y, 0, size - 1);
+}
+
+[numthreads(8, 8, 1)]
+void AdvectColor(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= size || id.y >= size) return;
+
+    float2 uv = float2(id.x, id.y);
+    float2 vel = Velocity[id.xy];
+
+    float x = uv.x - dt * vel.x * size;
+    float y = uv.y - dt * vel.y * size;
+
+    x = fmod(x + size, size);
+    y = clamp(y, 0, size - 1);
+
+    int i0 = (int) x;
+    int i1 = WrapX(i0 + 1);
+    int j0 = (int) y;
+    int j1 = ClampY(j0 + 1);
+ 
+    float s1 = x - i0;
+    float s0 = 1 - s1;
+    float t1 = y - j0;
+    float t0 = 1 - t1;
+
+    float4 d00 = ColorPrev[int2(WrapX(i0), j0)];
+    float4 d01 = ColorPrev[int2(WrapX(i0), j1)];
+    float4 d10 = ColorPrev[int2(i1, j0)];
+    float4 d11 = ColorPrev[int2(i1, j1)];
+
+    Color[id.xy] = 
+        s0 * (t0 * d00 + t1 * d01) + 
+        s1 * (t0 * d10 + t1 * d11);
+}
+
+[numthreads(8, 8, 1)]
+void AdvectVelocity(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= size || id.y >= size) return;
+    
+    float2 uv = float2(id.x, id.y);
+    float2 vel = VelocityPrev[id.xy];
+    
+    float x = uv.x - dt * vel.x * size;
+    float y = uv.y - dt * vel.y * size;
+    
+    x = fmod(x + size, size);
+    y = clamp(y, 0, size - 1);
+
+    int i0 = (int) x;
+    int i1 = WrapX(i0 + 1);
+    int j0 = (int) y;
+    int j1 = ClampY(j0 + 1);
+    
+    float s1 = x - i0;
+    float s0 = 1 - s1;
+    float t1 = y - j0;
+    float t0 = 1 - t1;
+
+    float2 d00 = VelocityPrev[int2(WrapX(i0), j0)];
+    float2 d01 = VelocityPrev[int2(WrapX(i0), j1)];
+    float2 d10 = VelocityPrev[int2(i1, j0)];
+    float2 d11 = VelocityPrev[int2(i1, j1)];
+
+    Velocity[id.xy] = 
+        s0 * (t0 * d00 + t1 * d01) + 
+        s1 * (t0 * d10 + t1 * d11);
+
+}
+
+[numthreads(8, 8, 1)]
+void Diffuse(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= size || id.y >= size)
+        return;
+    int i = id.x;
+    int j = id.y;
+
+    float a = dt * diff * (size - 2) * (size - 2);
+
+    float2 v = VelocityPrev[id.xy];
+    float2 sum =
+        VelocityPrev[int2(WrapX(i - 1), j)] +
+        VelocityPrev[int2(WrapX(i + 1), j)] +
+        VelocityPrev[int2(i, ClampY(j - 1))] +
+        VelocityPrev[int2(i, ClampY(j + 1))];
+
+    Velocity[id.xy] = (v + a * sum) / (1 + 4 * a);
+}
+
+[numthreads(8, 8, 1)]
+void Jacobi(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= size || id.y >= size)
+        return;
+    int i = id.x;
+    int j = id.y;
+
+    float sum = PressurePrev[int2(WrapX(i - 1), j)] +
+                PressurePrev[int2(WrapX(i + 1), j)] +
+                PressurePrev[int2(i, ClampY(j - 1))] +
+                PressurePrev[int2(i, ClampY(j + 1))];
+
+    float div = -0.5 * (
+        VelocityPrev[int2(WrapX(i + 1), j)].x - 
+        VelocityPrev[int2(WrapX(i - 1), j)].x +
+        VelocityPrev[int2(i, ClampY(j + 1))].y -
+        VelocityPrev[int2(i, ClampY(j - 1))].y
+    ) / size;
+
+    Pressure[id.xy] = (div + sum) / 4.0;
+}
+
+[numthreads(8, 8, 1)]
+void SubtractGradient(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= size || id.y >= size)
+        return;
+    int i = id.x;
+    int j = id.y;
+
+    float gradX = 0.5 * 
+        (Pressure[int2(WrapX(i + 1), j)] - 
+         Pressure[int2(WrapX(i - 1), j)]) * size;
+    float gradY = 0.5 * 
+        (Pressure[int2(i, ClampY(j + 1))] - 
+         Pressure[int2(i, ClampY(j - 1))]) * size;
+
+    VelocityPrev[id.xy] -= float2(gradX, gradY);
+}
+
+[numthreads(8, 8, 1)]
+void Decay(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= size || id.y >= size)
+        return;
+    Color[id.xy] *= colorDecay;
+    ColorPrev[id.xy] *= colorDecay;
+    Velocity[id.xy] *= velocityDecay;
+    VelocityPrev[id.xy] *= velocityDecay;
+}
+
+
+[numthreads(8, 8, 1)]
+void Inject(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= size || id.y >= size)
+        return;
+
+    float2 uv = (float2(id.x, id.y) + 0.5) / size;
+    float dist = distance(uv, injectPos);
+
+    if (dist > injectRadius)
+        return;
+
+    float falloff = exp(-dist * dist / (injectRadius * injectRadius));
+
+    Color[id.xy] += injectColor * falloff;
+    Velocity[id.xy] += injectForce * falloff;
+}

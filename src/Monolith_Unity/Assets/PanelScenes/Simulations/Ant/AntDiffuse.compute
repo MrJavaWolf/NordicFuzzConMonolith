@@ -1,0 +1,29 @@
+#pragma kernel CSMain
+
+RWTexture2D<float> trail;
+RWTexture2D<float> trailOut;
+
+cbuffer Params
+{
+    float diffuseFactor;
+    float evapRate;
+    uint width;
+    uint height;
+};
+
+[numthreads(8, 8, 1)]
+void CSMain(uint2 id : SV_DispatchThreadID)
+{
+    if (id.x >= width || id.y >= height)
+        return;
+
+    float v = trail[id];
+    float sum =
+        trail[int2((id.x + 1) % width, id.y)] +
+        trail[int2((id.x - 1 + width) % width, id.y)] +
+        trail[int2(id.x, (id.y + 1) % height)] +
+        trail[int2(id.x, (id.y - 1 + height) % height)];
+
+    float diffused = lerp(v, sum * 0.25, diffuseFactor);
+    trailOut[id] = diffused * evapRate;
+}

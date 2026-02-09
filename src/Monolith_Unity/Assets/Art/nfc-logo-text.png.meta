@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: f56997006e158474c8ebcaf7391b8547
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5205296723998017433
+    second: nfc-logo-text_0
+  - first:
+      213: 5286612050151127636
+    second: nfc-logo-text_1
+  - first:
+      213: 52784188232562646
+    second: nfc-logo-text_2
+  - first:
+      213: 1877791553574237283
+    second: nfc-logo-text_3
+  - first:
+      213: 7755314186928454065
+    second: nfc-logo-text_4
+  - first:
+      213: -7776863741950479767
+    second: nfc-logo-text_5
+  - first:
+      213: 8937852969938515548
+    second: nfc-logo-text_6
+  - first:
+      213: 3443263627616457297
+    second: nfc-logo-text_7
+  - first:
+      213: 8743422103587098989
+    second: nfc-logo-text_8
+  - first:
+      213: -913354290231025642
+    second: nfc-logo-text_9
+  - first:
+      213: 6829869544859454981
+    second: nfc-logo-text_10
+  - first:
+      213: -3849247875519358637
+    second: nfc-logo-text_11
+  - first:
+      213: 3221333621177093453
+    second: nfc-logo-text_12
+  - first:
+      213: 1203818972675710693
+    second: nfc-logo-text_13
+  - first:
+      213: -255737281285431585
+    second: nfc-logo-text_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: nfc-logo-text_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 522
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 768f797553213c7b0800000000000000
+      internalID: -5205296723998017433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_1
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 230
+        width: 106
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45abe8266a1dd5940800000000000000
+      internalID: 5286612050151127636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_2
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 229
+        width: 95
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d7fb5580f68bb000800000000000000
+      internalID: 52784188232562646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_3
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 342
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 364750118714f0a10800000000000000
+      internalID: 1877791553574237283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_4
+      rect:
+        serializedVersion: 2
+        x: 1125
+        y: 230
+        width: 82
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b9fa61e92960ab60800000000000000
+      internalID: 7755314186928454065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_5
+      rect:
+        serializedVersion: 2
+        x: 1491
+        y: 229
+        width: 102
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9623d6a51a7031490800000000000000
+      internalID: -7776863741950479767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_6
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 229
+        width: 99
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c56fadfdbe1a90c70800000000000000
+      internalID: 8937852969938515548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_7
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 230
+        width: 65
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1521a10b60ee8cf20800000000000000
+      internalID: 3443263627616457297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_8
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 230
+        width: 25
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d619b9d1410e65970800000000000000
+      internalID: 8743422103587098989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_9
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 229
+        width: 84
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61063b8bc1d1353f0800000000000000
+      internalID: -913354290231025642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_10
+      rect:
+        serializedVersion: 2
+        x: 1220
+        y: 229
+        width: 84
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50e4b933a2298ce50800000000000000
+      internalID: 6829869544859454981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_11
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 230
+        width: 79
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 359dd3f8379b49ac0800000000000000
+      internalID: -3849247875519358637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_12
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 230
+        width: 79
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4d88417cd974bc20800000000000000
+      internalID: 3221333621177093453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_13
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 229
+        width: 99
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ee16304af2d4b010800000000000000
+      internalID: 1203818972675710693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nfc-logo-text_14
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 230
+        width: 84
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fde58213c40737cf0800000000000000
+      internalID: -255737281285431585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      nfc-logo-text_0: -5205296723998017433
+      nfc-logo-text_1: 5286612050151127636
+      nfc-logo-text_10: 6829869544859454981
+      nfc-logo-text_11: -3849247875519358637
+      nfc-logo-text_12: 3221333621177093453
+      nfc-logo-text_13: 1203818972675710693
+      nfc-logo-text_14: -255737281285431585
+      nfc-logo-text_2: 52784188232562646
+      nfc-logo-text_3: 1877791553574237283
+      nfc-logo-text_4: 7755314186928454065
+      nfc-logo-text_5: -7776863741950479767
+      nfc-logo-text_6: 8937852969938515548
+      nfc-logo-text_7: 3443263627616457297
+      nfc-logo-text_8: 8743422103587098989
+      nfc-logo-text_9: -913354290231025642
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
