@@ -27,7 +27,7 @@ public class DonationDataStorage(
         // ------------------------------------------------------------
         if (data != null)
         {
-            logger.LogInformation("Data is NOT null. Creating new DonationStorageDto marked as up-to-date.");
+            logger.LogInformation("Data is not null. Creating new DonationStorageDto marked as up-to-date.");
 
             donationStorageDto = new DonationStorageDto<T>()
             {
