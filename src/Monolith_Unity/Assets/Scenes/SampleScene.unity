@@ -2419,6 +2419,52 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1098190305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1098190307}
+  - component: {fileID: 1098190306}
+  m_Layer: 0
+  m_Name: DataStorage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1098190306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098190305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 538d03a3c537736488be8aeced22a6f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DataStorage
+  Enable: 1
+  DataBasePath: C:\Users\mrjav\Desktop\NFC\NordicFuzzConMonolith\src\Monolith.DonationPolling\Monolith.DonationPolling\donation_data
+--- !u!4 &1098190307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098190305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -62.73429, y: -40.47312, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1112583721
 GameObject:
   m_ObjectHideFlags: 0
@@ -2899,9 +2945,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df4485ced06e094d8041a190e2230d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TotalAmountController
+  dataStorage: {fileID: 1098190306}
   coinSpawner: {fileID: 2037554195}
   MaxNumberOfCoins: 300
-  SpawnIntervalSeconds: 3
+  CheckForMoneyIntervalSeconds: 5
 --- !u!1 &1521693422
 GameObject:
   m_ObjectHideFlags: 0
@@ -3737,3 +3784,4 @@ SceneRoots:
   - {fileID: 757200322}
   - {fileID: 1501212461}
   - {fileID: 1619849473}
+  - {fileID: 1098190307}
