@@ -16,7 +16,6 @@ builder.Host.UseSerilog((context, services, configuration) =>
         .ReadFrom.Configuration(context.Configuration)
         .ReadFrom.Services(services)
         .Enrich.FromLogContext()
-        .Enrich.WithThreadId()
         .WriteTo.Console(
             outputTemplate:
             "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level:u3}] ({SourceContext}) {Message:lj}{NewLine}{Exception}")
@@ -49,6 +48,8 @@ builder.Services.AddSingleton<DonationPlatformClientFactory>();
 builder.Services.AddSingleton(donationDataPaths);
 builder.Services.AddTransient<DonationDataStorage>();
 builder.Services.AddTransient<PollDonationService>();
+builder.Services.AddTransient<DonationImageDownloader>();
+builder.Services.AddTransient<DonationImageStorage>();
 builder.Services.AddHostedService<PollDonationsBackgroundService>();
 
 var app = builder.Build();

@@ -13,5 +13,6 @@
         public string LatestImageDonationsPath => System.IO.Path.Combine(Path, "latest_images_donations");
         public string GetCurrentDataFile(string path) => System.IO.Path.Combine(path, "current.json");
         public string GetHistoryDataFile(string path) => System.IO.Path.Combine(path, "history.jsonl");
+        public string GetStoredImagesMetadataFile() => System.IO.Path.Combine(LatestImageDonationsPath, "images_metadata.json");
     }
 }

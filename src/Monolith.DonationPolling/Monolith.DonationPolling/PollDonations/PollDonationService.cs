@@ -7,10 +7,15 @@ namespace Monolith.DonationPolling.PollDonations;
 public class PollDonationService(
     IConfiguration configuration,
     DonationPlatformClientFactory clientFactory,
+    DonationImageDownloader donationImageDownloader,
+    DonationImageStorage imageStorage,
     DonationDataStorage dataStorage,
     DonationDataPaths dataPaths,
     ILogger<PollDonationService> logger)
 {
+    private string PortalUrl => configuration.GetRequiredValue<string>("DonationPlatform:PortalUrl");
+    private string DonationUrl => configuration.GetRequiredValue<string>("DonationPlatform:DonationUrl");
+
 
     public async Task Poll(CancellationToken cancellationToken)
     {
@@ -36,54 +41,66 @@ public class PollDonationService(
 
         LastImageDonations? lastImageDonations = await GetLastImageDonationsAsync(cancellationToken);
         await dataStorage.SaveAsync(lastImageDonations, dataPaths.LatestImageDonationsPath, cancellationToken);
+        if (lastImageDonations != null && lastImageDonations.List != null)
+        {
+            foreach (LastImageDonationsData imageDonation in lastImageDonations.List)
+            {
+                bool containsImage = await imageStorage.ContainsAsync(imageDonation.ImageUrl, cancellationToken);
+                if (!containsImage)
+                {
+                    byte[]? imageBytes = await donationImageDownloader.DownloadAsync(imageDonation.ImageUrl, cancellationToken);
+                    if (imageBytes != null && imageBytes.Length > 0)
+                    {
+                        await imageStorage.SaveImage(imageDonation.ImageUrl, imageBytes, cancellationToken);
+                    }
+                }
+            }
+        }
     }
-
-    private string PortalUrl => configuration.GetRequiredValue<string>("DonationPlatform:PortalUrl");
-    private string DonationUrl => configuration.GetRequiredValue<string>("DonationPlatform:DonationUrl");
 
 
     private async Task<CachedCharityDonations?> GetCharityDonationsAsync(CancellationToken cancellationToken)
     {
         string url = PortalUrl + "/CharityDonations/GetCharityDonations";
-        return await SendRequest<CachedCharityDonations>(url, cancellationToken: cancellationToken);
+        return await AuthenticatedGetRequest<CachedCharityDonations>(url, cancellationToken: cancellationToken);
     }
 
     private async Task<MonetaryStatusResponse?> GetMonetaryStatusAsync(
         CancellationToken cancellationToken)
     {
         string url = DonationUrl + "/Donation/GetMonetaryStatus";
-        return await SendRequest<MonetaryStatusResponse>(url, cancellationToken: cancellationToken);
+        return await AuthenticatedGetRequest<MonetaryStatusResponse>(url, cancellationToken: cancellationToken);
     }
 
     private async Task<DonationListResponse?> GetBiggestDonationsAsync(
         CancellationToken cancellationToken)
     {
         string url = DonationUrl + "/Donation/GetBiggestDonations";
-        return await SendRequest<DonationListResponse>(url, cancellationToken: cancellationToken);
+        return await AuthenticatedGetRequest<DonationListResponse>(url, cancellationToken: cancellationToken);
     }
 
     private async Task<DonationListResponse?> GetLatestDonationsAsync(CancellationToken cancellationToken)
     {
         string url = DonationUrl + "/Donation/GetLatestDonations";
-        return await SendRequest<DonationListResponse>(url, cancellationToken: cancellationToken);
+        return await AuthenticatedGetRequest<DonationListResponse>(url, cancellationToken: cancellationToken);
     }
 
     private async Task<DonationStatisticsResponse?> GetBiggestDonationStatisticsAsync(CancellationToken cancellationToken)
     {
         string url = DonationUrl + "/Donation/GetBiggestDonationStatistics";
-        return await SendRequest<DonationStatisticsResponse>(url, cancellationToken: cancellationToken);
+        return await AuthenticatedGetRequest<DonationStatisticsResponse>(url, cancellationToken: cancellationToken);
     }
 
     private async Task<LastImageDonations?> GetLastImageDonationsAsync(CancellationToken cancellationToken)
     {
         string url = DonationUrl + "/Image/GetLastDonations";
         Dictionary<string, string> query = new() { { "numberOfDonations", "20" } };
-        return await SendRequest<LastImageDonations>(url, query: query, cancellationToken: cancellationToken);
+        return await AuthenticatedGetRequest<LastImageDonations>(url, query: query, cancellationToken: cancellationToken);
     }
 
 
 
-    private async Task<T?> SendRequest<T>(string url, Dictionary<string, string>? query = null, CancellationToken cancellationToken = default) where T : class
+    private async Task<T?> AuthenticatedGetRequest<T>(string url, Dictionary<string, string>? query = null, CancellationToken cancellationToken = default) where T : class
     {
         // Gets a RestClient with a re-usable JWT token
         RestClient client = await clientFactory.GetClientAsync(cancellationToken);
@@ -107,8 +124,11 @@ public class PollDonationService(
         {
             logger.LogInformation($"Calls url: '{url}'");
             executeResponse = await client.ExecuteAsync(request, cancellationToken);
-            logger.LogInformation($"Response from url '{url}': ({executeResponse.StatusCode}) '{executeResponse.Content}'");
-
+            logger.LogInformation($"Response from url '{url}': ({executeResponse.StatusCode}) bytes: {executeResponse.RawBytes?.Length}");
+            if (!executeResponse.IsSuccessStatusCode)
+            {
+                logger.LogWarning($"Got a failed status code from url: '{url}'. Content: '{executeResponse.Content}'");
+            }
         }
         catch (Exception ex)
         {
@@ -129,6 +149,6 @@ public class PollDonationService(
             logger.LogError(ex, $"Failed to deserialize response as '{typeof(T).FullName}' from url: '{url}', response: '{executeResponse.Content}'");
             return null;
         }
-
     }
+
 }
