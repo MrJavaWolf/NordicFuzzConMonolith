@@ -42,7 +42,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7571949122726662958}
   serializedVersion: 8
-  lengthInSec: 2
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -1579,8 +1579,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.0010299683
-          value: 0.7235397
+          time: 0
+          value: 0.46443784
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1589,12 +1589,12 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 0.98867524
-          value: 0.3131762
-          inSlope: -1.5192677
-          outSlope: -1.5192677
+          value: 0.3181048
+          inSlope: -0.7438099
+          outSlope: -0.7438099
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.07818931
+          inWeight: 0.09676686
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -4783,8 +4783,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4886,13 +4886,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3990175916389235875, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 5481856781549971746, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5481856781549971746, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5481856781549971746, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
+      propertyPath: ForceModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481856781549971746, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
+      propertyPath: ForceModule.y.scalar
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481856781549971746, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481856781549971746, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481856781549971746, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481856781549971746, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481856781549971746, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481856781549971746, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481856781549971746, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.30069113
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481856781549971746, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
       propertyPath: VelocityModule.speedModifier.scalar
-      value: 30
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 5594085025804253069, guid: 4d033c6763f358a4a91521885b2725d9, type: 3}
       propertyPath: m_Name

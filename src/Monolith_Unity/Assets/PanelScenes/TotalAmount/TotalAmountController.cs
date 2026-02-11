@@ -12,18 +12,25 @@ public class TotalAmountController : MonoBehaviour
     public CoinSpawner coinSpawner;
     public int MaxNumberOfCoins = 600;
     public float CheckForMoneyIntervalSeconds = 10f;
-    public List<ParticleSystem> Fireworks = new List<ParticleSystem>();
+
+    public float FireworksWaitTime = 3.5f;
+    public List<ParticleSystem> Fireworks = new();
+
+    public int DebugMinimumMoney = 50;
+    public int DebugMaximumMoney = 5000;
 
     private float spawnTimer;
     private bool IsCheckingForNewData = false;
     private DonationStorageDto<MonetaryStatusResponse> currentMoneyStatus;
     private DonationStorageDto<MonetaryStatusResponse> newMoneyStatus;
+    
 
-
+    private float FireworksStartTime = -1;
     private enum State
     {
         WaitingForMoreMoney,
         Spawning,
+        WaitingForFireworks,
         WaitingForCoinsToFall
     }
 
@@ -40,6 +47,9 @@ public class TotalAmountController : MonoBehaviour
             case State.Spawning:
                 HandleSpawning();
                 break;
+            case State.WaitingForFireworks:
+                HandleWaitingForFireworks();
+                break;
 
             case State.WaitingForCoinsToFall:
                 HandleWaitingForCoinsToFall();
@@ -52,7 +62,7 @@ public class TotalAmountController : MonoBehaviour
 
         if (Keyboard.current.aKey.wasPressedThisFrame)
         {
-            MonetaryStatusResponse current = currentMoneyStatus.Data;
+            MonetaryStatusResponse current = currentMoneyStatus?.Data;
             if (current == null)
             {
                 current = new MonetaryStatusResponse()
@@ -75,8 +85,10 @@ public class TotalAmountController : MonoBehaviour
                 };
             }
             current = Newtonsoft.Json.JsonConvert.DeserializeObject<MonetaryStatusResponse>(Newtonsoft.Json.JsonConvert.SerializeObject(current));
-            
-            current.Stripe.Amount = current.Stripe.Amount + UnityEngine.Random.Range(10, 50);
+
+            int additionAmount = UnityEngine.Random.Range(DebugMinimumMoney, DebugMaximumMoney);
+            Debug.Log($"AdditionAmount: {additionAmount}");
+            current.Stripe.Amount = current.Stripe.Amount + additionAmount;
 
             newMoneyStatus = new DonationStorageDto<MonetaryStatusResponse>()
             {
@@ -93,23 +105,27 @@ public class TotalAmountController : MonoBehaviour
             long currentMoney = GetTotalAmount(currentMoneyStatus);
             long newMoney = GetTotalAmount(newMoneyStatus);
             long newMoneyRecieved = newMoney - currentMoney;
+            var (ones, fifties, twoHundreds) = coinSpawner.CalculateCoins((int)newMoneyRecieved);
 
             // Check if we've reached the max
-            if (coinSpawner.AllCoins.Count + newMoneyRecieved >= MaxNumberOfCoins)
+            if (coinSpawner.AllCoins.Count > 0 &&
+                coinSpawner.AllCoins.Count + ones + fifties + twoHundreds >= MaxNumberOfCoins)
             {
+                Debug.Log("Plays fireworks");
                 foreach (var firework in Fireworks)
                 {
                     firework.Play();
                 }
-                coinSpawner.LetCoinsFall();
-                currentState = State.WaitingForCoinsToFall;
+                currentState = State.WaitingForFireworks;
+                FireworksStartTime = Time.time;
                 return;
             }
 
             currentMoneyStatus = newMoneyStatus;
             if (newMoneyRecieved > 0)
             {
-                coinSpawner.SpawnCoins((int)newMoneyRecieved);
+                Debug.Log($"Ones: {ones}, Fifties: {fifties}, TwoHundreds: {twoHundreds}");
+                coinSpawner.SpawnCoins((ones, fifties, twoHundreds));
                 currentState = State.Spawning;
             }
         }
@@ -130,6 +146,18 @@ public class TotalAmountController : MonoBehaviour
             currentState = State.WaitingForMoreMoney;
         }
     }
+
+
+    private void HandleWaitingForFireworks()
+    {
+        // Wait until coins finish falling
+        if (Time.time - FireworksStartTime >= FireworksWaitTime)
+        {
+            coinSpawner.LetCoinsFall();
+            currentState = State.WaitingForCoinsToFall;
+        }
+    }
+
 
     private void HandleWaitingForCoinsToFall()
     {

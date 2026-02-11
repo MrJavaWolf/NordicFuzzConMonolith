@@ -451,7 +451,6 @@ GameObject:
   - component: {fileID: 212685719}
   - component: {fileID: 212685722}
   - component: {fileID: 212685721}
-  - component: {fileID: 212685720}
   m_Layer: 0
   m_Name: Bottom
   m_TagString: Untagged
@@ -467,40 +466,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 212685718}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -259, z: 0}
   m_LocalScale: {x: 1000, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 573842502}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &212685720
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212685718}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!61 &212685721
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1130,6 +1102,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7940333886938059975, guid: 6920ddd360a42ac4a9668188afa7cd5b, type: 3}
   m_PrefabInstance: {fileID: 8421133654272138669}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &435216028 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8508993414907204834, guid: 6920ddd360a42ac4a9668188afa7cd5b, type: 3}
+  m_PrefabInstance: {fileID: 8421133654272138669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &451381012 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 148960016389166245, guid: 45911d2273b39e24c9915e2dba3bb7f2, type: 3}
@@ -1146,7 +1123,6 @@ GameObject:
   - component: {fileID: 478202608}
   - component: {fileID: 478202611}
   - component: {fileID: 478202610}
-  - component: {fileID: 478202609}
   m_Layer: 0
   m_Name: Left Side
   m_TagString: Untagged
@@ -1162,40 +1138,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478202607}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -384, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -384, y: 0, z: -400}
   m_LocalScale: {x: 1, y: 1000, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 573842502}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &478202609
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478202607}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!61 &478202610
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1326,7 +1275,7 @@ Transform:
   m_GameObject: {fileID: 573842501}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -261.00003, z: 251.00003}
+  m_LocalPosition: {x: 0, y: -261.00003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1924,6 +1873,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7940333886938059975, guid: 6920ddd360a42ac4a9668188afa7cd5b, type: 3}
   m_PrefabInstance: {fileID: 1606635747}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &779326505 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8508993414907204834, guid: 6920ddd360a42ac4a9668188afa7cd5b, type: 3}
+  m_PrefabInstance: {fileID: 1606635747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &836460102
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,6 +2022,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7940333886938059975, guid: 6920ddd360a42ac4a9668188afa7cd5b, type: 3}
   m_PrefabInstance: {fileID: 1392994059}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &862577738 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8508993414907204834, guid: 6920ddd360a42ac4a9668188afa7cd5b, type: 3}
+  m_PrefabInstance: {fileID: 1392994059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &871826087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,7 +2038,6 @@ GameObject:
   - component: {fileID: 871826088}
   - component: {fileID: 871826091}
   - component: {fileID: 871826090}
-  - component: {fileID: 871826089}
   m_Layer: 0
   m_Name: Right Side
   m_TagString: Untagged
@@ -2095,40 +2053,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871826087}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 385, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 385, y: -0, z: -400}
   m_LocalScale: {x: 1, y: 1000, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 573842502}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &871826089
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871826087}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!61 &871826090
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2785,6 +2716,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7940333886938059975, guid: 6920ddd360a42ac4a9668188afa7cd5b, type: 3}
   m_PrefabInstance: {fileID: 909019036}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1133691929 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8508993414907204834, guid: 6920ddd360a42ac4a9668188afa7cd5b, type: 3}
+  m_PrefabInstance: {fileID: 909019036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1216687087
 GameObject:
   m_ObjectHideFlags: 0
@@ -3085,9 +3021,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TotalAmountController
   dataStorage: {fileID: 1098190306}
   coinSpawner: {fileID: 2037554195}
-  MaxNumberOfCoins: 300
+  MaxNumberOfCoins: 275
   CheckForMoneyIntervalSeconds: 5
-  Fireworks: []
+  FireworksWaitTime: 3.5
+  Fireworks:
+  - {fileID: 435216028}
+  - {fileID: 1133691929}
+  - {fileID: 1928754916}
+  - {fileID: 862577738}
+  - {fileID: 1663692926}
+  - {fileID: 779326505}
+  DebugMinimumMoney: 50
+  DebugMaximumMoney: 5000
 --- !u!1 &1521693422
 GameObject:
   m_ObjectHideFlags: 0
@@ -3513,6 +3458,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7940333886938059975, guid: 6920ddd360a42ac4a9668188afa7cd5b, type: 3}
   m_PrefabInstance: {fileID: 2034317176}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1663692926 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8508993414907204834, guid: 6920ddd360a42ac4a9668188afa7cd5b, type: 3}
+  m_PrefabInstance: {fileID: 2034317176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1802121299 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 148960016389166245, guid: d2c454a8214bcda4888907bc9712e65d, type: 3}
@@ -3600,6 +3550,11 @@ Transform:
 --- !u!4 &1928754914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7940333886938059975, guid: 6920ddd360a42ac4a9668188afa7cd5b, type: 3}
+  m_PrefabInstance: {fileID: 1932494162}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1928754916 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8508993414907204834, guid: 6920ddd360a42ac4a9668188afa7cd5b, type: 3}
   m_PrefabInstance: {fileID: 1932494162}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1932494162
@@ -3742,7 +3697,7 @@ Transform:
   m_GameObject: {fileID: 2037554193}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 170, z: 0}
+  m_LocalPosition: {x: 0, y: 191, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3762,9 +3717,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoinSpawner
   coinPrefab: {fileID: 2559678168091889564, guid: 13be154a7c969094ba29e5b0657a0ab8, type: 3}
   coin50Prefab: {fileID: 2559678168091889564, guid: c69840f424cf3dd42b8bf7d0e0c33110, type: 3}
-  coin100Prefab: {fileID: 2559678168091889564, guid: 93b6c786e70f69944a15bdf6d94cdd3e, type: 3}
+  coin200Prefab: {fileID: 2559678168091889564, guid: 93b6c786e70f69944a15bdf6d94cdd3e, type: 3}
   bottomCollider: {fileID: 212685719}
-  areaSize: {x: 718, y: 150}
+  areaSize: {x: 718, y: 75}
   coinsPerSecond: 20
 --- !u!1 &2063662592
 GameObject:

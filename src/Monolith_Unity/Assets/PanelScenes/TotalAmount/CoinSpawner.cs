@@ -6,7 +6,7 @@ public class CoinSpawner : MonoBehaviour
 {
     public GameObject coinPrefab;
     public GameObject coin50Prefab;
-    public GameObject coin100Prefab;
+    public GameObject coin200Prefab;
 
     public Transform bottomCollider;
     public Vector2 areaSize = new(5f, 3f);
@@ -18,31 +18,71 @@ public class CoinSpawner : MonoBehaviour
 
     public List<GameObject> AllCoins { get; } = new List<GameObject>();
 
-    public (int, int, int) CalculateCoins(int totalAmount)
+    public (int ones, int fifties, int twoHundreds) CalculateCoins(int totalAmount)
     {
+        if (totalAmount <= 0)
+            return (0, 0, 0);
 
-        return (totalAmount, 0, 0);
+        int targetCoinCount = Random.Range(20, 30);
+
+        int twoHundreds = 0;
+        int fifties = 0;
+        int ones = 0;
+
+        int remaining = totalAmount;
+
+        // First try to distribute evenly across target coin count
+        int averageValuePerCoin = Mathf.Max(1, totalAmount / targetCoinCount);
+
+        if (averageValuePerCoin >= 200)
+        {
+            twoHundreds = remaining / 200;
+            remaining -= twoHundreds * 200;
+        }
+
+        if (averageValuePerCoin >= 50)
+        {
+            fifties = remaining / 50;
+            remaining -= fifties * 50;
+        }
+
+        ones = remaining;
+
+        int totalCoins = twoHundreds + fifties + ones;
+
+        // If we exceed 50 coins, compress smaller coins upward
+        while (totalCoins > 50)
+        {
+            if (ones >= 50)
+            {
+                ones -= 50;
+                fifties += 1;
+            }
+            else if (fifties >= 4)
+            {
+                fifties -= 4;
+                twoHundreds += 1;
+            }
+            else
+            {
+                break;
+            }
+
+            totalCoins = twoHundreds + fifties + ones;
+        }
+
+        return (ones, fifties, twoHundreds);
     }
 
-    public void SpawnCoins(int amount, float coinsPerSecond = -1)
+
+    public void SpawnCoins((int ones, int fifties, int twoHundreds) amount, float coinsPerSecond = -1)
     {
         IsSpawningCoins = true;
-        StartCoroutine(SpawnCoinsOverTime(amount, coinPrefab, coinsPerSecond));
+        StartCoroutine(SpawnCoinsOverTime(amount, coinsPerSecond));
     }
 
-    public void Spawn50Coins(int amount, float coinsPerSecond = -1)
-    {
-        IsSpawningCoins = true;
-        StartCoroutine(SpawnCoinsOverTime(amount, coin50Prefab, coinsPerSecond));
-    }
 
-    public void Spawn100Coins(int amount, float coinsPerSecond = -1)
-    {
-        IsSpawningCoins = true;
-        StartCoroutine(SpawnCoinsOverTime(amount, coin100Prefab, coinsPerSecond));
-    }
-
-    public IEnumerator SpawnCoinsOverTime(int amount, GameObject coinGameObject, float coinsPerSecond = -1)
+    public IEnumerator SpawnCoinsOverTime((int ones, int fifties, int twoHundreds) amount, float coinsPerSecond = -1)
     {
         IsSpawningCoins = true;
         if (coinsPerSecond <= 0)
@@ -50,16 +90,13 @@ public class CoinSpawner : MonoBehaviour
             coinsPerSecond = this.coinsPerSecond;
         }
 
-        if (amount <= 0 || coinsPerSecond <= 0f)
-            yield break;
-
         float delay = 1f / coinsPerSecond;
 
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < amount.twoHundreds; i++)
         {
             Vector2 randomPos = GetRandomPosition();
             GameObject coinObject = Instantiate(
-                coinGameObject,
+                coin200Prefab,
                 randomPos,
                 Quaternion.identity,
                 transform.parent
@@ -68,6 +105,35 @@ public class CoinSpawner : MonoBehaviour
             AllCoins.Add(coinObject);
             yield return new WaitForSeconds(delay);
         }
+
+        for (int i = 0; i < amount.fifties; i++)
+        {
+            Vector2 randomPos = GetRandomPosition();
+            GameObject coinObject = Instantiate(
+                coin50Prefab,
+                randomPos,
+                Quaternion.identity,
+                transform.parent
+            );
+
+            AllCoins.Add(coinObject);
+            yield return new WaitForSeconds(delay);
+        }
+
+        for (int i = 0; i < amount.ones; i++)
+        {
+            Vector2 randomPos = GetRandomPosition();
+            GameObject coinObject = Instantiate(
+                coinPrefab,
+                randomPos,
+                Quaternion.identity,
+                transform.parent
+            );
+
+            AllCoins.Add(coinObject);
+            yield return new WaitForSeconds(delay);
+        }
+
         IsSpawningCoins = false;
     }
 
