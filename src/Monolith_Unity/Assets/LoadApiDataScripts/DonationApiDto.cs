@@ -6,12 +6,12 @@
 
 #pragma warning disable 108 // Disable "CS0108 '{derivedDto}.ToJson()' hides inherited member '{dtoBase}.ToJson()'. Use the new keyword if hiding was intended."
 #pragma warning disable 114 // Disable "CS0114 '{derivedDto}.RaisePropertyChanged(String)' hides inherited member 'dtoBase.RaisePropertyChanged(String)'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
-#pragma warning disable 472 // Disable "CS0472 The result of the expression is always 'false' since a value of type 'Int32' is never equal to 'null' of type 'Int32?'
+#pragma warning disable 472 // Disable "CS0472 The result of the expression is always 'false' since a value of type 'Int32' is never equal to 'null' of type 'Int32'
 #pragma warning disable 612 // Disable "CS0612 '...' is obsolete"
 #pragma warning disable 649 // Disable "CS0649 Field is never assigned to, and will always have its default value null"
 #pragma warning disable 1573 // Disable "CS1573 Parameter '...' has no matching param tag in the XML comment for ...
 #pragma warning disable 1591 // Disable "CS1591 Missing XML comment for publicly visible type or member ..."
-#pragma warning disable 8073 // Disable "CS8073 The result of the expression is always 'false' since a value of type 'T' is never equal to 'null' of type 'T?'"
+#pragma warning disable 8073 // Disable "CS8073 The result of the expression is always 'false' since a value of type 'T' is never equal to 'null' of type 'T'"
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8600 // Disable "CS8600 Converting null literal or possible null value to non-nullable type"
 #pragma warning disable 8602 // Disable "CS8602 Dereference of a possibly null reference"
@@ -19,7 +19,6 @@
 #pragma warning disable 8604 // Disable "CS8604 Possible null reference argument for parameter"
 #pragma warning disable 8625 // Disable "CS8625 Cannot convert null literal to non-nullable reference type"
 #pragma warning disable 8765 // Disable "CS8765 Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes)."
-#nullable enable
 namespace NFC.Donation.Api
 {
     using System = global::System;
@@ -31,7 +30,7 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
@@ -46,31 +45,31 @@ namespace NFC.Donation.Api
         public string CauseCurrency { get; set; }
 
         [Newtonsoft.Json.JsonProperty("teamId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TeamId { get; set; }
+        public int TeamId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("supportable", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Supportable { get; set; }
+        public bool Supportable { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? StartsAt { get; set; }
+        public System.DateTimeOffset StartsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("originalFundraiserGoal", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? OriginalFundraiserGoal { get; set; }
+        public int OriginalFundraiserGoal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("fundraiserGoalAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? FundraiserGoalAmount { get; set; }
+        public int FundraiserGoalAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AmountRaised { get; set; }
+        public int AmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("supportingAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SupportingAmountRaised { get; set; }
+        public int SupportingAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("totalAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TotalAmountRaised { get; set; }
+        public int TotalAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("avatar", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Image Avatar { get; set; }
@@ -94,16 +93,16 @@ namespace NFC.Donation.Api
         public string Slug { get; set; }
 
         [Newtonsoft.Json.JsonProperty("supportable", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Supportable { get; set; }
+        public bool Supportable { get; set; }
 
         [Newtonsoft.Json.JsonProperty("teamId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TeamId { get; set; }
+        public int TeamId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? StartsAt { get; set; }
+        public System.DateTimeOffset StartsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("imageJson", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ImageJson { get; set; }
@@ -115,19 +114,19 @@ namespace NFC.Donation.Api
         public string CauseCurrency { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AmountRaised { get; set; }
+        public int AmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("fundraiserGoalAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? FundraiserGoalAmount { get; set; }
+        public int FundraiserGoalAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("originalFundraiserGoal", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? OriginalFundraiserGoal { get; set; }
+        public int OriginalFundraiserGoal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("supportingAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SupportingAmountRaised { get; set; }
+        public int SupportingAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("totalAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TotalAmountRaised { get; set; }
+        public int TotalAmountRaised { get; set; }
 
     }
 
@@ -136,28 +135,28 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
 
         [Newtonsoft.Json.JsonProperty("totalAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TotalAmountRaised { get; set; }
+        public int TotalAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        public int Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("active", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAt { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("updatedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? UpdatedAt { get; set; }
+        public System.DateTimeOffset UpdatedAt { get; set; }
 
     }
 
@@ -193,28 +192,28 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        public int Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("totalAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TotalAmountRaised { get; set; }
+        public int TotalAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("active", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAt { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("updatedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? UpdatedAt { get; set; }
+        public System.DateTimeOffset UpdatedAt { get; set; }
 
     }
 
@@ -238,10 +237,10 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        public int Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
@@ -250,13 +249,13 @@ namespace NFC.Donation.Api
         public string Comment { get; set; }
 
         [Newtonsoft.Json.JsonProperty("completedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CompletedAt { get; set; }
+        public System.DateTimeOffset CompletedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("pollId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? PollId { get; set; }
+        public int PollId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("challengeId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ChallengeId { get; set; }
+        public int ChallengeId { get; set; }
 
     }
 
@@ -334,10 +333,10 @@ namespace NFC.Donation.Api
         public string Src { get; set; }
 
         [Newtonsoft.Json.JsonProperty("height", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Height { get; set; }
+        public int Height { get; set; }
 
         [Newtonsoft.Json.JsonProperty("width", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Width { get; set; }
+        public int Width { get; set; }
 
     }
 
@@ -358,7 +357,7 @@ namespace NFC.Donation.Api
         public int Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("secondsItShouldBeActive", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SecondsItShouldBeActive { get; set; }
+        public int SecondsItShouldBeActive { get; set; }
 
     }
 
@@ -376,7 +375,7 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("badgeNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? BadgeNumber { get; set; }
+        public int BadgeNumber { get; set; }
 
         [Newtonsoft.Json.JsonProperty("nickName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NickName { get; set; }
@@ -385,10 +384,10 @@ namespace NFC.Donation.Api
         public string ImageUrl { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        public int Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("donatedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DonatedAt { get; set; }
+        public System.DateTimeOffset DonatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Status { get; set; }
@@ -425,20 +424,20 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? Amount { get; set; }
+        public long Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("collectedDuringDay", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset? CollectedDuringDay { get; set; }
+        public System.DateTimeOffset CollectedDuringDay { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAt { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("updatedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? UpdatedAt { get; set; }
+        public System.DateTimeOffset UpdatedAt { get; set; }
 
     }
 
@@ -447,11 +446,11 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? Amount { get; set; }
+        public long Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("collectedDuringDay", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset? CollectedDuringDay { get; set; }
+        public System.DateTimeOffset CollectedDuringDay { get; set; }
 
     }
 
@@ -460,16 +459,16 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        public int Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAt { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
 
     }
 
@@ -505,16 +504,16 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        public int Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAt { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
 
     }
 
@@ -526,7 +525,7 @@ namespace NFC.Donation.Api
         public string Currency { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? Amount { get; set; }
+        public long Amount { get; set; }
 
     }
 
@@ -556,7 +555,7 @@ namespace NFC.Donation.Api
         public string Currency { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? Amount { get; set; }
+        public long Amount { get; set; }
 
     }
 
@@ -568,19 +567,19 @@ namespace NFC.Donation.Api
         public string CauseCurrency { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AmountRaised { get; set; }
+        public int AmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("fundraiserGoalAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? FundraiserGoalAmount { get; set; }
+        public int FundraiserGoalAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("originalFundraiserGoal", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? OriginalFundraiserGoal { get; set; }
+        public int OriginalFundraiserGoal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("supportingAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SupportingAmountRaised { get; set; }
+        public int SupportingAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("totalAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TotalAmountRaised { get; set; }
+        public int TotalAmountRaised { get; set; }
 
     }
 
@@ -592,7 +591,7 @@ namespace NFC.Donation.Api
         public string Currency { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? Amount { get; set; }
+        public long Amount { get; set; }
 
     }
 
@@ -601,7 +600,7 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("nickName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NickName { get; set; }
@@ -610,10 +609,10 @@ namespace NFC.Donation.Api
         public string ImageUrl { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        public int Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("donatedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DonatedAt { get; set; }
+        public System.DateTimeOffset DonatedAt { get; set; }
 
     }
 
@@ -622,19 +621,19 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
 
         [Newtonsoft.Json.JsonProperty("active", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAt { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("updatedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? UpdatedAt { get; set; }
+        public System.DateTimeOffset UpdatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("options", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<PollOption> Options { get; set; }
@@ -673,22 +672,22 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("pollId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? PollId { get; set; }
+        public int PollId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
 
         [Newtonsoft.Json.JsonProperty("totalAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TotalAmountRaised { get; set; }
+        public int TotalAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAt { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("updatedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? UpdatedAt { get; set; }
+        public System.DateTimeOffset UpdatedAt { get; set; }
 
     }
 
@@ -715,13 +714,13 @@ namespace NFC.Donation.Api
         public string Name { get; set; }
 
         [Newtonsoft.Json.JsonProperty("totalAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? TotalAmountRaised { get; set; }
+        public long TotalAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAt { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("updatedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? UpdatedAt { get; set; }
+        public System.DateTimeOffset UpdatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("stripe", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public PollOptionStripeResponse Stripe { get; set; }
@@ -772,10 +771,10 @@ namespace NFC.Donation.Api
         public string ImageUrl { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? StartsAt { get; set; }
+        public System.DateTimeOffset StartsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("options", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<PollOptionRequest> Options { get; set; }
@@ -793,16 +792,16 @@ namespace NFC.Donation.Api
         public string Name { get; set; }
 
         [Newtonsoft.Json.JsonProperty("active", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
 
         [Newtonsoft.Json.JsonProperty("totalAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? TotalAmountRaised { get; set; }
+        public long TotalAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAt { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("updatedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? UpdatedAt { get; set; }
+        public System.DateTimeOffset UpdatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("options", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<PollOptionResponse> Options { get; set; }
@@ -836,10 +835,10 @@ namespace NFC.Donation.Api
         public string ImageUrl { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? StartsAt { get; set; }
+        public System.DateTimeOffset StartsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
     }
 
@@ -854,10 +853,10 @@ namespace NFC.Donation.Api
         public string ImageUrl { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? StartsAt { get; set; }
+        public System.DateTimeOffset StartsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
     }
 
@@ -872,7 +871,7 @@ namespace NFC.Donation.Api
         public string Title { get; set; }
 
         [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Status { get; set; }
+        public int Status { get; set; }
 
         [Newtonsoft.Json.JsonProperty("detail", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Detail { get; set; }
@@ -896,7 +895,7 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
@@ -905,28 +904,28 @@ namespace NFC.Donation.Api
         public string Description { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        public int Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("quantity", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Quantity { get; set; }
+        public int Quantity { get; set; }
 
         [Newtonsoft.Json.JsonProperty("remaining", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Remaining { get; set; }
+        public int Remaining { get; set; }
 
         [Newtonsoft.Json.JsonProperty("image", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Image Image { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? StartsAt { get; set; }
+        public System.DateTimeOffset StartsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAt { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("updatedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? UpdatedAt { get; set; }
+        public System.DateTimeOffset UpdatedAt { get; set; }
 
     }
 
@@ -962,7 +961,7 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
@@ -971,28 +970,28 @@ namespace NFC.Donation.Api
         public string Description { get; set; }
 
         [Newtonsoft.Json.JsonProperty("quantity", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Quantity { get; set; }
+        public int Quantity { get; set; }
 
         [Newtonsoft.Json.JsonProperty("remaining", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Remaining { get; set; }
+        public int Remaining { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        public int Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? StartsAt { get; set; }
+        public System.DateTimeOffset StartsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("imageJson", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ImageJson { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAt { get; set; }
+        public System.DateTimeOffset CreatedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("updatedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? UpdatedAt { get; set; }
+        public System.DateTimeOffset UpdatedAt { get; set; }
 
     }
 
@@ -1001,7 +1000,7 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
@@ -1010,10 +1009,10 @@ namespace NFC.Donation.Api
         public string Description { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? StartsAt { get; set; }
+        public System.DateTimeOffset StartsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
     }
 
@@ -1049,7 +1048,7 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
@@ -1058,10 +1057,10 @@ namespace NFC.Donation.Api
         public string Description { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? StartsAt { get; set; }
+        public System.DateTimeOffset StartsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
     }
 
@@ -1106,19 +1105,19 @@ namespace NFC.Donation.Api
         public string Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? Amount { get; set; }
+        public long Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amountCaptured", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? AmountCaptured { get; set; }
+        public long AmountCaptured { get; set; }
 
         [Newtonsoft.Json.JsonProperty("captured", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Captured { get; set; }
+        public bool Captured { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAtUtc", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAtUtc { get; set; }
+        public System.DateTimeOffset CreatedAtUtc { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdInNfcDbAtUtc", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedInNfcDbAtUtc { get; set; }
+        public System.DateTimeOffset CreatedInNfcDbAtUtc { get; set; }
 
         [Newtonsoft.Json.JsonProperty("customFurryNickname", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string CustomFurryNickname { get; set; }
@@ -1142,10 +1141,10 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("donatedAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? DonatedAmount { get; set; }
+        public long DonatedAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("numberOfDonations", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? NumberOfDonations { get; set; }
+        public int NumberOfDonations { get; set; }
 
     }
 
@@ -1154,7 +1153,7 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
@@ -1166,16 +1165,16 @@ namespace NFC.Donation.Api
         public string Slug { get; set; }
 
         [Newtonsoft.Json.JsonProperty("supportable", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Supportable { get; set; }
+        public bool Supportable { get; set; }
 
         [Newtonsoft.Json.JsonProperty("teamId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TeamId { get; set; }
+        public int TeamId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? StartsAt { get; set; }
+        public System.DateTimeOffset StartsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("imageJson", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ImageJson { get; set; }
@@ -1187,25 +1186,25 @@ namespace NFC.Donation.Api
         public string CauseCurrency { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AmountRaised { get; set; }
+        public int AmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("fundraiserGoalAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? FundraiserGoalAmount { get; set; }
+        public int FundraiserGoalAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("originalFundraiserGoal", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? OriginalFundraiserGoal { get; set; }
+        public int OriginalFundraiserGoal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("supportingAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SupportingAmountRaised { get; set; }
+        public int SupportingAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("totalAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TotalAmountRaised { get; set; }
+        public int TotalAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("supportingCampaignId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SupportingCampaignId { get; set; }
+        public int SupportingCampaignId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("userId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("userName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string UserName { get; set; }
@@ -1226,7 +1225,7 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
@@ -1235,16 +1234,16 @@ namespace NFC.Donation.Api
         public string CauseCurrency { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AmountRaised { get; set; }
+        public int AmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("fundraiserGoalAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? FundraiserGoalAmount { get; set; }
+        public int FundraiserGoalAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("originalFundraiserGoal", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? OriginalFundraiserGoal { get; set; }
+        public int OriginalFundraiserGoal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("totalAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TotalAmountRaised { get; set; }
+        public int TotalAmountRaised { get; set; }
 
     }
 
@@ -1253,7 +1252,7 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
@@ -1268,31 +1267,31 @@ namespace NFC.Donation.Api
         public string CauseCurrency { get; set; }
 
         [Newtonsoft.Json.JsonProperty("teamId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TeamId { get; set; }
+        public int TeamId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("supportable", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Supportable { get; set; }
+        public bool Supportable { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? StartsAt { get; set; }
+        public System.DateTimeOffset StartsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endsAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EndsAt { get; set; }
+        public System.DateTimeOffset EndsAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("originalFundraiserGoal", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? OriginalFundraiserGoal { get; set; }
+        public int OriginalFundraiserGoal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("fundraiserGoalAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? FundraiserGoalAmount { get; set; }
+        public int FundraiserGoalAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AmountRaised { get; set; }
+        public int AmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("supportingAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SupportingAmountRaised { get; set; }
+        public int SupportingAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("totalAmountRaised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TotalAmountRaised { get; set; }
+        public int TotalAmountRaised { get; set; }
 
         [Newtonsoft.Json.JsonProperty("avatar", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Image Avatar { get; set; }
@@ -1301,7 +1300,7 @@ namespace NFC.Donation.Api
         public Stream LiveStream { get; set; }
 
         [Newtonsoft.Json.JsonProperty("supportingCampaignId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SupportingCampaignId { get; set; }
+        public int SupportingCampaignId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("user", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public UserData User { get; set; }
@@ -1346,13 +1345,13 @@ namespace NFC.Donation.Api
         public string Comment { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Amount { get; set; }
+        public int Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("completedAt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CompletedAt { get; set; }
+        public System.DateTimeOffset CompletedAt { get; set; }
 
         [Newtonsoft.Json.JsonProperty("challengeId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ChallengeId { get; set; }
+        public int ChallengeId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("challengeName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ChallengeName { get; set; }
@@ -1364,10 +1363,10 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("donatedAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? DonatedAmount { get; set; }
+        public int DonatedAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("numberOfDonations", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? NumberOfDonations { get; set; }
+        public int NumberOfDonations { get; set; }
 
     }
 
@@ -1376,7 +1375,7 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("userName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string UserName { get; set; }
@@ -1412,13 +1411,13 @@ namespace NFC.Donation.Api
         public string Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? Amount { get; set; }
+        public long Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdAtUtc", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedAtUtc { get; set; }
+        public System.DateTimeOffset CreatedAtUtc { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdInNfcDbAtUtc", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedInNfcDbAtUtc { get; set; }
+        public System.DateTimeOffset CreatedInNfcDbAtUtc { get; set; }
 
     }
 
@@ -1439,10 +1438,10 @@ namespace NFC.Donation.Api
     {
 
         [Newtonsoft.Json.JsonProperty("donatedAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? DonatedAmount { get; set; }
+        public long DonatedAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("numberOfDonations", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? NumberOfDonations { get; set; }
+        public int NumberOfDonations { get; set; }
 
     }
 

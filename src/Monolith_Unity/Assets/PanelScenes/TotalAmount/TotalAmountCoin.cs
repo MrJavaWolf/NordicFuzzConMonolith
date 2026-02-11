@@ -61,12 +61,17 @@ public class TotalAmountCoin : MonoBehaviour
     {
         IsDoingFinalFall = true;
         DisableAllChildBoxColliders();
+        MakeJump();
+        rb.totalTorque = 0f;
+    }
+
+    public void MakeJump()
+    {
         if (rb.bodyType != RigidbodyType2D.Dynamic)
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
         }
         AddInitialForce();
-        rb.totalTorque = 0f;
     }
 
     private void AddInitialForce()

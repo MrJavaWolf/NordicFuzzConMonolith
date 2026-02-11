@@ -5,9 +5,12 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     public GameObject coinPrefab;
+    public GameObject coin50Prefab;
+    public GameObject coin100Prefab;
+
     public Transform bottomCollider;
-    public Vector2 areaSize = new Vector2(5f, 3f);
-    public float coinsPerSecond = 10f; // seconds
+    public Vector2 areaSize = new(5f, 3f);
+    public float coinsPerSecond = 10f;
 
     public bool IsCoinsFalling { get; private set; } = false;
 
@@ -15,14 +18,31 @@ public class CoinSpawner : MonoBehaviour
 
     public List<GameObject> AllCoins { get; } = new List<GameObject>();
 
+    public (int, int, int) CalculateCoins(int totalAmount)
+    {
+
+        return (totalAmount, 0, 0);
+    }
 
     public void SpawnCoins(int amount, float coinsPerSecond = -1)
     {
         IsSpawningCoins = true;
-        StartCoroutine(SpawnCoinsOverTime(amount, coinsPerSecond));
-
+        StartCoroutine(SpawnCoinsOverTime(amount, coinPrefab, coinsPerSecond));
     }
-    public IEnumerator SpawnCoinsOverTime(int amount, float coinsPerSecond = -1)
+
+    public void Spawn50Coins(int amount, float coinsPerSecond = -1)
+    {
+        IsSpawningCoins = true;
+        StartCoroutine(SpawnCoinsOverTime(amount, coin50Prefab, coinsPerSecond));
+    }
+
+    public void Spawn100Coins(int amount, float coinsPerSecond = -1)
+    {
+        IsSpawningCoins = true;
+        StartCoroutine(SpawnCoinsOverTime(amount, coin100Prefab, coinsPerSecond));
+    }
+
+    public IEnumerator SpawnCoinsOverTime(int amount, GameObject coinGameObject, float coinsPerSecond = -1)
     {
         IsSpawningCoins = true;
         if (coinsPerSecond <= 0)
@@ -39,7 +59,7 @@ public class CoinSpawner : MonoBehaviour
         {
             Vector2 randomPos = GetRandomPosition();
             GameObject coinObject = Instantiate(
-                coinPrefab,
+                coinGameObject,
                 randomPos,
                 Quaternion.identity,
                 transform.parent

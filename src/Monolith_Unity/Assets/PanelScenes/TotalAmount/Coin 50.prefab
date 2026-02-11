@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 8258671919683878930}
   - component: {fileID: 4053024756348128693}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: Coin 50
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -340,7 +340,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -11, y: 298, z: -1}
-  m_LocalScale: {x: 35, y: 35, z: 35}
+  m_LocalScale: {x: 42.5, y: 42.5, z: 42.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3859377929823947005}
@@ -569,8 +569,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4186100715806914946, guid: 97b70e8f4abd5d54ba48945fb3c056a1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 5420573504123750368, guid: 8cc48a172123f0946907cfef811572cf, type: 3}
+  m_Color: {r: 1, g: 0.8152509, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

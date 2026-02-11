@@ -1,8 +1,10 @@
 using Monolith.DonationPolling.PollDonations;
 using NFC.Donation.Api;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TotalAmountController : MonoBehaviour
 {
@@ -10,11 +12,13 @@ public class TotalAmountController : MonoBehaviour
     public CoinSpawner coinSpawner;
     public int MaxNumberOfCoins = 600;
     public float CheckForMoneyIntervalSeconds = 10f;
+    public List<ParticleSystem> Fireworks = new List<ParticleSystem>();
 
     private float spawnTimer;
     private bool IsCheckingForNewData = false;
     private DonationStorageDto<MonetaryStatusResponse> currentMoneyStatus;
     private DonationStorageDto<MonetaryStatusResponse> newMoneyStatus;
+
 
     private enum State
     {
@@ -24,7 +28,6 @@ public class TotalAmountController : MonoBehaviour
     }
 
     private State currentState = State.WaitingForMoreMoney;
-
 
     void Update()
     {
@@ -46,25 +49,67 @@ public class TotalAmountController : MonoBehaviour
 
     private void HandleWaitingForMoreMoney()
     {
-        if(newMoneyStatus != null)
-        {
 
+        if (Keyboard.current.aKey.wasPressedThisFrame)
+        {
+            MonetaryStatusResponse current = currentMoneyStatus.Data;
+            if (current == null)
+            {
+                current = new MonetaryStatusResponse()
+                {
+                    Stripe = new MonetaryStripeStatusResponse()
+                    {
+                        Amount = 0,
+                        Currency = "sek"
+                    },
+                    Zettle = new MonetaryZettleStatusResponse()
+                    {
+                        Amount = 0,
+                        Currency = "sek"
+                    },
+                    Manual = new MonetaryManualStatusResponse()
+                    {
+                        Amount = 0,
+                        Currency = "sek"
+                    }
+                };
+            }
+            current = Newtonsoft.Json.JsonConvert.DeserializeObject<MonetaryStatusResponse>(Newtonsoft.Json.JsonConvert.SerializeObject(current));
+            
+            current.Stripe.Amount = current.Stripe.Amount + UnityEngine.Random.Range(10, 50);
+
+            newMoneyStatus = new DonationStorageDto<MonetaryStatusResponse>()
+            {
+                DataTimestamp = DateTimeOffset.Now,
+                IsUpToDate = true,
+                LastUpdateAttemptTimestamp = DateTimeOffset.Now,
+                Data = current
+            };
+        }
+
+
+        if (newMoneyStatus != null)
+        {
             long currentMoney = GetTotalAmount(currentMoneyStatus);
             long newMoney = GetTotalAmount(newMoneyStatus);
-            long diff = newMoney - currentMoney;
+            long newMoneyRecieved = newMoney - currentMoney;
 
             // Check if we've reached the max
-            if (coinSpawner.AllCoins.Count + diff >= MaxNumberOfCoins)
+            if (coinSpawner.AllCoins.Count + newMoneyRecieved >= MaxNumberOfCoins)
             {
+                foreach (var firework in Fireworks)
+                {
+                    firework.Play();
+                }
                 coinSpawner.LetCoinsFall();
                 currentState = State.WaitingForCoinsToFall;
                 return;
             }
 
             currentMoneyStatus = newMoneyStatus;
-            if (diff > 0)
+            if (newMoneyRecieved > 0)
             {
-                coinSpawner.SpawnCoins((int)diff);
+                coinSpawner.SpawnCoins((int)newMoneyRecieved);
                 currentState = State.Spawning;
             }
         }
@@ -108,11 +153,12 @@ public class TotalAmountController : MonoBehaviour
                 if (!donationDataPaths.Enable) return;
                 string dataFile = donationDataPaths.GetCurrentDataFile(donationDataPaths.MonetaryStatusPath);
                 DonationStorageDto<MonetaryStatusResponse> readStatus = DonationDataStorage.Load<DonationStorageDto<MonetaryStatusResponse>>(dataFile);
-                if (readStatus == null) {
-                    return; 
+                if (readStatus == null)
+                {
+                    return;
                 }
                 long totalAmount = GetTotalAmount(readStatus);
-                Debug.Log($"Total amount: {totalAmount}");
+                Debug.Log($"{DateTime.Now} - Total amount: {totalAmount}");
                 if (totalAmount > 0)
                 {
                     if (currentMoneyStatus == null)
