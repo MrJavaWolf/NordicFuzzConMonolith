@@ -2855,6 +2855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1501212461}
+  - component: {fileID: 1501212462}
   m_Layer: 0
   m_Name: TotalAmountEffect
   m_TagString: Untagged
@@ -2886,6 +2887,21 @@ Transform:
   - {fileID: 573842502}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1501212462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501212460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df4485ced06e094d8041a190e2230d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TotalAmountController
+  coinSpawner: {fileID: 2037554195}
+  MaxNumberOfCoins: 300
+  SpawnIntervalSeconds: 3
 --- !u!1 &1521693422
 GameObject:
   m_ObjectHideFlags: 0
@@ -3378,9 +3394,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinSpawner
   coinPrefab: {fileID: 2559678168091889564, guid: 13be154a7c969094ba29e5b0657a0ab8, type: 3}
+  bottomCollider: {fileID: 212685719}
   areaSize: {x: 718, y: 150}
-  spawnCount: 700
-  spawnDuration: 10
+  coinsPerSecond: 20
 --- !u!1 &2063662592
 GameObject:
   m_ObjectHideFlags: 0

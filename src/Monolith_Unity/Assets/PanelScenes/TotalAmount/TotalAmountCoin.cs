@@ -1,5 +1,3 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class TotalAmountCoin : MonoBehaviour
@@ -16,21 +14,24 @@ public class TotalAmountCoin : MonoBehaviour
     private Vector2 lastPosition;
     private float stillTime;
 
+    private bool IsDoingFinalFall = false;
+
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        float initialXForce = UnityEngine.Random.Range(-initialXForceMax, initialXForceMax);
-        rb.AddForceX(initialXForce);
-        rb.AddForceY(initialYForce);
-        int rotationDirection = initialXForce > 0 ? -1 : 1;
-        rb.AddTorque(initialTorque * rotationDirection);
+        AddInitialForce();
         lastPosition = rb.position;
     }
 
 
     void FixedUpdate()
     {
+        if (IsDoingFinalFall)
+        {
+            return;
+        }
+
         if (rb.bodyType != RigidbodyType2D.Dynamic)
             return;
 
@@ -54,5 +55,47 @@ public class TotalAmountCoin : MonoBehaviour
         }
 
         lastPosition = currentPosition;
+    }
+
+    public void StartFinalFall()
+    {
+        IsDoingFinalFall = true;
+        DisableAllChildBoxColliders();
+        if (rb.bodyType != RigidbodyType2D.Dynamic)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+        }
+        AddInitialForce();
+        rb.totalTorque = 0f;
+    }
+
+    private void AddInitialForce()
+    {
+        float initialXForce = UnityEngine.Random.Range(-initialXForceMax, initialXForceMax);
+        rb.AddForceX(initialXForce);
+        rb.AddForceY(initialYForce);
+        int rotationDirection = initialXForce > 0 ? -1 : 1;
+        rb.AddTorque(initialTorque * rotationDirection);
+    }
+
+    void DisableAllChildBoxColliders()
+    {
+        // Get all BoxCollider2D components in children, including inactive objects
+        BoxCollider2D[] colliders = transform.GetComponentsInChildren<BoxCollider2D>(true);
+
+        foreach (BoxCollider2D col in colliders)
+        {
+            col.enabled = false;
+        }
+    }
+
+    void EnableAllChildBoxColliders()
+    {
+        BoxCollider2D[] colliders = transform.GetComponentsInChildren<BoxCollider2D>(true);
+
+        foreach (BoxCollider2D col in colliders)
+        {
+            col.enabled = true;
+        }
     }
 }
