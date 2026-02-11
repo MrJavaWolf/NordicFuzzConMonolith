@@ -7,6 +7,8 @@ namespace Monolith.DonationPolling.PollDonations;
 public class PollDonationService(
     IConfiguration configuration,
     DonationPlatformClientFactory clientFactory,
+    DonationDataStorage dataStorage,
+    DonationDataPaths dataPaths,
     ILogger<PollDonationService> logger)
 {
 
@@ -17,15 +19,23 @@ public class PollDonationService(
 
     private async Task CallEndpointThingie(CancellationToken cancellationToken)
     {
-        logger.LogInformation("Calling...");
+        CachedCharityDonations? cachedCharityDonations = await GetCharityDonationsAsync(cancellationToken);
+        await dataStorage.SaveAsync(cachedCharityDonations, dataPaths.PortalCharityDonationsPath, cancellationToken);
 
-        CachedCharityDonations? portal_result1 = await GetCharityDonationsAsync(cancellationToken);
-        MonetaryStatusResponse? dontaiont_result = await GetMonetaryStatusAsync(cancellationToken);
-        DonationListResponse? dontaiont1_result = await GetBiggestDonationsAsync(cancellationToken);
-        DonationListResponse? dontaiont2_result = await GetLatestDonationsAsync(cancellationToken);
-        DonationStatisticsResponse? dontaiont3_result = await GetBiggestDonationStatisticsAsync(cancellationToken);
+        MonetaryStatusResponse? monetaryStatus = await GetMonetaryStatusAsync(cancellationToken);
+        await dataStorage.SaveAsync(monetaryStatus, dataPaths.MonetaryStatusPath, cancellationToken);
 
-        logger.LogInformation("Done!");
+        DonationListResponse? biggestDonations = await GetBiggestDonationsAsync(cancellationToken);
+        await dataStorage.SaveAsync(biggestDonations, dataPaths.BiggestDonationsPath, cancellationToken);
+
+        DonationListResponse? latestDonations = await GetLatestDonationsAsync(cancellationToken);
+        await dataStorage.SaveAsync(latestDonations, dataPaths.LatestDonationsPath, cancellationToken);
+
+        DonationStatisticsResponse? biggestDonationStatistics = await GetBiggestDonationStatisticsAsync(cancellationToken);
+        await dataStorage.SaveAsync(biggestDonationStatistics, dataPaths.BiggestDonationStatisticsPath, cancellationToken);
+
+        LastImageDonations? lastImageDonations = await GetLastImageDonationsAsync(cancellationToken);
+        await dataStorage.SaveAsync(lastImageDonations, dataPaths.LatestImageDonationsPath, cancellationToken);
     }
 
     private string PortalUrl => configuration.GetRequiredValue<string>("DonationPlatform:PortalUrl");
@@ -35,44 +45,63 @@ public class PollDonationService(
     private async Task<CachedCharityDonations?> GetCharityDonationsAsync(CancellationToken cancellationToken)
     {
         string url = PortalUrl + "/CharityDonations/GetCharityDonations";
-        return await GetSomething<CachedCharityDonations>(url, cancellationToken);
+        return await SendRequest<CachedCharityDonations>(url, cancellationToken: cancellationToken);
     }
 
     private async Task<MonetaryStatusResponse?> GetMonetaryStatusAsync(
         CancellationToken cancellationToken)
     {
         string url = DonationUrl + "/Donation/GetMonetaryStatus";
-        return await GetSomething<MonetaryStatusResponse>(url, cancellationToken);
+        return await SendRequest<MonetaryStatusResponse>(url, cancellationToken: cancellationToken);
     }
 
     private async Task<DonationListResponse?> GetBiggestDonationsAsync(
         CancellationToken cancellationToken)
     {
         string url = DonationUrl + "/Donation/GetBiggestDonations";
-        return await GetSomething<DonationListResponse>(url, cancellationToken);
+        return await SendRequest<DonationListResponse>(url, cancellationToken: cancellationToken);
     }
 
     private async Task<DonationListResponse?> GetLatestDonationsAsync(CancellationToken cancellationToken)
     {
         string url = DonationUrl + "/Donation/GetLatestDonations";
-        return await GetSomething<DonationListResponse>(url, cancellationToken);
+        return await SendRequest<DonationListResponse>(url, cancellationToken: cancellationToken);
     }
 
-    private async Task<DonationStatisticsResponse?> GetBiggestDonationStatisticsAsync(
-        CancellationToken cancellationToken)
+    private async Task<DonationStatisticsResponse?> GetBiggestDonationStatisticsAsync(CancellationToken cancellationToken)
     {
         string url = DonationUrl + "/Donation/GetBiggestDonationStatistics";
-        return await GetSomething<DonationStatisticsResponse>(url, cancellationToken);
+        return await SendRequest<DonationStatisticsResponse>(url, cancellationToken: cancellationToken);
+    }
+
+    private async Task<LastImageDonations?> GetLastImageDonationsAsync(CancellationToken cancellationToken)
+    {
+        string url = DonationUrl + "/Image/GetLastDonations";
+        Dictionary<string, string> query = new() { { "numberOfDonations", "20" } };
+        return await SendRequest<LastImageDonations>(url, query: query, cancellationToken: cancellationToken);
     }
 
 
-    private async Task<T?> GetSomething<T>(string url, CancellationToken cancellationToken) where T : class
+
+    private async Task<T?> SendRequest<T>(string url, Dictionary<string, string>? query = null, CancellationToken cancellationToken = default) where T : class
     {
         // Gets a RestClient with a re-usable JWT token
         RestClient client = await clientFactory.GetClientAsync(cancellationToken);
         var request = new RestRequest(url, Method.Get);
+
+        // Add headers to get access to the API
         request.AddOrUpdateHeader("user-agent", "donation-pillar");
         request.AddOrUpdateHeader("x-nfc-donation-pillar", "true");
+
+        // Add query if nessesary
+        if (query != null)
+        {
+            foreach (var queryParameter in query)
+            {
+                request.AddQueryParameter(queryParameter.Key, queryParameter.Value);
+            }
+        }
+
         RestResponse executeResponse;
         try
         {

@@ -130,6 +130,7 @@ public class DonationPlatformClientFactory(
         }
 
         var data = JsonSerializer.Deserialize<AuthResponse>(res.Content);
+        logger.LogInformation("Successfully recieved a new JWT token {@token}", data);
         return data;
     }
 

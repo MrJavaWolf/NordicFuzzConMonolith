@@ -1,6 +1,9 @@
+using Microsoft.Extensions.Configuration;
+using Monolith.DonationPolling;
 using Monolith.DonationPolling.PollDonations;
 using Serilog;
 using Serilog.Events;
+using System.IO;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +22,7 @@ builder.Host.UseSerilog((context, services, configuration) =>
             "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level:u3}] ({SourceContext}) {Message:lj}{NewLine}{Exception}")
         .WriteTo.File(
             "logs/log-.txt",
-            outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level:u3}] ({SourceContext}) {Message:lj} {Properties:j}{NewLine}{Exception}",            rollingInterval: RollingInterval.Day,
+            outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level:u3}] ({SourceContext}) {Message:lj} {Properties:j}{NewLine}{Exception}", rollingInterval: RollingInterval.Day,
             restrictedToMinimumLevel: LogEventLevel.Information);
 });
 
@@ -31,13 +34,20 @@ builder.Configuration
     .AddJsonFile("secrets.json", optional: true)
     .AddEnvironmentVariables();
 
-// Add services to the container.
+DonationDataPaths donationDataPaths = builder.Configuration.GetRequiredValue<DonationDataPaths>("DonationPlatform:Storage");
+if (!Path.IsPathFullyQualified(donationDataPaths.Path))
+{
+    donationDataPaths.Path = Path.GetFullPath(donationDataPaths.Path);
+}
 
+// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddHttpLogging();
 builder.Services.AddHttpClient();
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<DonationPlatformClientFactory>();
+builder.Services.AddSingleton(donationDataPaths);
+builder.Services.AddTransient<DonationDataStorage>();
 builder.Services.AddTransient<PollDonationService>();
 builder.Services.AddHostedService<PollDonationsBackgroundService>();
 
@@ -57,6 +67,7 @@ Log.Information("ContentRootPath: {ContentRoot}", env.ContentRootPath);
 Log.Information("WebRootPath: {WebRoot}", env.WebRootPath);
 Log.Information("OS: {OS}", Environment.OSVersion);
 Log.Information(".NET Version: {DotNetVersion}", Environment.Version);
+Log.Information("DonationDataPaths {@DonationDataPaths}", donationDataPaths);
 Log.Information("------------------------------------------------------------");
 
 // Request logging middleware (VERY IMPORTANT)
