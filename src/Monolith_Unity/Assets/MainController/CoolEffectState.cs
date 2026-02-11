@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum SimulationState
+public enum CoolEffectState
 {
     Stopped = 0,
     Starting = 1,

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BoidsGPU : MonoBehaviour, ISimulation
+public class BoidsGPU : MonoBehaviour, ICoolEffectState
 {
     public ComputeShader boidsCompute;
     public RawImage rawImage;
@@ -46,7 +46,7 @@ public class BoidsGPU : MonoBehaviour, ISimulation
     // ---- State implementation ----
     [Header("Transition")]
     public float transitionDuration = 1.0f;
-    public SimulationState SimulationState { get; private set; } = SimulationState.Stopped;
+    public CoolEffectState SimulationState { get; private set; } = CoolEffectState.Stopped;
     float stateChangeTime;
     float stateAlpha;
 
@@ -102,7 +102,7 @@ public class BoidsGPU : MonoBehaviour, ISimulation
     {
         UpdateStateAlpha();
 
-        if (SimulationState == SimulationState.Stopped)
+        if (SimulationState == CoolEffectState.Stopped)
             return;
 
         boidsCompute.SetInt("boidCount", boidCount);
@@ -140,27 +140,27 @@ public class BoidsGPU : MonoBehaviour, ISimulation
 
 
 
-    public void StartSimulation()
+    public void StartCoolEffect()
     {
-        if (SimulationState == SimulationState.Running ||
-            SimulationState == SimulationState.Starting)
+        if (SimulationState == CoolEffectState.Running ||
+            SimulationState == CoolEffectState.Starting)
         {
             return;
         }
 
-        SimulationState = SimulationState.Starting;
+        SimulationState = CoolEffectState.Starting;
         stateChangeTime = Time.time;
     }
 
-    public void StopSimulation()
+    public void StopCoolEffect()
     {
-        if (SimulationState == SimulationState.Stopped ||
-            SimulationState == SimulationState.Stopping)
+        if (SimulationState == CoolEffectState.Stopped ||
+            SimulationState == CoolEffectState.Stopping)
         {
             return;
         }
 
-        SimulationState = SimulationState.Stopping;
+        SimulationState = CoolEffectState.Stopping;
         stateChangeTime = Time.time;
     }
 
@@ -171,27 +171,27 @@ public class BoidsGPU : MonoBehaviour, ISimulation
 
         switch (SimulationState)
         {
-            case SimulationState.Starting:
+            case CoolEffectState.Starting:
                 stateAlpha = t;
                 if (t >= 1)
                 {
                     Debug.Log($"Simulation {nameof(BoidsGPU)} is now running");
-                    SimulationState = SimulationState.Running;
+                    SimulationState = CoolEffectState.Running;
                 }
                 break;
-            case SimulationState.Running:
+            case CoolEffectState.Running:
                 stateAlpha = 1f;
                 break;
-            case SimulationState.Stopping:
+            case CoolEffectState.Stopping:
                 stateAlpha = 1f - t;
                 if (t >= 1)
                 {
-                    SimulationState = SimulationState.Stopped;
+                    SimulationState = CoolEffectState.Stopped;
                     Debug.Log($"Simulation {nameof(BoidsGPU)} now stopped");
                     stateAlpha = 0;
                 }
                 break;
-            case SimulationState.Stopped:
+            case CoolEffectState.Stopped:
                 stateAlpha = 0f;
                 break;
         }

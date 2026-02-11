@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class EffectManager : MonoBehaviour
 {
-    [SerializeField] private List<SimulationEntry> simulations;
+    [SerializeField] private List<CoolEffectEntry> simulations;
 
-    private Dictionary<SimulationType, SimulationEntry> simulationMap;
+    private Dictionary<CoolEffectType, CoolEffectEntry> simulationMap;
 
-    private SimulationEntry current;
-    private SimulationEntry changeToSimulation;
+    private CoolEffectEntry current;
+    private CoolEffectEntry changeToSimulation;
 
     private void Awake()
     {
-        simulationMap = new Dictionary<SimulationType, SimulationEntry>();
+        simulationMap = new Dictionary<CoolEffectType, CoolEffectEntry>();
 
         foreach (var sim in simulations)
         {
@@ -23,15 +23,15 @@ public class EffectManager : MonoBehaviour
 
     public void Start()
     {
-        RunSimulation(SimulationType.Fluid);
+        RunSimulation(CoolEffectType.Fluid);
     }
 
-    public void RunSimulation(SimulationType type)
+    public void RunSimulation(CoolEffectType type)
     {
         if (current != null &&
             current.type == type &&
-            (current.simulation.SimulationState == SimulationState.Running ||
-            current.simulation.SimulationState == SimulationState.Starting))
+            (current.CoolEffect.SimulationState == CoolEffectState.Running ||
+            current.CoolEffect.SimulationState == CoolEffectState.Starting))
         {
             Debug.Log($"Is already on simulation type: {type}");
             return;
@@ -46,21 +46,21 @@ public class EffectManager : MonoBehaviour
         if (changeToSimulation != null)
         {
             if (current == null ||
-                current.simulation.SimulationState == SimulationState.Stopped)
+                current.CoolEffect.SimulationState == CoolEffectState.Stopped)
             {
 
                 current = changeToSimulation;
                 Debug.Log($"Starts simulation: {current.type}");
-                current.simulation.StartSimulation();
+                current.CoolEffect.StartCoolEffect();
                 changeToSimulation = null;
             }
-            else if (current.simulation.SimulationState == SimulationState.Running ||
-                current.simulation.SimulationState == SimulationState.Starting)
+            else if (current.CoolEffect.SimulationState == CoolEffectState.Running ||
+                current.CoolEffect.SimulationState == CoolEffectState.Starting)
             {
                 Debug.Log($"Stops simulation: {current.type}");
-                current.simulation.StopSimulation();
+                current.CoolEffect.StopCoolEffect();
             }
-            else if (current.simulation.SimulationState == SimulationState.Stopping)
+            else if (current.CoolEffect.SimulationState == CoolEffectState.Stopping)
             {
                 // Do nothing waiting for the current simulation to stop
             }
@@ -71,24 +71,26 @@ public class EffectManager : MonoBehaviour
 
 
 [System.Serializable]
-public class SimulationEntry
+public class CoolEffectEntry
 {
-    public SimulationType type;
+    public CoolEffectType type;
     public GameObject root;
 
-    [HideInInspector] public ISimulation simulation;
+    [HideInInspector] public ICoolEffectState CoolEffect;
 
     public void Initialize()
     {
-        simulation = root.GetComponent<ISimulation>();
+        CoolEffect = root.GetComponent<ICoolEffectState>();
     }
 }
 
 
-public enum SimulationType
+public enum CoolEffectType
 {
-    Fluid,
-    Boids,
-    Flow,
-    Ant
+    Fluid = 0,
+    Boids = 1,
+    Flow = 2,
+    Ant = 3,
+    TotalAmountDonated = 100
 }
+
