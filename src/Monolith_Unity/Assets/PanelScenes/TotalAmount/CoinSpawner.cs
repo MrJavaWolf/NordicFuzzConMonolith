@@ -154,14 +154,24 @@ public class CoinSpawner : MonoBehaviour
         Gizmos.DrawWireCube(transform.position, areaSize);
     }
 
+    public void MakeCoinsJump()
+    {
+        foreach (var coin in AllCoins)
+        {
+            var totalAmountCoin = coin.GetComponent<TotalAmountCoin>();
+            totalAmountCoin.MakeJump();
+            totalAmountCoin.MakeJump();
+        }
+    }
+
     public void LetCoinsFall()
     {
         IsCoinsFalling = true;
         bottomCollider.gameObject.SetActive(false);
         foreach (var coin in AllCoins)
         {
-            var rigdigBody = coin.GetComponent<TotalAmountCoin>();
-            rigdigBody.StartFinalFall();
+            var totalAmountCoin = coin.GetComponent<TotalAmountCoin>();
+            totalAmountCoin.StartFinalFall();
         }
 
         StartCoroutine(LetCoinsFallCoroutine());

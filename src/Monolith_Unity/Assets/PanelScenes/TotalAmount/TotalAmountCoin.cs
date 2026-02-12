@@ -71,6 +71,7 @@ public class TotalAmountCoin : MonoBehaviour
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
         }
+        stillTime = 0;
         AddInitialForce();
     }
 

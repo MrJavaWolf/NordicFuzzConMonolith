@@ -3617,6 +3617,7 @@ MonoBehaviour:
   - {fileID: 862577738}
   - {fileID: 1663692926}
   - {fileID: 779326505}
+  CoinsJumpInterval: 30
   DebugMinimumMoney: 50
   DebugMaximumMoney: 5000
   transitionDuration: 1

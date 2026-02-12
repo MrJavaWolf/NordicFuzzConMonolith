@@ -18,6 +18,8 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
     public float FireworksWaitTime = 3.5f;
     public List<ParticleSystem> Fireworks = new();
 
+    public float CoinsJumpInterval = 30;
+    private float lastCoinJumpTime;
 
 
     public int DebugMinimumMoney = 50;
@@ -39,6 +41,7 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
     private bool waitingForMoreMoneyStateToStop = false;
 
 
+    private float currentStateStartTime;
     private float FireworksStartTime = -1;
     private enum State
     {
@@ -56,6 +59,7 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
         {
             Debug.Log($"Changes state from '{_currentState}' to '{value}'");
             _currentState = value;
+            currentStateStartTime = Time.time;
         }
     }
 
@@ -176,6 +180,14 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
 
         spawnTimer = 0f;
         CheckForNewTotalAmountData();
+
+        if (Time.time - CoinsJumpInterval > currentStateStartTime && // Have to been in the state for a while
+            Time.time - lastCoinJumpTime > CoinsJumpInterval) // Wait for the jump interval time
+        {
+            Debug.Log("Nothing have happend in a while, will make the coins jump");
+            coinSpawner.MakeCoinsJump();
+            lastCoinJumpTime = Time.time;
+        }
     }
 
     private void HandleSpawning()
