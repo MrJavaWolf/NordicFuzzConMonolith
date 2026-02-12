@@ -6,6 +6,8 @@ using UnityEngine;
 public class TotalAmountUiTextCounter : MonoBehaviour
 {
 
+    public DataStorage DataStorage;
+
     [Header("Animation Settings")]
     public float MinAnimationDuration = 2f;
     public float MaxAnimationDuration = 5f;
@@ -53,7 +55,7 @@ public class TotalAmountUiTextCounter : MonoBehaviour
 
             if (t < 1f)
             {
-                float value = EasingFunction.EaseOutQuart(StartAmount, TargetAmount, t);
+                float value = EasingFunction.EaseOutCirc(StartAmount, TargetAmount, t);
                 CurrentAmount = (long)value;
                 SetText(AmountToText());
             }
@@ -66,7 +68,27 @@ public class TotalAmountUiTextCounter : MonoBehaviour
         }
     }
 
-    private string AmountToText() => $"{CurrentAmount.ToString("N0", DanishCulture)}{Environment.NewLine}sek";
+    private string AmountToText()
+    {
+        bool showDiff =
+            DataStorage.NordicFuzzConConfiguration.EnableShowTotalAmountDiffAfterDate &&
+            DateTimeOffset.Now > DataStorage.NordicFuzzConConfiguration.ShowTotalAmountDiffAfterDate;
+
+
+        if (showDiff)
+        {
+            long currentDiff = CurrentAmount - StartAmount;
+
+            if (CurrentAmount == TargetAmount)
+                currentDiff = TargetAmount - StartAmount;
+
+            return $"+{currentDiff.ToString("N0", DanishCulture)}{Environment.NewLine}sek";
+        }
+        else
+        {
+            return $"{CurrentAmount.ToString("N0", DanishCulture)}{Environment.NewLine}sek";
+        }
+    }
 
 
     public void SetAmount(long amount)

@@ -1,3 +1,5 @@
 {
-	"DonationDataBasePath": "C:\\Users\\mrjav\\Desktop\\NFC\\NordicFuzzConMonolith\\src\\Monolith.DonationPolling\\Monolith.DonationPolling\\donation_data"
+	"DonationDataBasePath": "C:\\Users\\mrjav\\Desktop\\NFC\\NordicFuzzConMonolith\\src\\Monolith.DonationPolling\\Monolith.DonationPolling\\donation_data",
+	"EnableShowTotalAmountDiffAfterDate" : true,
+	"ShowTotalAmountDiffAfterDate": "2026-02-21T12:00:00"
 }

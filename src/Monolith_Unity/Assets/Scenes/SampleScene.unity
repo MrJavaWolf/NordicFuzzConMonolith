@@ -494,8 +494,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d951db1f6616576449e78780b65eca94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TotalAmountUiTextCounter
-  MinAnimationDuration: 5
-  MaxAnimationDuration: 7
+  DataStorage: {fileID: 1098190306}
+  MinAnimationDuration: 4
+  MaxAnimationDuration: 6
   MaxAmountForMaxDuration: 5000
   UiTexts:
   - {fileID: 1765358063}
@@ -2024,6 +2025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4be4144f33adb94f830525767c30627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectManager
+  StartEffect: 100
   simulations:
   - type: 0
     root: {fileID: 2111979148}
