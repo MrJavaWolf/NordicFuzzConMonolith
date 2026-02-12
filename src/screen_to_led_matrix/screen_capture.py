@@ -18,7 +18,7 @@ class ScreenCapture:
     """
 
 
-    def __init__(self, capture_region: Dict[str, int]) -> None:
+    def __init__(self, capture_region: Dict[str, int], brightness: float = 1) -> None:
         """
         Initialize the screen capture.
 
@@ -30,9 +30,12 @@ class ScreenCapture:
                     - "left": top-left x coordinate
                     - "width": capture width in pixels
                     - "height": capture height in pixels
+            brightness: 
+                How bright the image should be. 1 = full brightness, 0.5 = half brightness, 0 = black
         """
         
         self.capture_region: Dict[str, int] = capture_region
+        self.brightness = brightness
         self.sct: Optional[mss.mss] = None
 
     def __enter__(self) -> None:
@@ -62,6 +65,8 @@ class ScreenCapture:
         
         # Convert BRGA to RGB
         img_np = np.array(img, dtype=np.uint8)
+        img_np = (img_np * self.brightness).astype(np.uint8)
+
         rgb = np.ascontiguousarray(np.flip(img_np[:, :, [0, 1, 2]], 2))
         return rgb
 
@@ -78,7 +83,8 @@ def main():
         "width": 512,
         "height": 512
     }
-    with ScreenCapture(capture_region) as screen_capture:
+    brightness = 1
+    with ScreenCapture(capture_region, brightness) as screen_capture:
         prev_time = time.perf_counter()
         frame_count = 0
 

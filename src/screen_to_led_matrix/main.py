@@ -14,14 +14,15 @@ CAPTURE_REGION = {
     "width": PIXEL_WIDTH,
     "height": PIXEL_HEIGHT
 }
+CAPTURE_BRIGHTNESS = 0.8
 ARTNET_IP = "127.0.0.1"
 ARTNET_START_UNIVERSE = 1
 
 # Set your target FPS here (-1 for uncapped)
-TARGET_FPS = 60
+TARGET_FPS = 25
 
 def main():
-    print(f"Starts capturing region: {CAPTURE_REGION}")
+    print(f"Starts capturing region: {CAPTURE_REGION} with brightness: {CAPTURE_BRIGHTNESS}")
     prev_time = time.perf_counter()
     frame_count = 0
 
@@ -35,7 +36,7 @@ def main():
         print(f"Target FPS: Uncapped")
 
 
-    with ScreenCapture(CAPTURE_REGION) as screen_capture:
+    with ScreenCapture(CAPTURE_REGION, CAPTURE_BRIGHTNESS) as screen_capture:
         with ArtNetSender(ARTNET_IP, start_universe=ARTNET_START_UNIVERSE) as artnet: 
             while True: 
                 loop_start = time.perf_counter()
