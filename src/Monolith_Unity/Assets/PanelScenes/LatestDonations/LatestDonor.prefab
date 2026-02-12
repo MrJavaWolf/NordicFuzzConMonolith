@@ -104,9 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c8017190cd7724ca076ebc091bffd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DonorBobble
-  wiggleStrength: 100
-  wiggleSpeed: 0.3
-  driftStrength: 1000
-  driftSpeed: 0.03
+  ZValue: 0
+  accelerationStrength: 100
+  maxSpeed: 40
+  damping: 0.9999
   minBounds: {x: -352, y: -224}
   maxBounds: {x: 352, y: 224}
+  bounciness: 0.85

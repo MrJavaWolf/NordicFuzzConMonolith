@@ -13,7 +13,6 @@ public class EffectManager : MonoBehaviour
     private void Awake()
     {
         simulationMap = new Dictionary<CoolEffectType, CoolEffectEntry>();
-
         foreach (var sim in simulations)
         {
             sim.Initialize();
@@ -24,10 +23,10 @@ public class EffectManager : MonoBehaviour
     
     public void Start()
     {
-        RunSimulation(StartEffect);
+        RunCoolEffect(StartEffect);
     }
 
-    public void RunSimulation(CoolEffectType type)
+    public void RunCoolEffect(CoolEffectType type)
     {
         if (current != null &&
             current.type == type &&
@@ -92,6 +91,7 @@ public enum CoolEffectType
     Boids = 1,
     Flow = 2,
     Ant = 3,
-    TotalAmountDonated = 100
+    TotalAmountDonated = 100,
+    LatestDonors = 101,
 }
 

@@ -987,7 +987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &321034610
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1872,7 +1872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &742868802
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2006,6 +2006,7 @@ GameObject:
   - component: {fileID: 757200322}
   - component: {fileID: 757200321}
   - component: {fileID: 757200323}
+  - component: {fileID: 757200324}
   m_Layer: 0
   m_Name: EffectManager
   m_TagString: Untagged
@@ -2025,7 +2026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4be4144f33adb94f830525767c30627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectManager
-  StartEffect: 100
+  StartEffect: 101
   simulations:
   - type: 0
     root: {fileID: 2111979148}
@@ -2037,6 +2038,8 @@ MonoBehaviour:
     root: {fileID: 742868801}
   - type: 100
     root: {fileID: 1501212460}
+  - type: 101
+    root: {fileID: 1619849472}
 --- !u!4 &757200322
 Transform:
   m_ObjectHideFlags: 0
@@ -2065,6 +2068,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManualInputManager
   background: {fileID: 1223756313}
+--- !u!114 &757200324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757200320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623fe553dcc3aa342904bb3c8a43d25f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectRotationController
+  effectManager: {fileID: 757200321}
+  mainEffects: 6500000064000000
+  transitionEffects: 00000000010000000200000003000000
+  mainEffectDuration: 10
+  transitionEffectDuration: 5
 --- !u!1 &759730683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2590,7 +2610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &991214514
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3925,13 +3945,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1619849473}
+  - component: {fileID: 1619849474}
   m_Layer: 0
   m_Name: LatestDonationsEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1619849473
 Transform:
   m_ObjectHideFlags: 0
@@ -3950,6 +3971,21 @@ Transform:
   - {fileID: 402729764}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1619849474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619849472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe16778cf4a70824eaed1b2658a481ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LatestDonationsController
+  LatestDonorPrefab: {fileID: 0}
+  SpecialDonorPrefab: {fileID: 0}
+  transitionDuration: 1
 --- !u!1 &1638856805
 GameObject:
   m_ObjectHideFlags: 0
@@ -4638,7 +4674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2111979150
 RectTransform:
   m_ObjectHideFlags: 0

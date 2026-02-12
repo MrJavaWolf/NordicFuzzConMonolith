@@ -28,18 +28,21 @@ public class ManualInputManager : MonoBehaviour
         }
 
         if (Keyboard.current.digit1Key.wasPressedThisFrame)
-            effectManager.RunSimulation(CoolEffectType.Fluid);
+            effectManager.RunCoolEffect(CoolEffectType.Fluid);
 
         if (Keyboard.current.digit2Key.wasPressedThisFrame)
-            effectManager.RunSimulation(CoolEffectType.Boids);
+            effectManager.RunCoolEffect(CoolEffectType.Boids);
 
         if (Keyboard.current.digit3Key.wasPressedThisFrame)
-            effectManager.RunSimulation(CoolEffectType.Flow);
+            effectManager.RunCoolEffect(CoolEffectType.Flow);
 
         if (Keyboard.current.digit4Key.wasPressedThisFrame)
-            effectManager.RunSimulation(CoolEffectType.Ant);
+            effectManager.RunCoolEffect(CoolEffectType.Ant);
 
         if (Keyboard.current.digit5Key.wasPressedThisFrame)
-            effectManager.RunSimulation(CoolEffectType.TotalAmountDonated);
+            effectManager.RunCoolEffect(CoolEffectType.TotalAmountDonated);
+        
+        if (Keyboard.current.digit6Key.wasPressedThisFrame)
+            effectManager.RunCoolEffect(CoolEffectType.LatestDonors);
     }
 }
