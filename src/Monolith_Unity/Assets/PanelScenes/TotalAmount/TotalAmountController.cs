@@ -3,7 +3,6 @@ using NFC.Donation.Api;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -323,12 +322,10 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
                 stateAlpha = 1f;
                 break;
             case CoolEffectState.Stopping:
-                if (waitingForMoreMoneyStateToStop && currentState != State.WaitingForMoreMoney)
+                if (currentState != State.WaitingForMoreMoney || newMoneyStatus != null)
                 {
-                    return;
-                }
-                else if (newMoneyStatus != null)
-                {
+                    stateChangeTime = Time.time;
+                    waitingForMoreMoneyStateToStop = true;
                     return;
                 }
                 else if (currentState == State.WaitingForMoreMoney && waitingForMoreMoneyStateToStop)
