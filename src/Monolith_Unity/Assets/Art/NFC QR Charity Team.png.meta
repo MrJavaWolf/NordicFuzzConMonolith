@@ -1,0 +1,806 @@
+fileFormatVersion: 2
+guid: 30e9c5caf8ab14f4aa83f7a5b4b01d09
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4735791885886399142
+    second: NFC QR Charity Team_0
+  - first:
+      213: 5557380527473089984
+    second: NFC QR Charity Team_1
+  - first:
+      213: -3418577971217865271
+    second: NFC QR Charity Team_2
+  - first:
+      213: 9209697563889307108
+    second: NFC QR Charity Team_3
+  - first:
+      213: 1765304470048458002
+    second: NFC QR Charity Team_4
+  - first:
+      213: 3839889854315337453
+    second: NFC QR Charity Team_5
+  - first:
+      213: 1848678997596578244
+    second: NFC QR Charity Team_6
+  - first:
+      213: 3352685208320255952
+    second: NFC QR Charity Team_7
+  - first:
+      213: -275655833867897658
+    second: NFC QR Charity Team_8
+  - first:
+      213: -5851053242487387329
+    second: NFC QR Charity Team_9
+  - first:
+      213: -7834716433586838228
+    second: NFC QR Charity Team_10
+  - first:
+      213: 1449276456621908089
+    second: NFC QR Charity Team_11
+  - first:
+      213: 6104240788537444420
+    second: NFC QR Charity Team_12
+  - first:
+      213: -7707072418251191165
+    second: NFC QR Charity Team_13
+  - first:
+      213: 7839052792845983947
+    second: NFC QR Charity Team_14
+  - first:
+      213: 5731665494330196947
+    second: NFC QR Charity Team_15
+  - first:
+      213: 1398384676025169714
+    second: NFC QR Charity Team_16
+  - first:
+      213: -1457959939550255117
+    second: NFC QR Charity Team_17
+  - first:
+      213: 1743802884611436042
+    second: NFC QR Charity Team_18
+  - first:
+      213: -4144916000562899387
+    second: NFC QR Charity Team_19
+  - first:
+      213: 2219713856624297596
+    second: NFC QR Charity Team_20
+  - first:
+      213: -1624889166322214730
+    second: NFC QR Charity Team_21
+  - first:
+      213: -4089793153241364174
+    second: NFC QR Charity Team_22
+  - first:
+      213: -6721008463477559614
+    second: NFC QR Charity Team_23
+  - first:
+      213: -731194145917833587
+    second: NFC QR Charity Team_24
+  - first:
+      213: -6966733588750188262
+    second: NFC QR Charity Team_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NFC QR Charity Team_0
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 3110
+        width: 289
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5d509ffe56174eb0800000000000000
+      internalID: -4735791885886399142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_1
+      rect:
+        serializedVersion: 2
+        x: 1146
+        y: 3106
+        width: 258
+        height: 369
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cdd4bd3528cf1d40800000000000000
+      internalID: 5557380527473089984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_2
+      rect:
+        serializedVersion: 2
+        x: 1459
+        y: 3403
+        width: 64
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c565949275ce80d0800000000000000
+      internalID: -3418577971217865271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_3
+      rect:
+        serializedVersion: 2
+        x: 1838
+        y: 3110
+        width: 221
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ed0768a32b6fcf70800000000000000
+      internalID: 9209697563889307108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_4
+      rect:
+        serializedVersion: 2
+        x: 2848
+        y: 3106
+        width: 275
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 215c5a1001f9f7810800000000000000
+      internalID: 1765304470048458002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 3106
+        width: 269
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de697175a770a4530800000000000000
+      internalID: 3839889854315337453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_6
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 3110
+        width: 174
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c1287be0c3d7a910800000000000000
+      internalID: 1848678997596578244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_7
+      rect:
+        serializedVersion: 2
+        x: 1461
+        y: 3110
+        width: 61
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d7a2a50f61278e20800000000000000
+      internalID: 3352685208320255952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_8
+      rect:
+        serializedVersion: 2
+        x: 1567
+        y: 3106
+        width: 227
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c43a06ca7cac2cf0800000000000000
+      internalID: -275655833867897658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_9
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 3106
+        width: 226
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b44af7312eccea0800000000000000
+      internalID: -5851053242487387329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_10
+      rect:
+        serializedVersion: 2
+        x: 2370
+        y: 3110
+        width: 214
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c25242ce9ee754390800000000000000
+      internalID: -7834716433586838228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_11
+      rect:
+        serializedVersion: 2
+        x: 2606
+        y: 3110
+        width: 214
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 970294a324ddc1410800000000000000
+      internalID: 1449276456621908089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_12
+      rect:
+        serializedVersion: 2
+        x: 3154
+        y: 3106
+        width: 269
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4488930d7ae96b450800000000000000
+      internalID: 6104240788537444420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_13
+      rect:
+        serializedVersion: 2
+        x: 3471
+        y: 3110
+        width: 231
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38c4deb287afa0590800000000000000
+      internalID: -7707072418251191165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_14
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 2368
+        width: 472
+        height: 472
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc06e156bf8e9cc60800000000000000
+      internalID: 7839052792845983947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_15
+      rect:
+        serializedVersion: 2
+        x: 1697
+        y: 1160
+        width: 1143
+        height: 1680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d34ae04667fa8f40800000000000000
+      internalID: 5731665494330196947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_16
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 1697
+        width: 472
+        height: 606
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23774d1347f086310800000000000000
+      internalID: 1398384676025169714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_17
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 1160
+        width: 472
+        height: 472
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f76b5ad82944cbe0800000000000000
+      internalID: -1457959939550255117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_18
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 560
+        width: 226
+        height: 365
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0ee0970c7b333810800000000000000
+      internalID: 1743802884611436042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_19
+      rect:
+        serializedVersion: 2
+        x: 2260
+        y: 853
+        width: 64
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5469d92bbdc4a76c0800000000000000
+      internalID: -4144916000562899387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_20
+      rect:
+        serializedVersion: 2
+        x: 2356
+        y: 560
+        width: 173
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c768a17fdf10ece10800000000000000
+      internalID: 2219713856624297596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_21
+      rect:
+        serializedVersion: 2
+        x: 1194
+        y: 556
+        width: 227
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b8dbf989eb3379e0800000000000000
+      internalID: -1624889166322214730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_22
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 556
+        width: 258
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2394938bbc22e37c0800000000000000
+      internalID: -4089793153241364174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_23
+      rect:
+        serializedVersion: 2
+        x: 2053
+        y: 560
+        width: 174
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cea602796e2ab2a0800000000000000
+      internalID: -6721008463477559614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_24
+      rect:
+        serializedVersion: 2
+        x: 2262
+        y: 560
+        width: 61
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8ee8be5cc64ad5f0800000000000000
+      internalID: -731194145917833587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NFC QR Charity Team_25
+      rect:
+        serializedVersion: 2
+        x: 2580
+        y: 463
+        width: 226
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1143cd56b0315f90800000000000000
+      internalID: -6966733588750188262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      NFC QR Charity Team_0: -4735791885886399142
+      NFC QR Charity Team_1: 5557380527473089984
+      NFC QR Charity Team_10: -7834716433586838228
+      NFC QR Charity Team_11: 1449276456621908089
+      NFC QR Charity Team_12: 6104240788537444420
+      NFC QR Charity Team_13: -7707072418251191165
+      NFC QR Charity Team_14: 7839052792845983947
+      NFC QR Charity Team_15: 5731665494330196947
+      NFC QR Charity Team_16: 1398384676025169714
+      NFC QR Charity Team_17: -1457959939550255117
+      NFC QR Charity Team_18: 1743802884611436042
+      NFC QR Charity Team_19: -4144916000562899387
+      NFC QR Charity Team_2: -3418577971217865271
+      NFC QR Charity Team_20: 2219713856624297596
+      NFC QR Charity Team_21: -1624889166322214730
+      NFC QR Charity Team_22: -4089793153241364174
+      NFC QR Charity Team_23: -6721008463477559614
+      NFC QR Charity Team_24: -731194145917833587
+      NFC QR Charity Team_25: -6966733588750188262
+      NFC QR Charity Team_3: 9209697563889307108
+      NFC QR Charity Team_4: 1765304470048458002
+      NFC QR Charity Team_5: 3839889854315337453
+      NFC QR Charity Team_6: 1848678997596578244
+      NFC QR Charity Team_7: 3352685208320255952
+      NFC QR Charity Team_8: -275655833867897658
+      NFC QR Charity Team_9: -5851053242487387329
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

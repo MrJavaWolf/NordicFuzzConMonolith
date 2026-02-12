@@ -24,6 +24,7 @@ public class EffectManager : MonoBehaviour
     public void Start()
     {
         RunCoolEffect(StartEffect);
+        Application.targetFrameRate = 25;
     }
 
     public void RunCoolEffect(CoolEffectType type)
