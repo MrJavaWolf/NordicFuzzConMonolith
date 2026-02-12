@@ -3,6 +3,7 @@ using NFC.Donation.Api;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,11 +11,14 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
 {
     public DataStorage dataStorage;
     public CoinSpawner coinSpawner;
+    public TotalAmountUiTextCounter TextUi;
     public int MaxNumberOfCoins = 600;
     public float CheckForMoneyIntervalSeconds = 10f;
 
     public float FireworksWaitTime = 3.5f;
     public List<ParticleSystem> Fireworks = new();
+
+
 
     public int DebugMinimumMoney = 50;
     public int DebugMaximumMoney = 5000;
@@ -59,6 +63,7 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
     {
         RefreshSpriteCache();
         SetSpritsAlpha(0);
+        TextUi.SetAlpha(0);
     }
 
     void Update()
@@ -135,6 +140,8 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
             long currentMoney = GetTotalAmount(currentMoneyStatus);
             long newMoney = GetTotalAmount(newMoneyStatus);
             long newMoneyRecieved = newMoney - currentMoney;
+            Debug.Log($"Current money amount: {currentMoney}, new money amount: {newMoney}, diff: {newMoneyRecieved}");
+
             var (ones, fifties, twoHundreds) = coinSpawner.CalculateCoins((int)newMoneyRecieved);
 
             // Check if we've reached the max
@@ -153,11 +160,13 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
 
             currentMoneyStatus = newMoneyStatus;
             newMoneyStatus = null;
+            TextUi.SetAmount(newMoney);
             if (newMoneyRecieved > 0)
             {
                 Debug.Log($"Ones: {ones}, Fifties: {fifties}, TwoHundreds: {twoHundreds}");
                 coinSpawner.SpawnCoins((ones, fifties, twoHundreds));
                 currentState = State.Spawning;
+                return;
             }
         }
 
@@ -317,7 +326,7 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
                     stateChangeTime = Time.time;
                     return;
                 }
-              
+
 
                 stateAlpha = 1f - t;
                 if (t >= 1 && currentState == State.WaitingForMoreMoney)
@@ -333,6 +342,7 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
         }
 
         SetSpritsAlpha(stateAlpha);
+        TextUi.SetAlpha(stateAlpha);
     }
 
     private void SetSpritsAlpha(float alpha)

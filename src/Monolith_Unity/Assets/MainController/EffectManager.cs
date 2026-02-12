@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class EffectManager : MonoBehaviour
 {
-    [SerializeField] private List<CoolEffectEntry> simulations;
+    public CoolEffectType StartEffect;
 
+    [SerializeField] private List<CoolEffectEntry> simulations;
     private Dictionary<CoolEffectType, CoolEffectEntry> simulationMap;
 
     private CoolEffectEntry current;
     private CoolEffectEntry changeToSimulation;
-
     private void Awake()
     {
         simulationMap = new Dictionary<CoolEffectType, CoolEffectEntry>();
@@ -21,9 +21,10 @@ public class EffectManager : MonoBehaviour
         }
     }
 
+    
     public void Start()
     {
-        RunSimulation(CoolEffectType.Fluid);
+        RunSimulation(StartEffect);
     }
 
     public void RunSimulation(CoolEffectType type)
