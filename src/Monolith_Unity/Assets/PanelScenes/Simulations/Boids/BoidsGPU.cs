@@ -139,6 +139,34 @@ public class BoidsGPU : MonoBehaviour, ICoolEffectState
     }
 
 
+    public void ResetSimulation()
+    {
+        // --- Clear render texture ---
+        ClearRT(renderTexture);
+
+        // --- Reset boids ---
+        if (boidBuffer != null)
+        {
+            Boid[] boids = new Boid[boidCount];
+            for (int i = 0; i < boidCount; i++)
+            {
+                boids[i].position = new Vector2(
+                    Random.value * width,
+                    Random.value * height
+                );
+                boids[i].velocity = Random.insideUnitCircle * 20f;
+            }
+            boidBuffer.SetData(boids);
+        }
+    }
+
+    void ClearRT(RenderTexture rt)
+    {
+        RenderTexture.active = rt;
+        GL.Clear(false, true, UnityEngine.Color.black);
+        RenderTexture.active = null;
+    }
+
 
     public void StartCoolEffect()
     {
@@ -148,6 +176,7 @@ public class BoidsGPU : MonoBehaviour, ICoolEffectState
             return;
         }
 
+        ResetSimulation();
         SimulationState = CoolEffectState.Starting;
         stateChangeTime = Time.time;
     }

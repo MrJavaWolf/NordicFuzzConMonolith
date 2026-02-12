@@ -175,6 +175,18 @@ public class FluidGPU : MonoBehaviour, ICoolEffectState
 
     }
 
+    public void ResetSimulation()
+    {
+        // Clear all render textures
+        ClearRT(color);
+        ClearRT(colorPrev);
+        ClearRT(velocity);
+        ClearRT(velocityPrev);
+        ClearRT(pressure);
+        ClearRT(pressurePrev);
+    }
+
+
     void HandleInput()
     {
         var mouse = Mouse.current;
@@ -214,6 +226,7 @@ public class FluidGPU : MonoBehaviour, ICoolEffectState
             return;
         }
 
+        ResetSimulation();
         SimulationState = CoolEffectState.Starting;
         stateChangeTime = Time.time;
     }

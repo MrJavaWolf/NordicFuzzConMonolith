@@ -20,7 +20,7 @@ public class FlowFieldGpu : MonoBehaviour, ICoolEffectState
     [Header("Particle settings")]
     public float curlStrength = 1f;
     public float speed = 50f;
-    public float particleSize = 3f; 
+    public float particleSize = 3f;
     public float fade = 0.97f;
     public Color[] colorPalette = new Color[]
     {
@@ -132,6 +132,36 @@ public class FlowFieldGpu : MonoBehaviour, ICoolEffectState
     }
 
 
+    public void ResetSimulation()
+    {
+        // --- Clear the render texture ---
+        ClearRT(target);
+
+        // --- Reset particles ---
+        if (particleA != null && particleB != null)
+        {
+            Particle[] particles = new Particle[particleCount];
+            for (int i = 0; i < particles.Length; i++)
+            {
+                particles[i].pos = new Vector2(Random.value * width, Random.value * height);
+                particles[i].vel = Vector2.zero;
+            }
+
+            particleA.SetData(particles);
+            particleB.SetData(particles);
+        }
+
+        // --- Reset swap flag ---
+        swap = false;
+    }
+
+    void ClearRT(RenderTexture rt)
+    {
+        RenderTexture.active = rt;
+        GL.Clear(false, true, UnityEngine.Color.black);
+        RenderTexture.active = null;
+    }
+
     public void StartCoolEffect()
     {
         if (SimulationState == CoolEffectState.Running ||
@@ -140,6 +170,7 @@ public class FlowFieldGpu : MonoBehaviour, ICoolEffectState
             return;
         }
 
+        ResetSimulation();
         SimulationState = CoolEffectState.Starting;
         stateChangeTime = Time.time;
     }

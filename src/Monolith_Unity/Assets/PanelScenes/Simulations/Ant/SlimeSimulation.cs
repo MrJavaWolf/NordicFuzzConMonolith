@@ -229,6 +229,37 @@ public class SlimeSimulation : MonoBehaviour, ICoolEffectState
     }
 
 
+    public void ResetSimulation()
+    {
+        // --- Clear render textures ---
+        ClearRT(trailA);
+        ClearRT(trailB);
+        ClearRT(renderTexture);
+
+        // --- Reset agents ---
+        if (agentBuffer != null)
+        {
+            Agent[] agents = new Agent[numAgents];
+            for (int i = 0; i < numAgents; i++)
+            {
+                agents[i].position = new Vector2(
+                    Random.value * width,
+                    Random.value * height
+                );
+                agents[i].angle = Random.value * Mathf.PI * 2;
+            }
+            agentBuffer.SetData(agents);
+        }
+    }
+
+    void ClearRT(RenderTexture rt)
+    {
+        RenderTexture.active = rt;
+        GL.Clear(false, true, UnityEngine.Color.black);
+        RenderTexture.active = null;
+    }
+
+
     public void StartCoolEffect()
     {
         if (SimulationState == CoolEffectState.Running ||
@@ -236,7 +267,7 @@ public class SlimeSimulation : MonoBehaviour, ICoolEffectState
         {
             return;
         }
-
+        ResetSimulation();
         SimulationState = CoolEffectState.Starting;
         stateChangeTime = Time.time;
     }
