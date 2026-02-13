@@ -1,0 +1,46 @@
+{
+	"channelInputs": [
+		{
+			"type": "universes",
+			"enabled": 1,
+			"timeout": 9999,
+			"startChannel": 1,
+			"channelCount": -1,
+			"universes": [
+				{
+					"active": 1,
+					"description": "",
+					"id": 1,
+					"startChannel": 1,
+					"universeCount": 999,
+					"channelCount": 512,
+					"type": 2,
+					"address": "",
+					"priority": 0
+				},
+				{
+					"active": 1,
+					"description": "",
+					"id": 1000,
+					"startChannel": 511489,
+					"universeCount": 999,
+					"channelCount": 512,
+					"type": 2,
+					"address": "",
+					"priority": 0
+				},
+				{
+					"active": 1,
+					"description": "",
+					"id": 1999,
+					"startChannel": 1022977,
+					"universeCount": 500,
+					"channelCount": 512,
+					"type": 2,
+					"address": "",
+					"priority": 0
+				}
+			]
+		}
+	]
+}

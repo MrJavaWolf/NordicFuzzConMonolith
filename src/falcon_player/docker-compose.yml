@@ -1,0 +1,19 @@
+#version: "3.8"
+
+services:
+  fpp:
+    image: falconchristmas/fpp:latest
+    container_name: falcon-player
+    restart: unless-stopped
+
+#    ports:
+#      - "80:80"
+#      - "32320:32320/udp"
+
+    volumes:
+      - ./fpp-media:/home/fpp/media
+
+    environment:
+      - TZ=Europe/Copenhagen
+
+    network_mode: host

@@ -1,0 +1,14 @@
+{
+    "default-src": [],
+    "img-src": [],
+    "script-src": [],
+    "style-src": [],
+    "connect-src": [
+        "http:\/\/10.2.60.235",
+        "http:\/\/172.17.0.1",
+        "http:\/\/10.2.60.138",
+        "http:\/\/10.2.60.211"
+    ],
+    "object-src": [],
+    "font-src": []
+}

@@ -1,0 +1,34 @@
+{
+    "name": "Video",
+    "version": 4,
+    "repeat": 0,
+    "loopCount": 0,
+    "desc": "",
+    "random": 0,
+    "empty": false,
+    "leadIn": [],
+    "mainPlaylist": [
+        {
+            "type": "media",
+            "enabled": 1,
+            "playOnce": 0,
+            "fileMode": "single",
+            "mediaName": "istockphoto-1635338438-640_adpp_is.mp4",
+            "videoOut": "Main Monolith Display",
+            "displayMode": "argsOnly",
+            "timecode": "Default",
+            "duration": 20.032
+        }
+    ],
+    "leadOut": [],
+    "playlistInfo": {
+        "leadIn_duration": 0,
+        "leadIn_items": 0,
+        "mainPlaylist_duration": 20.032,
+        "mainPlaylist_items": 1,
+        "leadOut_duration": 0,
+        "leadOut_items": 0,
+        "total_duration": 20.032,
+        "total_items": 1
+    }
+}

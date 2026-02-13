@@ -1,0 +1,14 @@
+{
+	"channelOutputs": [
+		{
+			"type": "universes",
+			"enabled": 0,
+			"interface": "eth0",
+			"threaded": 1,
+			"startChannel": 1,
+			"channelCount": -1,
+			"universes": [
+			]
+		}
+	]
+}

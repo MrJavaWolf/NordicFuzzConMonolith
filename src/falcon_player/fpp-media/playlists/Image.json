@@ -1,0 +1,31 @@
+{
+    "name": "Image",
+    "version": 4,
+    "repeat": 0,
+    "loopCount": 0,
+    "desc": "",
+    "random": 0,
+    "empty": false,
+    "leadIn": [],
+    "mainPlaylist": [
+        {
+            "type": "image",
+            "enabled": 1,
+            "playOnce": 0,
+            "imagePath": "652c2f311ee9d752200630a624a31a1b.jpg",
+            "modelName": "Main Monolith Display",
+            "displayMode": "argsOnly"
+        }
+    ],
+    "leadOut": [],
+    "playlistInfo": {
+        "leadIn_duration": 0,
+        "leadIn_items": 0,
+        "mainPlaylist_duration": 0,
+        "mainPlaylist_items": 1,
+        "leadOut_duration": 0,
+        "leadOut_items": 0,
+        "total_duration": 0,
+        "total_items": 1
+    }
+}
