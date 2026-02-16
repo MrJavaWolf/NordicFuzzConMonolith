@@ -50,4 +50,17 @@ public class DataStorage : MonoBehaviour
             return _DonationDataPaths;
         }
     }
+
+    private DonationImageStorage _DonationImageStorage = null;
+    public DonationImageStorage DonationImageStorage
+    {
+        get
+        {
+            if (_DonationImageStorage == null)
+            {
+                _DonationImageStorage = new DonationImageStorage(DonationDataPaths);
+            }
+            return _DonationImageStorage;
+        }
+    }
 }

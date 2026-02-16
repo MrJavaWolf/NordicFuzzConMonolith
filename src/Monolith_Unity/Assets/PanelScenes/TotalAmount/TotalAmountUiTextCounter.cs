@@ -82,11 +82,11 @@ public class TotalAmountUiTextCounter : MonoBehaviour
             if (CurrentAmount == TargetAmount)
                 currentDiff = TargetAmount - StartAmount;
 
-            return $"+{currentDiff.ToString("N0", DanishCulture)}{Environment.NewLine}sek";
+            return $"+{currentDiff.ToString("N0", DanishCulture)}";
         }
         else
         {
-            return $"{CurrentAmount.ToString("N0", DanishCulture)}{Environment.NewLine}sek";
+            return $"{CurrentAmount.ToString("N0", DanishCulture)}";
         }
     }
 

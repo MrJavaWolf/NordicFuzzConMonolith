@@ -38,6 +38,10 @@ namespace Monolith.DonationPolling.PollDonations
         /// </summary>
         public string GetImagePath(string url)
         {
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                return null;
+            }
             string imageMetadataFile = dataPaths.GetStoredImagesMetadataFile();
             if (!File.Exists(imageMetadataFile))
             {
