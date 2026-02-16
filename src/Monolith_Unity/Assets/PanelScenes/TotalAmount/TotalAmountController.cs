@@ -80,7 +80,7 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
     private void HandleWaitingForMoreMoney()
     {
 
-        if (!Keyboard.current.aKey.wasPressedThisFrame)
+        if (Keyboard.current.aKey.wasPressedThisFrame)
         {
             MonetaryStatusResponse current = currentMoneyStatus?.Data;
             if (current == null)
@@ -144,7 +144,7 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
             return;
 
         spawnTimer = 0f;
-        //CheckForNewTotalAmountData();
+        CheckForNewTotalAmountData();
     }
 
     private void HandleSpawning()
