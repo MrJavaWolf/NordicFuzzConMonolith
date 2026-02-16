@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class ManualInputManager : MonoBehaviour
 {
     private EffectManager effectManager;
-    public GameObject background;
+
     private void Awake()
     {
         effectManager = GetComponent<EffectManager>();
@@ -14,18 +14,6 @@ public class ManualInputManager : MonoBehaviour
     {
         if (Keyboard.current == null)
             return;
-
-        if (Keyboard.current.bKey.wasPressedThisFrame)
-        {
-            if (background.activeSelf)
-            {
-                background.SetActive(false);
-            }
-            else
-            {
-                background.SetActive(true);
-            }
-        }
 
         if (Keyboard.current.digit1Key.wasPressedThisFrame)
             effectManager.RunCoolEffect(CoolEffectType.Fluid);
@@ -40,9 +28,12 @@ public class ManualInputManager : MonoBehaviour
             effectManager.RunCoolEffect(CoolEffectType.Ant);
 
         if (Keyboard.current.digit5Key.wasPressedThisFrame)
+            effectManager.RunCoolEffect(CoolEffectType.Fireworks);
+
+        if (Keyboard.current.digit6Key.wasPressedThisFrame)
             effectManager.RunCoolEffect(CoolEffectType.TotalAmountDonated);
         
-        if (Keyboard.current.digit6Key.wasPressedThisFrame)
+        if (Keyboard.current.digit7Key.wasPressedThisFrame)
             effectManager.RunCoolEffect(CoolEffectType.LatestDonors);
     }
 }

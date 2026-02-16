@@ -14,13 +14,6 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
     public int MaxNumberOfCoins = 600;
     public float CheckForMoneyIntervalSeconds = 10f;
 
-    public float FireworksWaitTime = 3.5f;
-    public List<ParticleSystem> Fireworks = new();
-
-    public float CoinsJumpInterval = 30;
-    private float lastCoinJumpTime;
-
-
     public int DebugMinimumMoney = 50;
     public int DebugMaximumMoney = 5000;
 
@@ -39,15 +32,11 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
     float stateAlpha;
     private bool waitingForMoreMoneyStateToStop = false;
 
-
     private float currentStateStartTime;
-    private float FireworksStartTime = -1;
     private enum State
     {
         WaitingForMoreMoney,
         Spawning,
-        WaitingForFireworks,
-        WaitingForCoinsToFall
     }
 
     private State _currentState { get; set; } = State.WaitingForMoreMoney;
@@ -85,20 +74,13 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
             case State.Spawning:
                 HandleSpawning();
                 break;
-            case State.WaitingForFireworks:
-                HandleWaitingForFireworks();
-                break;
-
-            case State.WaitingForCoinsToFall:
-                HandleWaitingForCoinsToFall();
-                break;
         }
     }
 
     private void HandleWaitingForMoreMoney()
     {
 
-        if (Keyboard.current.aKey.wasPressedThisFrame)
+        if (!Keyboard.current.aKey.wasPressedThisFrame)
         {
             MonetaryStatusResponse current = currentMoneyStatus?.Data;
             if (current == null)
@@ -145,29 +127,13 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
             long newMoneyRecieved = newMoney - currentMoney;
             Debug.Log($"Current money amount: {currentMoney}, new money amount: {newMoney}, diff: {newMoneyRecieved}");
 
-            var (ones, fifties, twoHundreds) = coinSpawner.CalculateCoins((int)newMoneyRecieved);
-
-            // Check if we've reached the max
-            if (coinSpawner.AllCoins.Count > 0 &&
-                coinSpawner.AllCoins.Count + ones + fifties + twoHundreds >= MaxNumberOfCoins)
-            {
-                Debug.Log("Plays fireworks");
-                foreach (var firework in Fireworks)
-                {
-                    firework.Play();
-                }
-                currentState = State.WaitingForFireworks;
-                FireworksStartTime = Time.time;
-                return;
-            }
 
             currentMoneyStatus = newMoneyStatus;
             newMoneyStatus = null;
             TextUi.SetAmount(newMoney);
             if (newMoneyRecieved > 0)
             {
-                Debug.Log($"Ones: {ones}, Fifties: {fifties}, TwoHundreds: {twoHundreds}");
-                coinSpawner.SpawnCoins((ones, fifties, twoHundreds));
+                coinSpawner.SpawnCoins((int)newMoneyRecieved);
                 currentState = State.Spawning;
                 return;
             }
@@ -178,42 +144,13 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
             return;
 
         spawnTimer = 0f;
-        CheckForNewTotalAmountData();
-
-        if (Time.time - CoinsJumpInterval > currentStateStartTime && // Have to been in the state for a while
-            Time.time - lastCoinJumpTime > CoinsJumpInterval) // Wait for the jump interval time
-        {
-            Debug.Log("Nothing have happend in a while, will make the coins jump");
-            coinSpawner.MakeCoinsJump();
-            lastCoinJumpTime = Time.time;
-        }
+        //CheckForNewTotalAmountData();
     }
 
     private void HandleSpawning()
     {
         // Wait until spawner finishes
         if (coinSpawner.IsSpawningCoins == false)
-        {
-            currentState = State.WaitingForMoreMoney;
-        }
-    }
-
-
-    private void HandleWaitingForFireworks()
-    {
-        // Wait until coins finish falling
-        if (Time.time - FireworksStartTime >= FireworksWaitTime)
-        {
-            coinSpawner.LetCoinsFall();
-            currentState = State.WaitingForCoinsToFall;
-        }
-    }
-
-
-    private void HandleWaitingForCoinsToFall()
-    {
-        // Wait until coins finish falling
-        if (coinSpawner.IsCoinsFalling == false)
         {
             currentState = State.WaitingForMoreMoney;
         }

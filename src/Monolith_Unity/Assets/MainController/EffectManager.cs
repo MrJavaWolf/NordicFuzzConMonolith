@@ -20,7 +20,7 @@ public class EffectManager : MonoBehaviour
         }
     }
 
-    
+
     public void Start()
     {
         RunCoolEffect(StartEffect);
@@ -92,6 +92,7 @@ public enum CoolEffectType
     Boids = 1,
     Flow = 2,
     Ant = 3,
+    Fireworks = 4,
     TotalAmountDonated = 100,
     LatestDonors = 101,
 }

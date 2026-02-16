@@ -37,14 +37,10 @@ float4 GetBoidColor(uint id)
     if (paletteCount == 0)
         return float4(1, 1, 1, 1);
 
-    float t = (float) id / (float) boidCount;
-    float scaled = t * paletteCount;
+    
+    uint i0 = (uint) floor(id) % paletteCount;
 
-    uint i0 = (uint) floor(scaled) % paletteCount;
-    uint i1 = (i0 + 1) % paletteCount;
-    float f = frac(scaled);
-
-    return lerp(palette[i0], palette[i1], f);
+    return palette[i0];
 }
 
 

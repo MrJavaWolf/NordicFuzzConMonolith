@@ -6,6 +6,8 @@ public class BoidsGPU : MonoBehaviour, ICoolEffectState
     public ComputeShader boidsCompute;
     public RawImage rawImage;
 
+    public Image background;
+
     public int boidCount = 1024;
     public int width = 768;
     public int height = 512;
@@ -228,14 +230,17 @@ public class BoidsGPU : MonoBehaviour, ICoolEffectState
         if (stateAlpha <= 0f)
         {
             rawImage.color = transparent;
+            background.color = transparent;
         }
         else if (stateAlpha >= 1f)
         {
             rawImage.color = Color.white;
+            background.color = Color.white;
         }
         else
         {
             rawImage.color = new Color(1, 1, 1, stateAlpha);
+            background.color = new Color(1, 1, 1, stateAlpha);
         }
     }
     Color transparent = new(1, 1, 1, 0);
