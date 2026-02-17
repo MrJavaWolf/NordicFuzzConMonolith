@@ -17,6 +17,8 @@ public class TotalAmountUiTextCounter : MonoBehaviour
     public long MaxAmountForMaxDuration = 5_000;
 
     public List<TextMeshProUGUI> UiTexts = new();
+    public List<TextMeshProUGUI> StaticUiTexts = new();
+
     public List<Image> TextBackgrounds = new();
     private long CurrentAmount = 0;
     private static readonly System.Globalization.CultureInfo DanishCulture = new System.Globalization.CultureInfo("da-DK");
@@ -120,5 +122,14 @@ public class TotalAmountUiTextCounter : MonoBehaviour
             color.a = alpha;
             TextBackgrounds[i].color = color;
         }
+
+        for (int i = 0; i < StaticUiTexts.Count; i++)
+        {
+            var color = StaticUiTexts[i].color;
+            color.a = alpha;
+            StaticUiTexts[i].color = color;
+        }
+
+        
     }
 }
