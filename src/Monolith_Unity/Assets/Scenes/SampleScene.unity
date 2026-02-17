@@ -1681,10 +1681,10 @@ MonoBehaviour:
     root: {fileID: 742868801}
   - type: 100
     root: {fileID: 1501212460}
-  - type: 101
-    root: {fileID: 1053883866}
   - type: 4
     root: {fileID: 832115005}
+  - type: 101
+    root: {fileID: 1053883866}
 --- !u!4 &757200322
 Transform:
   m_ObjectHideFlags: 0
@@ -1725,10 +1725,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectRotationController
   effectManager: {fileID: 757200321}
-  mainEffects: 6400000065000000
-  transitionEffects: 0100000004000000
-  mainEffectDuration: 300
-  transitionEffectDuration: 60
+  mainEffects: 0200000003000000
+  transitionEffects: 6400000004000000
+  mainEffectDuration: 90
+  transitionEffectDuration: 90
 --- !u!1 &759730683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2897,8 +2897,8 @@ MonoBehaviour:
   TextUi: {fileID: 203244083}
   MaxNumberOfCoins: 225
   CheckForMoneyIntervalSeconds: 5
-  DebugMinimumMoney: 100
-  DebugMaximumMoney: 1000
+  DebugMinimumMoney: 25
+  DebugMaximumMoney: 250
   backgrounds:
   - {fileID: 164812908}
   - {fileID: 45938928}

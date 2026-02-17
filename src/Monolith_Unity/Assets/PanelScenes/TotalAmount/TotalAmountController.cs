@@ -125,13 +125,20 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
             long newMoneyRecieved = newMoney - currentMoney;
             Debug.Log($"Current money amount: {currentMoney}, new money amount: {newMoney}, diff: {newMoneyRecieved}");
 
-
+            bool isFirstSpawn = currentMoneyStatus == null;
             currentMoneyStatus = newMoneyStatus;
             newMoneyStatus = null;
             TextUi.SetAmount(newMoney);
             if (newMoneyRecieved > 0)
             {
-                coinSpawner.SpawnCoins((int)newMoneyRecieved);
+                if(isFirstSpawn)
+                {
+                    coinSpawner.InitialSpawn((int)newMoneyRecieved);
+                }
+                else
+                {
+                    coinSpawner.SpawnCoins((int)newMoneyRecieved);
+                }
                 currentState = State.Spawning;
                 return;
             }

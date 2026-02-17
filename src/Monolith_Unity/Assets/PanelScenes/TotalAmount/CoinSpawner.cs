@@ -60,6 +60,86 @@ public class CoinSpawner : MonoBehaviour
     }
 
 
+    public void InitialSpawn(int amount)
+    {
+        IsSpawningCoins = true;
+        StartCoroutine(InitialSpawnOverTime(amount));
+    }
+
+    public IEnumerator InitialSpawnOverTime(int amount)
+    {
+        Debug.Log($"Starts spawning initial {amount} coins.");
+        IsSpawningCoins = true;
+
+        float spawnInterval = 1f / coinsPerSecond;
+        float timer = 0f;
+        int spawned = 0;
+
+        while (spawned < amount)
+        {
+            while (ActiveCoins.Count > MaximumNumberOfActiveCoins)
+            {
+                yield return null;
+            }
+
+            while (combiningMoneyState != CombiningMoneyState.None)
+            {
+                yield return null;
+            }
+
+            timer += Time.deltaTime;
+
+            while (timer >= spawnInterval && spawned < amount)
+            {
+                timer -= spawnInterval;
+
+                Vector2 randomPos = GetRandomPosition();
+                GameObject coinObject = Instantiate(
+                    coinPrefab,
+                    randomPos,
+                    Quaternion.identity,
+                    transform.parent
+                );
+                var totalAmountCoin = coinObject.GetComponent<TotalAmountCoin>();
+                totalAmountCoin.Spawner = this;
+                ActiveCoins.Add(totalAmountCoin);
+                AllCoins.Add(totalAmountCoin);
+
+                if (amount - spawned > NeighborsToCombine * NeighborsToCombine * NeighborsToCombine)
+                {
+                    spawned += NeighborsToCombine * NeighborsToCombine * NeighborsToCombine;
+                    totalAmountCoin.UpgradeCoinType();
+                    totalAmountCoin.UpgradeCoinType();
+                    totalAmountCoin.UpgradeCoinType();
+                }
+                else if (amount - spawned > NeighborsToCombine * NeighborsToCombine)
+                {
+                    spawned += NeighborsToCombine * NeighborsToCombine;
+                    totalAmountCoin.UpgradeCoinType();
+                    totalAmountCoin.UpgradeCoinType();
+                }
+                else if (amount - spawned > NeighborsToCombine)
+                {
+                    spawned += NeighborsToCombine;
+                    totalAmountCoin.UpgradeCoinType();
+                }
+                else
+                {
+                    spawned++;
+                }
+            }
+
+            if (AllCoins.Count > MaximumNumberOfCoins)
+            {
+                yield return StartCoroutine(CombineMoneyOverTime());
+            }
+
+            yield return null;
+        }
+
+        IsSpawningCoins = false;
+    }
+
     public IEnumerator SpawnCoinsOverTime(int amount, float coinsPerSecond = -1)
     {
         Debug.Log($"Starts spawning {amount} coins.");
