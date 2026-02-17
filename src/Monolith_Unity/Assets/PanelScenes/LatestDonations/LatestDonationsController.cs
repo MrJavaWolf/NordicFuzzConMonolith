@@ -266,7 +266,7 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
         DonorBobble donorBobble = biggestObject.GetComponent<DonorBobble>();
         donorBobble.Text.text = amount.ToString("N0", DanishCulture);
         donorBobble.Background.color = LatestDonorsColorPallet[UnityEngine.Random.Range(0, LatestDonorsColorPallet.Count())];
-        donorBobble.Border.color = donorBobble.Background.color * 0.5f;
+        donorBobble.Border.color = donorBobble.Background.color * 0.7f;
         donorBobble.DonationId = donationId;
         StartCoroutine(donorBobble.FadeIn());
         LatestDonors.Add(donorBobble);

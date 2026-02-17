@@ -1668,7 +1668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4be4144f33adb94f830525767c30627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectManager
-  StartEffect: 100
+  StartEffect: 101
   blackWaitTimeBetweenEffects: 3
   simulations:
   - type: 0
@@ -1719,7 +1719,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757200320}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 623fe553dcc3aa342904bb3c8a43d25f, type: 3}
   m_Name: 
@@ -2450,16 +2450,10 @@ MonoBehaviour:
   BiggestDonorPrefab: {fileID: 6059405129583742487, guid: 77d2346c862c6d54986885f6b14bcda5, type: 3}
   areaSize: {x: 650, y: 400}
   TopDonorLogos:
-  - {fileID: 1119313127212367494, guid: b4f8cabbc49e29f42a0d4882ccffc695, type: 3}
-  - {fileID: 8532800576416694519, guid: b4f8cabbc49e29f42a0d4882ccffc695, type: 3}
-  - {fileID: -1621014292675642868, guid: b4f8cabbc49e29f42a0d4882ccffc695, type: 3}
   - {fileID: -2910327491354664631, guid: 20a7a27a2d5b03949a4355ae2d32eb2c, type: 3}
   - {fileID: -8338826060177457069, guid: 20a7a27a2d5b03949a4355ae2d32eb2c, type: 3}
   LatestDonorsColorPallet:
-  - {r: 0.83137256, g: 0.2627451, b: 0.2627451, a: 1}
   - {r: 0.5647059, g: 0.40784314, b: 0.83137256, a: 1}
-  - {r: 0.29411766, g: 0.69411767, b: 0.8745098, a: 1}
-  - {r: 0.61960787, g: 0.83137256, b: 0.3137255, a: 1}
   DebugSpecialDonorImages:
   - {fileID: -4471728477406863024, guid: bcdb7b36ad876de46ab17ea6284708e7, type: 3}
   MaxNumberOfLatestDonors: 15
