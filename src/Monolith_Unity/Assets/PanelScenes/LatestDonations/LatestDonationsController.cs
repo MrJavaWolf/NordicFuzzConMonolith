@@ -7,10 +7,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class LatestDonationsController : MonoBehaviour, ICoolEffectState
 {
     public DataStorage dataStorage;
+    public SpriteRenderer background;
     public GameObject LatestDonorPrefab;
     public GameObject SpecialDonorPrefab;
     public GameObject BiggestDonorPrefab;
@@ -36,26 +38,28 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
     float stateAlpha;
     private readonly List<SpriteRenderer> spriteRenderers = new();
 
-    private DonationStorageDto<DonationListResponse> currentLatestDonations;
-    private DonationStorageDto<DonationListResponse> newLatestDonations;
+    private DonationStorageDto<DonationListResponse> currentLatestDonations = null;
+    private DonationStorageDto<DonationListResponse> newLatestDonations = null;
 
-    private DonationStorageDto<DonationListResponse> currentBiggestDonations;
-    private DonationStorageDto<DonationListResponse> newBiggestDonations;
+    private DonationStorageDto<DonationListResponse> currentBiggestDonations = null;
+    private DonationStorageDto<DonationListResponse> newBiggestDonations = null;
 
     private static readonly System.Globalization.CultureInfo DanishCulture = new("da-DK");
 
-    private DonationStorageDto<LastImageDonations> currentSpecialDonations;
-    private DonationStorageDto<LastImageDonations> newSpecialDonations;
+    private DonationStorageDto<LastImageDonations> currentSpecialDonations = null;
+    private DonationStorageDto<LastImageDonations> newSpecialDonations = null;
 
     private List<DonorBobble> BiggestDonors = new();
     private List<DonorBobble> LatestDonors = new();
     private List<DonorBobble> SpecialDonors = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Start()
     {
-
+        SetAlpha(0);
     }
+
+    
 
     // Update is called once per frame
     void Update()
@@ -405,7 +409,27 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
                 break;
         }
 
-        SetSpritsAlpha(stateAlpha);
+        SetAlpha(stateAlpha);
+    }
+
+
+    private void SetAlpha(float alpha)
+    {
+        SetSpritsAlpha(alpha);
+        SetDonorBobblesAlpha(BiggestDonors, alpha);
+        SetDonorBobblesAlpha(LatestDonors, alpha);
+        SetDonorBobblesAlpha(SpecialDonors, alpha);
+        var bgColor = background.color;
+        bgColor.a = alpha;
+        background.color = bgColor;
+    }
+
+    private void SetDonorBobblesAlpha(List<DonorBobble> donors, float alpha)
+    {
+        foreach (DonorBobble donor in donors)
+        {
+            donor.SetAlpha(alpha);
+        }
     }
 
     private void SetSpritsAlpha(float alpha)
@@ -419,6 +443,7 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
             spriteRenderers[i].color = color;
         }
     }
+
 
 
 
@@ -527,6 +552,7 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
             }
         });
     }
+
 
 
     // Visualize area in Scene view

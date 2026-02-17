@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.ParticleSystem;
 
 
 public class FireworksController : MonoBehaviour, ICoolEffectState
@@ -23,6 +22,8 @@ public class FireworksController : MonoBehaviour, ICoolEffectState
     void Start()
     {
         FullyStopParticleSystem();
+        background.color = transparent;
+
     }
 
     private void FullyStopParticleSystem()

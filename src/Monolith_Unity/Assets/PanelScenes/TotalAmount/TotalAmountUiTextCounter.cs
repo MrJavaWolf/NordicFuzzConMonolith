@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TotalAmountUiTextCounter : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class TotalAmountUiTextCounter : MonoBehaviour
     public long MaxAmountForMaxDuration = 5_000;
 
     public List<TextMeshProUGUI> UiTexts = new();
-    public List<SpriteRenderer> TextBackgrounds = new();
+    public List<Image> TextBackgrounds = new();
     private long CurrentAmount = 0;
     private static readonly System.Globalization.CultureInfo DanishCulture = new System.Globalization.CultureInfo("da-DK");
 

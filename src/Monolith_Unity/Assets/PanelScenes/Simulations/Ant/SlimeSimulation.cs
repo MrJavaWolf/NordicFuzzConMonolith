@@ -23,6 +23,9 @@ public class SlimeSimulation : MonoBehaviour, ICoolEffectState
     public float evapRate = 0.995f;
     public float maxValue = 50f;
 
+    [Header("Preheat simulation")]
+    public int PreheatSimulationSteps = 100;
+
     RenderTexture trailA, trailB;
     RenderTexture renderTexture;
 
@@ -156,9 +159,48 @@ public class SlimeSimulation : MonoBehaviour, ICoolEffectState
             if (kb.eKey.wasPressedThisFrame) SetPalette(paletteBioluminescent);
             if (kb.rKey.wasPressedThisFrame) SetPalette(paletteToxic);
             if (kb.tKey.wasPressedThisFrame) SetPalette(paletteHeat);
+            if (kb.aKey.wasPressedThisFrame)
+            {
+                moveSpeed = 0.1f;
+                turnAngle = 0.2f;
+                sensorOffset = 3;
+                randomJitter = 0.1f;
+            }
+            if (kb.sKey.wasPressedThisFrame)
+            {
+                moveSpeed = 1f;
+                turnAngle = 0.2f;
+                sensorOffset = 3;
+                randomJitter = 0.1f;
+            }
+            if (kb.dKey.wasPressedThisFrame)
+            {
+                moveSpeed = 1f;
+                turnAngle = 0.2f;
+                sensorOffset = 0;
+                randomJitter = 0.1f;
+            }
+            if (kb.fKey.wasPressedThisFrame)
+            {
+                moveSpeed = 1f;
+                turnAngle = 0.5f;
+                sensorOffset = 1;
+                randomJitter = 0.1f;
+            }
+            if (kb.gKey.wasPressedThisFrame)
+            {
+                moveSpeed = 1f;
+                turnAngle = 0.2f;
+                sensorOffset = 9;
+                randomJitter = 0.1f;
+            }
         }
 
+        UpdateSimulation();
+    }
 
+    private void UpdateSimulation()
+    {
         int antSimulationStep = agentCS.FindKernel("CSMain");
 
         agentCS.SetBuffer(antSimulationStep, "agents", agentBuffer);
@@ -249,6 +291,11 @@ public class SlimeSimulation : MonoBehaviour, ICoolEffectState
                 agents[i].angle = Random.value * Mathf.PI * 2;
             }
             agentBuffer.SetData(agents);
+        }
+
+        for (int i = 0; i < PreheatSimulationSteps; i++)
+        {
+            UpdateSimulation();
         }
     }
 

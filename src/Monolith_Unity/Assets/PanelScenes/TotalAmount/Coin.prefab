@@ -167,8 +167,8 @@ MonoBehaviour:
   LogoSprite: {fileID: 6470609567422199752}
   Coin2MainColor: {r: 0.9784366, g: 0.8443601, b: 0.33625504, a: 1}
   Coin2BorderColor: {r: 0.6495956, g: 0.5571112, b: 0.21624, a: 1}
-  Coin3MainColor: {r: 0.24118902, g: 0.6603774, b: 0.24118902, a: 1}
-  Coin3BorderColor: {r: 0.14426295, g: 0.40700805, b: 0.14426295, a: 1}
+  Coin3MainColor: {r: 0.45944518, g: 0.8059299, b: 0.45944518, a: 1}
+  Coin3BorderColor: {r: 0.26234546, g: 0.48787057, b: 0.26234546, a: 1}
   Coin4MainColor: {r: 0.70924467, g: 0.39978996, b: 0.9299191, a: 1}
   Coin4BorderColor: {r: 0.38259357, g: 0.21126327, b: 0.504043, a: 1}
 --- !u!1 &3747970718266108900

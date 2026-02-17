@@ -4,12 +4,14 @@ using UnityEngine;
 public class EffectManager : MonoBehaviour
 {
     public CoolEffectType StartEffect;
-
+    [SerializeField] private float blackWaitTimeBetweenEffects = 3f;
     [SerializeField] private List<CoolEffectEntry> simulations;
     private Dictionary<CoolEffectType, CoolEffectEntry> simulationMap;
 
     private CoolEffectEntry current;
     private CoolEffectEntry changeToSimulation;
+
+    private float lastStoppingTime = 0;
     private void Awake()
     {
         simulationMap = new Dictionary<CoolEffectType, CoolEffectEntry>();
@@ -47,7 +49,7 @@ public class EffectManager : MonoBehaviour
         if (changeToSimulation != null)
         {
             if (current == null ||
-                current.CoolEffect.SimulationState == CoolEffectState.Stopped)
+                (current.CoolEffect.SimulationState == CoolEffectState.Stopped && Time.time - lastStoppingTime > blackWaitTimeBetweenEffects))
             {
 
                 current = changeToSimulation;
@@ -64,6 +66,7 @@ public class EffectManager : MonoBehaviour
             else if (current.CoolEffect.SimulationState == CoolEffectState.Stopping)
             {
                 // Do nothing waiting for the current simulation to stop
+                lastStoppingTime = Time.time;
             }
         }
     }

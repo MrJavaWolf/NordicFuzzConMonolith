@@ -11,6 +11,11 @@ public class BoidsGPU : MonoBehaviour, ICoolEffectState
     public int boidCount = 1024;
     public int width = 768;
     public int height = 512;
+
+    [Header("Preheat simulation")]
+    public int PreheatSimulationSteps = 100;
+    public float PreheatSimulationDeltaTime = 0.04f;
+
     [Header("Color Palette")]
     public Color[] colorPalette1 = new[]
     {
@@ -106,9 +111,13 @@ public class BoidsGPU : MonoBehaviour, ICoolEffectState
 
         if (SimulationState == CoolEffectState.Stopped)
             return;
+        UpdateSimulation(Time.deltaTime);
+    }
 
+    private void UpdateSimulation(float deltaTime)
+    {
         boidsCompute.SetInt("boidCount", boidCount);
-        boidsCompute.SetFloat("deltaTime", Time.deltaTime);
+        boidsCompute.SetFloat("deltaTime", deltaTime);
         boidsCompute.SetVector("resolution", new Vector2(width, height));
 
         boidsCompute.SetFloat("neighborRadius", neighborRadius);
@@ -159,6 +168,10 @@ public class BoidsGPU : MonoBehaviour, ICoolEffectState
                 boids[i].velocity = Random.insideUnitCircle * 20f;
             }
             boidBuffer.SetData(boids);
+        }
+        for (int i = 0; i < PreheatSimulationSteps; i++)
+        {
+            UpdateSimulation(PreheatSimulationDeltaTime);
         }
     }
 

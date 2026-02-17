@@ -158,9 +158,16 @@ public class CoinSpawner : MonoBehaviour
     {
         foreach (var coin in AllCoins)
         {
-            var totalAmountCoin = coin.GetComponent<TotalAmountCoin>();
-            totalAmountCoin.MakeJump();
-            totalAmountCoin.MakeJump();
+            coin.MakeJump();
+            coin.MakeJump();
+        }
+    }
+
+    public void SetCoinsAlpha(float alpha)
+    {
+        foreach (var coin in AllCoins)
+        {
+            coin.SetAlpha(alpha);
         }
     }
 
@@ -290,10 +297,14 @@ public class CoinSpawner : MonoBehaviour
 
             index += batchSize;
 
-            // Wait until all active coins finish
-            while (ActiveCoins.Count > 0)
-                yield return null;
+            //// Wait until all active coins finish
+            //while (ActiveCoins.Count > 0)
+            //    yield return null;
         }
+
+        // Wait until all active coins finish
+        while (ActiveCoins.Count > 0)
+            yield return null;
     }
 }
 

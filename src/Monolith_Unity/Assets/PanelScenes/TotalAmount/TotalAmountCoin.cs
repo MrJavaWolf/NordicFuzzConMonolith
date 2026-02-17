@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum CoinType
@@ -171,7 +172,7 @@ public class TotalAmountCoin : MonoBehaviour
         }
 
         this.rb = gameObject.AddComponent<Rigidbody2D>();
-        
+
         rb.sharedMaterial = rb_PhysicsMaterial2D;
         rb.bodyType = rb_RigidbodyType2D;
         rb.linearDamping = rb_linearDamping;
@@ -201,5 +202,23 @@ public class TotalAmountCoin : MonoBehaviour
         rb.AddForceY(initialYForce);
         int rotationDirection = initialXForce > 0 ? -1 : 1;
         rb.AddTorque(initialTorque * rotationDirection);
+    }
+
+    internal void SetAlpha(float alpha)
+    {
+        var color = MainSprite.color;
+        color.a = alpha;
+        MainSprite.color = color;
+
+        color = BorderSprite.color;
+        color.a = alpha;
+        BorderSprite.color = color;
+
+        if(CoinType == CoinType.Coin4)
+        {
+            color = LogoSprite.color;
+            color.a = alpha;
+            LogoSprite.color = color;
+        }
     }
 }

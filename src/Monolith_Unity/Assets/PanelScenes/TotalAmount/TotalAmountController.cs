@@ -1,5 +1,6 @@
 using Monolith.DonationPolling.PollDonations;
 using NFC.Donation.Api;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -21,8 +22,7 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
     private bool IsCheckingForNewData = false;
     private DonationStorageDto<MonetaryStatusResponse> currentMoneyStatus;
     private DonationStorageDto<MonetaryStatusResponse> newMoneyStatus;
-
-    private readonly List<SpriteRenderer> spriteRenderers = new();
+    public List<SpriteRenderer> backgrounds = new List<SpriteRenderer>();
 
     // ---- State implementation ----
     [Header("Transition")]
@@ -53,9 +53,7 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
 
     public void Start()
     {
-        RefreshSpriteCache();
-        SetSpritsAlpha(0);
-        TextUi.SetAlpha(0);
+        SetAlpha(0);
     }
 
     void Update()
@@ -216,7 +214,6 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
         {
             return;
         }
-        RefreshSpriteCache();
         SimulationState = CoolEffectState.Starting;
         stateChangeTime = Time.time;
     }
@@ -228,18 +225,12 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
         {
             return;
         }
-        RefreshSpriteCache();
         SimulationState = CoolEffectState.Stopping;
         stateChangeTime = Time.time;
         waitingForMoreMoneyStateToStop = true;
     }
 
 
-    public void RefreshSpriteCache()
-    {
-        spriteRenderers.Clear();
-        GetComponentsInChildren(spriteRenderers);
-    }
 
     void UpdateStateAlpha()
     {
@@ -268,12 +259,9 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
                 else if (currentState == State.WaitingForMoreMoney && waitingForMoreMoneyStateToStop)
                 {
                     waitingForMoreMoneyStateToStop = false;
-                    RefreshSpriteCache();
                     stateChangeTime = Time.time;
                     return;
                 }
-
-
                 stateAlpha = 1f - t;
                 if (t >= 1 && currentState == State.WaitingForMoreMoney)
                 {
@@ -287,19 +275,19 @@ public class TotalAmountController : MonoBehaviour, ICoolEffectState
                 break;
         }
 
-        SetSpritsAlpha(stateAlpha);
-        TextUi.SetAlpha(stateAlpha);
+        SetAlpha(stateAlpha);
+
     }
 
-    private void SetSpritsAlpha(float alpha)
+    private void SetAlpha(float alpha)
     {
-        for (int i = 0; i < spriteRenderers.Count; i++)
+        TextUi.SetAlpha(alpha);
+        coinSpawner.SetCoinsAlpha(alpha);
+        foreach (var background in backgrounds)
         {
-            if (spriteRenderers[i] == null)
-                continue;
-            var color = spriteRenderers[i].color;
+            var color = background.color;
             color.a = alpha;
-            spriteRenderers[i].color = color;
+            background.color = color;
         }
     }
 }
