@@ -297,14 +297,14 @@ public class CoinSpawner : MonoBehaviour
 
             index += batchSize;
 
-            //// Wait until all active coins finish
-            //while (ActiveCoins.Count > 0)
-            //    yield return null;
+            // Wait until all active coins finish
+            while (ActiveCoins.Count > 0)
+                yield return null;
         }
 
-        // Wait until all active coins finish
-        while (ActiveCoins.Count > 0)
-            yield return null;
+        //// Wait until all active coins finish
+        //while (ActiveCoins.Count > 0)
+        //    yield return null;
     }
 }
 

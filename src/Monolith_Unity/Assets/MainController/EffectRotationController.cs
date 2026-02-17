@@ -35,10 +35,10 @@ public class EffectRotationController : MonoBehaviour
             return;
         }
 
-        rotationState = RotationState.MainEffect;
+        rotationState = RotationState.TransitionEffect;
 
-        effectManager.RunCoolEffect(mainEffects[mainIndex]);
-        timer = mainEffectDuration;
+        effectManager.RunCoolEffect(transitionEffects[transitionIndex]);
+        timer = transitionEffectDuration;
     }
 
     private void Update()

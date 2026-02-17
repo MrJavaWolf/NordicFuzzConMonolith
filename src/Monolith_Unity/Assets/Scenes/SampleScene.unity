@@ -1668,7 +1668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4be4144f33adb94f830525767c30627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectManager
-  StartEffect: 1
+  StartEffect: 100
   blackWaitTimeBetweenEffects: 3
   simulations:
   - type: 0
@@ -1727,8 +1727,8 @@ MonoBehaviour:
   effectManager: {fileID: 757200321}
   mainEffects: 6400000065000000
   transitionEffects: 0100000004000000
-  mainEffectDuration: 10
-  transitionEffectDuration: 30
+  mainEffectDuration: 300
+  transitionEffectDuration: 60
 --- !u!1 &759730683
 GameObject:
   m_ObjectHideFlags: 0
