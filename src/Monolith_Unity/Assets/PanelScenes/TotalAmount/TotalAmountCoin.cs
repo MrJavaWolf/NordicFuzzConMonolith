@@ -106,7 +106,9 @@ public class TotalAmountCoin : MonoBehaviour
                 transform.localScale = Vector3.one * 55;
                 this.MainSprite.color = Coin4MainColor;
                 this.BorderSprite.color = Coin4BorderColor;
-                this.LogoSprite.color = Color.white;
+                Color logoColor = this.LogoSprite.color;
+                logoColor.a = 1;
+                this.LogoSprite.color = logoColor;
                 break;
         }
     }

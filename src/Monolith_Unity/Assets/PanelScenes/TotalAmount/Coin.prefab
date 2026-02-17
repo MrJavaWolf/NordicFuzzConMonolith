@@ -165,12 +165,12 @@ MonoBehaviour:
   MainSprite: {fileID: 537821393016071730}
   BorderSprite: {fileID: 6995645648524960341}
   LogoSprite: {fileID: 6470609567422199752}
-  Coin2MainColor: {r: 0.9784366, g: 0.8443601, b: 0.33625504, a: 1}
-  Coin2BorderColor: {r: 0.6495956, g: 0.5571112, b: 0.21624, a: 1}
-  Coin3MainColor: {r: 0.45944518, g: 0.8059299, b: 0.45944518, a: 1}
-  Coin3BorderColor: {r: 0.26234546, g: 0.48787057, b: 0.26234546, a: 1}
-  Coin4MainColor: {r: 0.70924467, g: 0.39978996, b: 0.9299191, a: 1}
-  Coin4BorderColor: {r: 0.38259357, g: 0.21126327, b: 0.504043, a: 1}
+  Coin2MainColor: {r: 0.12941177, g: 0.5686275, b: 1, a: 1}
+  Coin2BorderColor: {r: 0.032707363, g: 0.15806091, b: 0.6933962, a: 1}
+  Coin3MainColor: {r: 0.64541435, g: 0, b: 1, a: 1}
+  Coin3BorderColor: {r: 0.2844422, g: 0.102794595, b: 0.495283, a: 1}
+  Coin4MainColor: {r: 1, g: 0.6561553, b: 0, a: 1}
+  Coin4BorderColor: {r: 1, g: 0.40242594, b: 0, a: 1}
 --- !u!1 &3747970718266108900
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +253,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 5420573504123750368, guid: 8cc48a172123f0946907cfef811572cf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 0.91874456, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -344,7 +344,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 1, g: 0.8016181, b: 0.59607846, a: 1}
+  m_Color: {r: 0.33932027, g: 0.9150943, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -435,7 +435,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.69272226, g: 0.49297503, b: 0.32022062, a: 1}
+  m_Color: {r: 0, g: 0.5754717, b: 0.030111836, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

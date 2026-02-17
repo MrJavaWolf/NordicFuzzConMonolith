@@ -2897,8 +2897,8 @@ MonoBehaviour:
   TextUi: {fileID: 203244083}
   MaxNumberOfCoins: 225
   CheckForMoneyIntervalSeconds: 5
-  DebugMinimumMoney: 25
-  DebugMaximumMoney: 250
+  DebugMinimumMoney: 350000
+  DebugMaximumMoney: 350000
   backgrounds:
   - {fileID: 164812908}
   - {fileID: 45938928}
@@ -3580,10 +3580,10 @@ MonoBehaviour:
   areaSize: {x: 718, y: 75}
   coinsPerSecond: 100
   MaximumNumberOfActiveCoins: 400
-  MaximumNumberOfCoins: 2500
+  MaximumNumberOfCoins: 2000
   TargetCount: 1000
   NeighborsToCombine: 50
-  MaximumNumberOfCoinsType2: 80
+  MaximumNumberOfCoinsType2: 60
   MaximumNumberOfCoinsType3: 60
   horizontalOffset: 20
   verticalOffset: 2000
