@@ -24,8 +24,8 @@ public class PollDonationService(
 
     private async Task CallEndpointThingie(CancellationToken cancellationToken)
     {
-        CachedCharityDonations? cachedCharityDonations = await GetCharityDonationsAsync(cancellationToken);
-        await dataStorage.SaveAsync(cachedCharityDonations, dataPaths.PortalCharityDonationsPath, cancellationToken);
+        //CachedCharityDonations? cachedCharityDonations = await GetCharityDonationsAsync(cancellationToken);
+        //await dataStorage.SaveAsync(cachedCharityDonations, dataPaths.PortalCharityDonationsPath, cancellationToken);
 
         MonetaryStatusResponse? monetaryStatus = await GetMonetaryStatusAsync(cancellationToken);
         await dataStorage.SaveAsync(monetaryStatus, dataPaths.MonetaryStatusPath, cancellationToken);
@@ -36,8 +36,8 @@ public class PollDonationService(
         DonationListResponse? latestDonations = await GetLatestDonationsAsync(cancellationToken);
         await dataStorage.SaveAsync(latestDonations, dataPaths.LatestDonationsPath, cancellationToken);
 
-        DonationStatisticsResponse? biggestDonationStatistics = await GetBiggestDonationStatisticsAsync(cancellationToken);
-        await dataStorage.SaveAsync(biggestDonationStatistics, dataPaths.BiggestDonationStatisticsPath, cancellationToken);
+        //DonationStatisticsResponse? biggestDonationStatistics = await GetBiggestDonationStatisticsAsync(cancellationToken);
+        //await dataStorage.SaveAsync(biggestDonationStatistics, dataPaths.BiggestDonationStatisticsPath, cancellationToken);
 
         LastImageDonations? lastImageDonations = await GetLastImageDonationsAsync(cancellationToken);
         await dataStorage.SaveAsync(lastImageDonations, dataPaths.LatestImageDonationsPath, cancellationToken);

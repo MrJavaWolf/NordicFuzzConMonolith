@@ -348,6 +348,9 @@ MonoBehaviour:
   Background: {fileID: 1912122627713422033}
   Border: {fileID: 8346546808865983738}
   AdditionalImages: []
+  AdditionalTexts:
+  - {fileID: 6253780375312803461}
+  - {fileID: 7876600561594586543}
   FadeOutTime: 1
   FadeInTime: 0.75
   accelerationStrength: 20

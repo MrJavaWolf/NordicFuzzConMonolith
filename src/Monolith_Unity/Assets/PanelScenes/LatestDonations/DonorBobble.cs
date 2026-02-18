@@ -14,6 +14,8 @@ public class DonorBobble : MonoBehaviour
     public Image Background;
     public Image Border;
     public List<Image> AdditionalImages;
+    public List<TextMeshProUGUI> AdditionalTexts;
+
     public float FadeOutTime = 1f;
     public float FadeInTime = 0.75f;
     [Header("Random Walk Settings")]
@@ -116,6 +118,20 @@ public class DonorBobble : MonoBehaviour
                 }
             }
         }
+
+        if (AdditionalTexts != null)
+        {
+            foreach (var additionalText in AdditionalTexts)
+            {
+                if (additionalText != null)
+                {
+                    var color = additionalText.color;
+                    color.a = alpha;
+                    additionalText.color = color;
+                }
+            }
+        }
+
 
         if (Border != null)
         {
