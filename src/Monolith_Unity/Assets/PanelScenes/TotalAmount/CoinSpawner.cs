@@ -105,20 +105,20 @@ public class CoinSpawner : MonoBehaviour
                 ActiveCoins.Add(totalAmountCoin);
                 AllCoins.Add(totalAmountCoin);
 
-                if (amount - spawned > NeighborsToCombine * NeighborsToCombine * NeighborsToCombine)
+                if (amount - spawned > NeighborsToCombine * NeighborsToCombine * NeighborsToCombine * 1.5f )
                 {
                     spawned += NeighborsToCombine * NeighborsToCombine * NeighborsToCombine;
                     totalAmountCoin.UpgradeCoinType();
                     totalAmountCoin.UpgradeCoinType();
                     totalAmountCoin.UpgradeCoinType();
                 }
-                else if (amount - spawned > NeighborsToCombine * NeighborsToCombine)
+                else if (amount - spawned > NeighborsToCombine * NeighborsToCombine * 1.5f)
                 {
                     spawned += NeighborsToCombine * NeighborsToCombine;
                     totalAmountCoin.UpgradeCoinType();
                     totalAmountCoin.UpgradeCoinType();
                 }
-                else if (amount - spawned > NeighborsToCombine)
+                else if (amount - spawned > NeighborsToCombine + TargetCount)
                 {
                     spawned += NeighborsToCombine;
                     totalAmountCoin.UpgradeCoinType();

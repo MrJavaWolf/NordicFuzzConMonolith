@@ -7,7 +7,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class LatestDonationsController : MonoBehaviour, ICoolEffectState
 {
@@ -16,6 +15,9 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
     public GameObject LatestDonorPrefab;
     public GameObject SpecialDonorPrefab;
     public GameObject BiggestDonorPrefab;
+
+    public Transform DonationsParent;
+    public Transform SpecialDonationsParent;
     public Vector2 areaSize = new(5f, 3f);
     public List<Sprite> TopDonorLogos = new();
     public List<Color> LatestDonorsColorPallet = new();
@@ -59,7 +61,7 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
         SetAlpha(0);
     }
 
-    
+
 
     // Update is called once per frame
     void Update()
@@ -112,8 +114,8 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
         {
             return;
         }
-        List<(string donationId, long amount)> donations = GetDonaitions(newLatestDonations);
-
+        List<(string donationId, long amount, DateTimeOffset created)> donations = GetDonaitions(newLatestDonations);
+        donations = donations.OrderByDescending(x => x.created).ToList();
         foreach (var donation in donations.Take(MaxNumberOfLatestDonors))
         {
             if (LatestDonors.Any(x => x.DonationId == donation.donationId))
@@ -129,8 +131,8 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
         {
             return;
         }
-        List<(string donationId, long amount)> donations = GetDonaitions(newBiggestDonations);
-
+        List<(string donationId, long amount, DateTimeOffset created)> donations = GetDonaitions(newBiggestDonations);
+        donations = donations.OrderByDescending(x => x.amount).ToList();
         foreach (var donation in donations.Take(MaxNumberOfBiggestDonors))
         {
             if (BiggestDonors.Any(x => x.DonationId == donation.donationId))
@@ -143,7 +145,6 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
     private void HandleNewSpecialDonations()
     {
         if (newSpecialDonations == null) return;
-
         if (newSpecialDonations.Data == null) return;
         if (newSpecialDonations.Data.List == null) return;
         if (newSpecialDonations.Data.List.Count == 0) return;
@@ -156,6 +157,8 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
             if (donation.BadgeNumber == 0) continue;
             donations.Add(donation);
         }
+
+        donations = donations.OrderByDescending(x => x.DonatedAt).ToList();
 
         foreach (var donation in donations.Take(MaxNumberOfSpecialDonors))
         {
@@ -205,9 +208,9 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
 
     }
 
-    private List<(string, long)> GetDonaitions(DonationStorageDto<DonationListResponse> inputDonations)
+    private List<(string, long, DateTimeOffset)> GetDonaitions(DonationStorageDto<DonationListResponse> inputDonations)
     {
-        List<(string, long)> donations = new List<(string, long)>();
+        List<(string, long, DateTimeOffset)> donations = new();
         if (inputDonations == null)
         {
             return donations;
@@ -226,7 +229,7 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
                     if (donation == null) continue;
                     if (string.IsNullOrWhiteSpace(donation.Id)) continue;
                     if (donation.Amount < 0) continue;
-                    donations.Add((donation.Id, donation.Amount));
+                    donations.Add((donation.Id, donation.Amount, donation.CreatedAtUtc));
                 }
             }
         }
@@ -235,12 +238,12 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
         {
             if (inputDonations.Data.Stripe.Amount != null)
             {
-                foreach (var newLatestDonation in inputDonations.Data.Stripe.Amount)
+                foreach (var donation in inputDonations.Data.Stripe.Amount)
                 {
-                    if (newLatestDonation == null) continue;
-                    if (string.IsNullOrWhiteSpace(newLatestDonation.Id)) continue;
-                    if (newLatestDonation.Amount < 0) continue;
-                    donations.Add((newLatestDonation.Id, newLatestDonation.Amount));
+                    if (donation == null) continue;
+                    if (string.IsNullOrWhiteSpace(donation.Id)) continue;
+                    if (donation.Amount < 0) continue;
+                    donations.Add((donation.Id, donation.Amount, donation.CreatedAtUtc));
                 }
             }
         }
@@ -261,7 +264,7 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
             LatestDonorPrefab,
             randomPos,
             Quaternion.identity,
-            transform
+            DonationsParent
         );
         DonorBobble donorBobble = biggestObject.GetComponent<DonorBobble>();
         donorBobble.Text.text = amount.ToString("N0", DanishCulture);
@@ -287,7 +290,7 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
             BiggestDonorPrefab,
             randomPos,
             Quaternion.identity,
-            transform
+            DonationsParent
         );
         DonorBobble donorBobble = biggestObject.GetComponent<DonorBobble>();
         donorBobble.Logo.sprite = TopDonorLogos[UnityEngine.Random.Range(0, TopDonorLogos.Count)];
@@ -312,7 +315,7 @@ public class LatestDonationsController : MonoBehaviour, ICoolEffectState
             SpecialDonorPrefab,
             randomPos,
             Quaternion.identity,
-            transform
+            SpecialDonationsParent
         );
         if (sprite == null)
         {
